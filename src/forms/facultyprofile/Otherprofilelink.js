@@ -5,7 +5,7 @@ import { SERVER_URL } from '../../config/server';
 
 function Otherprofilelink({ edit, data }) {
     const dept = useLocation().pathname.split('/')[2];
-    console.log(data)
+    //console.log(data)
     const [link, setLink] = useState(data['personal_link'] ? data['personal_link'][0]['Personal Link'] : '');
     const [googlelink, setGooglelink] = useState(data['personal_link'] ? data['personal_link'][0]['Google Scholar Link'] : '');
     const handleSubmit = async (e) => {
@@ -21,7 +21,7 @@ function Otherprofilelink({ edit, data }) {
         try {
             await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${data._id}?q=personal_link`, newRow);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
     return (

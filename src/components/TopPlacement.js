@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Placement from './Placement'
 import Heading from './Heading';
 function TopPlacement() {
@@ -36,10 +36,11 @@ function TopPlacement() {
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='fill-slate-600'><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg>
           </button>
         </div>
-
-        <button className="flex hover:shadow-lg hover:-translate-y-1 hover:shadow-yellow-500/50 bg-transparent my-2 text-blue-700 font-medium border hover:border-blue-900 border-blue-400 duration-500 py-2 px-3 rounded mx-auto tracking-wide active:translate-y-[2px]" onClick={() => navigate(`/dept/${dept}/Placement`)}>
+        <Link to={`/dept/${dept}/Placement`}>
+        <button className="flex hover:shadow-lg hover:-translate-y-1 hover:shadow-yellow-500/50 bg-transparent my-2 text-blue-700 font-medium border hover:border-blue-900 border-blue-400 duration-500 py-2 px-3 rounded mx-auto tracking-wide active:translate-y-[2px]" onClick={() => {navigate(`/dept/${dept}/Placement`);console.log("Top Plcement")}}>
           View More
         </button>
+        </Link>
       </div>
     </>
   )

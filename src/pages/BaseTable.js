@@ -8,7 +8,7 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
         var val = Editfeild < 0 ? 0 : Editfeild;
         setChangedata(data[val])
     }
-    // console.log(changedata)
+    // //console.log(changedata)
     const dept = useLocation().pathname.split('/')[2];
     const [row, setrow] = useState(8); //row per page
     const totalrow = data.length;
@@ -18,7 +18,7 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
         Setdata();
         setPage(1)
     }, [changedata,row,title])
-    console.log(title);
+    //console.log(title);
     const handleSubmit=async(e)=>{
         
         let newRow = {};
@@ -35,7 +35,7 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
         try {
             await axios.put(`http://localhost:8000/dept/${dept}/Faculty/${faculty._id}?q=${title}`,data);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
 
@@ -45,7 +45,7 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
         try {
             await axios.put(`http://localhost:8000/dept/${dept}/Faculty/${faculty._id}?q=${title}`,newRow);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
     return (

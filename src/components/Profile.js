@@ -15,13 +15,13 @@ function Profile({ peopleType }) {
     const dept = useParams()?.dept;
     var id = useLocation().pathname.split('/').at(-1);
     // var token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('session=')).split('=')[1];
-    // console.log(token);
+    // //console.log(token);
     const { data, loading, error, reFetch } = useFetch(`/dept/${dept}/${peopleType}/${id}`);
 
     const [isLogin, setIsLogin] = useState(false);
     useEffect(() => {
         window.scrollTo(0, 0);
-        console.log(data)
+        //console.log(data)
         setIsLogin(data?.validation?.status?.login);
     }, [data])
     const map = {
@@ -99,6 +99,27 @@ function Profile({ peopleType }) {
     const [Editfeild, setEditfeild] = useState(-1);
     const setedit = () => { setEdit(true); SetEditfeild(-1); }
     const setview = () => { setEdit(false); SetEditfeild(-1); }
+
+    const logout = async (e) => {
+        try {
+            window.location.reload();
+            var token = "";
+            if(document.cookie){
+                var initialArr = document.cookie.split(';');
+                if(initialArr.length){
+                    var values = initialArr.find(cookie => cookie.trim().startsWith('session='));
+        
+                    if(values){
+                        token = values.split('=')[1];
+                    }
+                }
+            }
+            const response = await axios.get(`${SERVER_URL}/dept/${dept}/logout/${token}`, { withCredentials: true });
+            navigate(`/dept/${dept}/Faculty`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     // Handle the Edit functions in the table
     const SetEditfeild = (i) => { setEditfeild(i); }
     const HandleEdit = (i) => {
@@ -143,11 +164,11 @@ function Profile({ peopleType }) {
                                         <a title="Download Profile as PDF" href='#' className='w-8 sm:w-10 mt-1 mx-2 active:translate-y-[2px]'>
                                             <img src={downloadpdf} alt="download pdf" className='w-full' />
                                         </a>
-                                        <button className={"bg-[#0054A6] mx-4 text-white text-xs xl:text-base duration-500 w-20 xl:w-24 py-2 px-2 text-center h-[1.875rem] xl:h-10 shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}><a href={`${SERVER_URL}/admin/resources/Faculty/records/${id}/show`} target='_blank' >Login</a></button>
-                                        <button onClick={()=>{navigate(`/dept/${dept}/onClickForgotPass`)}}>Forgot Password</button>
-                                        {/* <button onClick={() => { !data?.validation?.status?.login ? navigate(`/dept/${dept}/login`) : logout() }} className={"bg-[#0054A6] mx-4 text-white text-xs xl:text-base duration-500 w-20 xl:w-24 py-2 px-2 text-center h-[1.875rem] xl:h-10 shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}>
+                                        {/* <button className={"bg-[#0054A6] mx-4 text-white text-xs xl:text-base duration-500 w-20 xl:w-24 py-2 px-2 text-center h-[1.875rem] xl:h-10 shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}><a href={`${SERVER_URL}/admin/resources/Faculty/records/${id}/show`} target='_blank' >Login</a></button>
+                                        <button onClick={()=>{navigate(`/dept/${dept}/onClickForgotPass`)}}>Forgot Password</button> */}
+                                        <button onClick={() => { !data?.validation?.status?.login ? navigate(`/dept/${dept}/login`) : logout() }} className={"bg-[#0054A6] mx-4 text-white text-xs xl:text-base duration-500 w-20 xl:w-24 py-2 px-2 text-center h-[1.875rem] xl:h-10 shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}>
                                             {!data?.validation?.status?.login ? "Login" : "Logout"}
-                                        </button> */}
+                                        </button>
                                     </div>
                                 </div>
                             </div>

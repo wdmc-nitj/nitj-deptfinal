@@ -22,32 +22,31 @@ function Navbar({menu,setMenu}) {
         "math": "Mathematics",
         "phy": "Physics",
         "tt": "Textile Technology",
-        "hum": "Humaniyies",
+        "hum": "Humanities & Management",
         "cy": "Chemistry",
         'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
     }
     useEffect(() => {
         window.scrollTo(0, 0);
-        console.log(data)
         setIsLogin(data?.validation?.status?.login);
     }, [data])
     return (
         <div>
-            <nav className="scroll-smooth z-50 w-full bg-white lg:flex lg:items-center lg:justify-between max-h-[5rem] lg:p-5 font-['Poppins'] shadow lg:shadow-md">
+            <nav className="scroll-smooth z-50 w-full bg-white lg:flex lg:items-center lg:justify-between lg:px-4 font-['Poppins'] shadow">
                 <div className="flex justify-between p-1 items-center ">
                     <div className='flex items-center justify-center'>
                         <img className="w-[3.5rem] inline mx-2 cursor-pointer" src={logo} alt="logo" />
-                        <div className="text-lg sm:text-xl ml-2 leading-5 text-[#0054A6]  cursor-pointer font-bold">
-                            <div className='flex-col py-8'>
+                        <div className="text-base sm:text-xl ml-2 leading-5 text-[#0054A6]  cursor-pointer font-bold">
+                            <div className='flex-col'>
             
-                            <a href="#">Department of {departments[dept]}</a>
-                            <div className='font-normal'>Dr B R Ambedkar National Institute of Technology Jalandhar</div>
+                            <a href="#"><span className='hidden sm:inline-block'>Department of</span> {departments[dept]}</a>
+                            <div className='text-xs sm:text-base font-normal'>Dr B R Ambedkar National Institute of Technology Jalandhar</div>
                             </div>
                         </div>
                     </div>
 
                     <div className="cursor-pointer text-black mx-2 mr-3 lg:hidden block" onClick={()=>setMenu(!menu)}>
-                        <i class="fa-xl fa-solid fa-bars text-blue-700"></i>
+                        <i className="fa-xl fa-solid fa-bars text-blue-700"></i>
                     </div>
                 </div>
 
