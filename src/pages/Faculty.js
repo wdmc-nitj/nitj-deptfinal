@@ -7,7 +7,7 @@ import { useState } from 'react';
 function Faculty() {
     const [url,setUrl]=useState(useLocation());
     const {data,loading,error,reFetch}=useFetch(url.pathname);
-    console.log(data);
+    //console.log(data);
     return (
         <People Title="Faculty" Data={data}/>
     )

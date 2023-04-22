@@ -63,7 +63,7 @@ function FacultyLogin() {
               </p>}
               <div
                 onClick={() => navigate(`/dept/${dept}/onClickForgotPass`)}
-                className="text-sm cursor-pointer hover:underline"
+                className="text-blue-800 font-medium text-sm cursor-pointer hover:underline"
               >
                 Forgot Password?
               </div>

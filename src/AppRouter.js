@@ -76,7 +76,7 @@ const AppRouter = () => {
 
           <div className="w-full mx-auto max-w-8xl">
             <div className='lg:flex'>
-              <aside className='inset-0 z-20 flex-none fixed top-[4rem] lg:top-0 w-full lg:static lg:overflow-y-visible lg:pt-0 lg:w-[19rem] lg:block shadow lg:ml-2'>
+              <aside className='inset-0 z-20 h-fit lg:h-auto flex-none fixed top-[4rem] lg:top-0 w-full lg:static lg:overflow-y-visible lg:pt-0 lg:w-[19rem] lg:block shadow lg:ml-2'>
                 <Menu menu = {menu} setMenu={setMenu} />
               </aside> 
               <main className='flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible min-h-screen'>

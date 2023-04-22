@@ -15,7 +15,7 @@ function App() {
     "math":"Mathematics",
     "phy":"Physics",
     "tt":"Textile Technology",
-    "hum":"Humaniyies",
+    "hum":"Humanities & Management",
     "cy":"Chemistry",
     'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
   }

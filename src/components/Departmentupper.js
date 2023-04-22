@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import useFetch from '../hooks/useFetch';
 const Departmentupper = (props) => {
     const dept = useLocation().pathname.split('/')[2];
@@ -12,14 +12,12 @@ const Departmentupper = (props) => {
             <div className="bg-white rounded-lg border border-gray-200 shadow-md md:w-1/2 md:mx-2 my-2">
 
                 <div className='flex justify-center items-center'>
-                    <a href="/">
-                        <img className="rounded-t-lg" src={props.departmentimage} alt="..." />
-                    </a>
+                    <img className="rounded-t-lg" src={props.departmentimage} alt="..." />
                 </div>
 
-                <div className="p-5 h-[300px]">
+                <div className="px-2 pt-5 h-[300px]">
                     <h1 className='text-center font-medium text-2xl m-2'>Department of {props.name}</h1>
-                    <p className="mb-3 font-normal text-justify overflow-hidden text-gray-700 h-[170px]">{props.introduction}</p>
+                    <p className="mb-3 font-normal text-justify px-3 overflow-y-auto scrollbar text-gray-700 h-[190px]">{props.introduction}</p>
                     {/* <div className='block m-4 p-2'>
                         <button className=' float-right text-green-700 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
                     </div>  */}
@@ -35,17 +33,12 @@ const Departmentupper = (props) => {
                 <div className="p-5 h-[300px]">
                     <h1 className='text-center text-2xl m-2 font-medium'>Vision and Mission</h1>
                     <p className="mb-3 font-normal text-justify text-gray-700 h-[170px] overflow-hidden">{data.vision}<br/>{data.mission}</p>
-                    {/* <div className='block m-4 p-2'>
-                        <button className=' float-right text-green-700 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
-                    </div> */}
-                </div>
-                {/* <div className="p-5 rounded-lg h-[200px]">
-                    <h1 className='underline text-center text-2xl m-2'> <b>Mission and Vision</b></h1>
-                    <p className="w-full inline-block h-[180px] text-justify overflow-hidden text-ellipsis">{data.mission} {data.vision}</p>
-                    <div className='block m-4 p-2'>
-                        <button className=' float-right text-green-700 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
+                    <div className='block p-2'>
+                        <Link to={`/dept/${dept}/MissionandVision`}>
+                        <button className=' float-right text-blue-600 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
+                        </Link>
                     </div>
-                </div> */}
+                </div>
             </div>
 
         </div>

@@ -5,7 +5,7 @@ function AfterForgotPass() {
   const url = useLocation();
   const dept = url.pathname.split("/")[2];
   const status = url.pathname.split("/")[4];
-  console.log(status);
+  //console.log(status);
 
   return (
     <div className="w-full bg-blue-50/60 md:h-screen">
