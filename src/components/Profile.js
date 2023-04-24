@@ -96,6 +96,7 @@ function Profile({ peopleType }) {
     const [active, setActive] = useState(0);
     const [edit, setEdit] = useState(false);
     const [update, setUpdate] = useState(false)
+    const [loginOpen, setLoginOpen] = useState(false);
     const [Editfeild, setEditfeild] = useState(-1);
     const setedit = () => { setEdit(true); SetEditfeild(-1); }
     const setview = () => { setEdit(false); SetEditfeild(-1); }
@@ -104,12 +105,12 @@ function Profile({ peopleType }) {
         try {
             window.location.reload();
             var token = "";
-            if(document.cookie){
+            if (document.cookie) {
                 var initialArr = document.cookie.split(';');
-                if(initialArr.length){
+                if (initialArr.length) {
                     var values = initialArr.find(cookie => cookie.trim().startsWith('session='));
-        
-                    if(values){
+
+                    if (values) {
                         token = values.split('=')[1];
                     }
                 }
@@ -146,8 +147,8 @@ function Profile({ peopleType }) {
                         <div key={item?._id} className="block lg:mt-10 py-4 w-[98%] mx-auto">
                             <div className="relative flex flex-col flex-auto w-full min-w-0 p-4 overflow-hidden break-words border shadow-md rounded-2xl bg-white/80 bg-clip-border mb-4 draggable mx-auto"
                                 draggable="true">
-                                <div className="flex flex-wrap items-center justify-between -mx-3">
-                                    <div className='flex'>
+                                <div className="flex relative items-center justify-between -mx-3">
+                                    <div className="flex w-[calc('100%-9rem')]">
                                         <div className="flex-none w-auto max-w-full px-3">
                                             <div className="w-20 h-20 xl:w-24 xl:h-24 flex-grow-0 flex-shrink-0">
                                                 <img src={item?.img} className="w-full h-full object-cover object-left-top rounded-xl shadow-xl flex-grow-0 flex-shrink-0" alt='...' />
@@ -156,19 +157,28 @@ function Profile({ peopleType }) {
                                         <div className="flex-none w-auto max-w-full px-3 my-auto">
                                             <div className="h-full">
                                                 <h5 className="mb-1 text-gray-700 text-xl font-semibold">{item?.name}</h5>
-                                                <p title={item?.position} className="text-zinc-500 mb-0 font-medium leading-normal sm:w-96 whitespace-nowrap overflow-hidden">{item?.position}</p>
+                                                <p title={item?.position} className="text-zinc-500 mb-0 font-medium leading-normal w-96 xl:w-full whitespace-nowrap overflow-hidden">{item?.position}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex mx-2">
-                                        <a title="Download Profile as PDF" href='#' className='w-8 sm:w-10 mt-1 mx-2 active:translate-y-[2px]'>
-                                            <img src={downloadpdf} alt="download pdf" className='w-full' />
-                                        </a>
+                                    <div className='absolute z-30 top-0 right-0 flex sm:hidden'>
+                                        <button className={"w-8 h-8 flex flex-0 items-center justify-center object-cover font-extrabold active:translate-y-[2px] "} onClick={()=>setLoginOpen(!loginOpen)}>
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        </button>
+                                    </div>
+                                    <div className={"items-center justify-center bg-white z-20 h-full absolute right-0 mx-2 duration-200 " + (loginOpen ? 'flex w-40 opacity-100' : 'hidden sm:flex opacity-0 sm:opacity-100')}>
+                                        <div className='flex w-full items-center justify-center'>
+                                            <a title="Download Profile as PDF" href='#' className='w-8 sm:w-10 mt-1 active:translate-y-[2px]'>
+                                                <img src={downloadpdf} alt="download pdf" className='w-full' />
+                                            </a>
+                                            <button onClick={() => { !data?.validation?.status?.login ? navigate(`/dept/${dept}/login`) : logout() }} className={"bg-[#0054A6] ml-2 text-white text-base duration-500 w-20 xl:w-24 py-2 px-3 text-center shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}>
+                                                {!data?.validation?.status?.login ? "Login" : "Logout"}
+                                            </button>
+                                        </div>
+
                                         {/* <button className={"bg-[#0054A6] mx-4 text-white text-xs xl:text-base duration-500 w-20 xl:w-24 py-2 px-2 text-center h-[1.875rem] xl:h-10 shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}><a href={`${SERVER_URL}/admin/resources/Faculty/records/${id}/show`} target='_blank' >Login</a></button>
                                         <button onClick={()=>{navigate(`/dept/${dept}/onClickForgotPass`)}}>Forgot Password</button> */}
-                                        <button onClick={() => { !data?.validation?.status?.login ? navigate(`/dept/${dept}/login`) : logout() }} className={"bg-[#0054A6] mx-4 text-white text-xs xl:text-base duration-500 w-20 xl:w-24 py-2 px-2 text-center h-[1.875rem] xl:h-10 shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}>
-                                            {!data?.validation?.status?.login ? "Login" : "Logout"}
-                                        </button>
+
                                     </div>
                                 </div>
                             </div>
