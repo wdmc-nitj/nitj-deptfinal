@@ -8,7 +8,7 @@ function AfterForgotPass() {
   //console.log(status);
 
   return (
-    <div className="w-full bg-blue-50/60 md:h-screen">
+    <div className="w-full bg-blue-50/60 h-screen p-2">
       <div className="flex justify-center mt-24">
         <div className="w-full max-w-md flex">
           <div className="w-full shadow-lg border p-5 rounded-lg lg:rounded-l-none">
@@ -22,7 +22,7 @@ function AfterForgotPass() {
               </p>
             </div>
             <form
-              className="px-8 pt-6 pb-8 mb-4 bg-white rounded"
+              className="px-8 pt-6 pb-8 mb-4 rounded"
               method="post"
               action={`${SERVER_URL}/dept/${dept}/confirmation`}
             >
