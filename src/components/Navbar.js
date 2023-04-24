@@ -53,7 +53,7 @@ function Navbar({menu,setMenu}) {
                 <ul className="lg:flex lg:items-center z-50 lg:z-auto lg:relative absolute bg-white w-full lg:h-[5rem] lg:top-0 lg:w-auto lg:py-0 py-4 pl-7 lg:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
 
                     <li className="m-4 lg:mr-4 xl:m-4 my-6 lg:my-0">
-                        <a target='_blank' href="https://nitjmain.onrender.com/" className="flex items-center justify-center text-[#0054A6] hover:text-[#D3D3D3] duration-500 ">
+                        <a target='_blank' href="https://v1.nitj.ac.in" className="flex items-center justify-center text-[#0054A6] hover:text-[#D3D3D3] duration-500 ">
                             <span className='hidden sm:block text-lg font-bold mx-2 mt-1'>NITJ</span>
                             <i className="fa-xl fa-solid fa-house"></i>
                         </a>

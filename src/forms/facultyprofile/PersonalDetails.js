@@ -20,7 +20,7 @@ function PersonalDetails({ edit, data }) {
         "math": "Mathematics",
         "phy": "Physics",
         "tt": "Textile Technology",
-        "hum": "Humaniyies",
+        "hum": "Humanities",
         "cy": "Chemistry",
         'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
     }

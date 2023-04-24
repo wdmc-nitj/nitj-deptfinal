@@ -71,7 +71,7 @@ function Menu({ menu, setMenu }) {
                     link: `/dept/${dept}/Student`
                 }, {
                     l: 'Alumni',
-                    link: `https://nitjmain.onrender.com/alumni/alumni.html`,
+                    link: `https://v1.nitj.ac.in/alumni/alumni.html`,
                     newTab:true
                 }, {
                     l: 'Staff',
