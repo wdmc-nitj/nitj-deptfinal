@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import logo from './Img/logo.png'
+// import logo from './Img/logo.png'
 function Menu({ menu, setMenu }) {
     let navigate = useNavigate();
     const dept = useLocation().pathname.split('/')[2];
@@ -71,7 +71,7 @@ function Menu({ menu, setMenu }) {
                     link: `/dept/${dept}/Student`
                 }, {
                     l: 'Alumni',
-                    link: `https://v1.nitj.ac.in/alumni/alumni.html`,
+                    link: `https://nitj.ac.in/alumni/alumni.html`,
                     newTab:true
                 }, {
                     l: 'Staff',
@@ -128,7 +128,7 @@ function Menu({ menu, setMenu }) {
 
                 <div className={"mx-auto lg:mx-0 lg:mr-1 lg:flex flex-col items-center w-[98%] overflow-y-auto mt-1 mb-3 py-1 " + (menu ? 'flex' : 'hidden')}>
                     <div className='w-full px-1'>
-                        <span className={"flex items-center w-full h-10 px-3 mt-2 rounded cursor-pointer active:translate-y-[2px] shadow-sm border border-gray-200/75 " + (linkOpen === -1 ? 'shadow-sky-600 shadow' : '')} onClick={() => { navigate(`/dept/${dept}/Home`); setLinkOpen(-1); setMenu(!menu); }}>
+                        <span className={"flex items-center w-full h-10 px-3 mt-2 rounded cursor-pointer active:translate-y-[2px] shadow-sm border border-gray-200/75 " + (linkOpen === -1 ? 'border-sky-200' : '')} onClick={() => { navigate(`/dept/${dept}/Home`); setLinkOpen(-1); setMenu(!menu); }}>
                             <i className="pl-1 pt-[2px] w-6 h-6 stroke-current fa fa-home"></i>
                             <span className="ml-1 font-medium">Home</span>
                         </span>
@@ -137,7 +137,7 @@ function Menu({ menu, setMenu }) {
                         Menu.map((item, i) => {
 
                             return (
-                                <div key={i} className={'w-[98%] mt-2 rounded ' + (i === linkOpen ? 'shadow-sky-600 shadow' : '')}>
+                                <div key={i} className={'w-[98%] mt-2 rounded ' + (i === linkOpen ? 'border border-sky-200' : '')}>
                                     <span className="flex items-center w-full h-10 px-3 rounded shadow-sm border border-gray-200/75 cursor-pointer" onClick={() => { item.List.length === 0 && navigate(item.link); item.List.length === 0 && setMenu(!menu); (i === linkOpen) ? setLinkOpen(-2) : setLinkOpen(i) }}>
                                         <i className={"pl-1 pt-[2px] w-6 h-6 stroke-current " + item.Logo}></i>
                                         <span className="ml-1 font-medium">{item.Title}</span>

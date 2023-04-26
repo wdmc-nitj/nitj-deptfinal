@@ -12,7 +12,7 @@ function App() {
     "ice":"Instrumentation And Control Engineering",
     "me":"Mechanical Engineering",
     "ipe":"Industrial And Production Enginnering",
-    "math":"Mathematics",
+    "ma":"Mathematics",
     "phy":"Physics",
     "tt":"Textile Technology",
     "hum":"Humanities & Management",

@@ -8,54 +8,31 @@ function Programme() {
     const [programInfo, setProgramInfo] = useState({});
     const Programs = useFetch(`/dept/${dept}/programmeInfo`).data;
 
-    const handlescroll = (id) => {
-        let str = "#" + id;
-
-        var element = document.getElementById(str);
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
     useEffect(() => {
         window.scroll(0, 0);
         setProgramInfo(Programs[0])
     }, [Programs])
-    const departments = {
-        "it": "Information Technology",
-        "cse": "Computer Science and Engineering",
-        "bt": "Bio Technology",
-        "ce": "Civil Engineering",
-        "ch": "Chemical Engineering",
-        "ec": "Electronics And Communication Engineering",
-        "ee": "Electrical And Electronics Engineering",
-        "ice": "Instrumentation And Control Engineering",
-        "me": "Mechanical Engineering",
-        "ipe": "Industrial And Production Enginnering",
-        "math": "Mathematics",
-        "phy": "Physics",
-        "tt": "Textile Technology",
-        "hum": "Humanities & Management",
-        "cy": "Chemistry",
-        'cee': 'Center for Energy and Environment', 'cai': 'Center for Artificial Intelligence',
-    }
+    
 
     return (
         <>
             <div className="text-gray-600 body-font w-full h-full">
-                <div className="container flex flex-col px-5 py-12 mx-auto" style={{ height: "100%" }}>
+                <div className="container flex flex-col p-8 sm:p-12 mx-auto" style={{ height: "100%" }}>
                     <div className="flex flex-col text-center w-full mb-20">
-                        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Programmes of Study</h1>
+                        <h1 className="text-2xl sm:text-3xl font-medium title-font mb-4 text-gray-900">Programmes of Study</h1>
                         <p className="lg:w-2/3 mx-auto leading-relaxed text-base">The Department offers following Undergraduate, Postgraduate and Research Programmes</p>
                     </div>
                     <div className="flex flex-auto overflow-x-auto -m-4 place-items-center text-center scrollbar">
                         {
                             Programs.map((item, i) => {
                                 return (
-                                    <div key={i} className="py-4 min-w-[250px] max-w-[330px] w-fit mx-2">
+                                    <div key={i} className="py-4 min-w-[250px] max-w-[300px] w-fit mx-2">
                                         <div className={"border-2 border-gray-200 py-6 rounded-lg active:translate-y-[2px] cursor-pointer " + (item === programInfo ? 'shadow-lg bg-blue-100 shadow-blue-400' : '')} onClick={() => {
                                             setProgramInfo(Programs[i]);
                                         }}>
                                             <i className="fa fa-graduation-cap text-blue-400 text-5xl m-3"></i>
                                             <h2 className="title-font font-medium text-2xl text-gray-900">{item["Program of Study"]}</h2>
-                                            <p className="py-1 leading-relaxed">{item?.branch}</p>
+                                            <p className="max-w-[250px] py-1 leading-relaxed">{item?.branch}</p>
 
                                         </div>
                                     </div>
@@ -65,8 +42,8 @@ function Programme() {
                     </div>
                 </div>
                 <div>
-                    <div className='mx-2 lg:mx-12 mb-8'>
-                        <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-1 xl:mx-3 my-[60px] pt-[54px] place-items-center'>
+                    <div className='mx-2 lg:mx-5 mb-8'>
+                        <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 my-[60px] pt-[54px] place-items-center'>
                             <div className='absolute -mt-[78px] p-2 px-4 bg-[rgba(0,105,140,1)] font-[400] text-[#fff] shadow-lg rounded-3xl text-xl sm:text-2xl'>Program Outcomes</div>
                             <ol>
                                 {
@@ -85,8 +62,8 @@ function Programme() {
                             </ol>
                         </div>
                     </div>
-                    <div className='mx-2 lg:mx-12 mb-8'>
-                        <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-1 xl:mx-3 my-[60px] pt-[54px] place-items-center'>
+                    <div className='mx-2 lg:mx-5 mb-8'>
+                        <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 my-[60px] pt-[54px] place-items-center'>
                             <div className='absolute -mt-[78px] p-2 px-4 bg-[rgba(0,105,140,1)] font-[400] text-[#fff] shadow-lg rounded-3xl text-xl sm:text-2xl'>Program Specific Outcomes</div>
                             <ol >
 
@@ -100,8 +77,8 @@ function Programme() {
                             </ol>
                         </div>
                     </div>
-                    <div className='mx-2 lg:mx-12 mb-8'>
-                        <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-1 xl:mx-3 my-[60px] pt-[54px] place-items-center'>
+                    <div className='mx-2 lg:mx-5 mb-8'>
+                        <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 my-[60px] pt-[54px] place-items-center'>
                             <div className='absolute -mt-[78px] p-2 px-4 bg-[rgba(0,105,140,1)] font-[400] text-[#fff] shadow-lg rounded-3xl text-xl sm:text-2xl'>Program Educational Objectives</div>
                             <div className=''>
                                 <ol>

@@ -7,7 +7,7 @@ const Departmentlower = (props) => {
   const [url, setUrl] = useState(useLocation());
   const dept = url.pathname.split('/')[2];
   return (
-    <div className='flex flex-col md:flex-row w-[98%] justify-around items-center px-2 md:px-4 place-items-center mx-auto'>
+    <div className='flex flex-col md:flex-row lg:flex-col xl:flex-row w-[98%] justify-around items-center px-2 md:px-4 place-items-center mx-auto'>
       {/* Club */}
       <Card  />
       {/* HOD */}
@@ -17,9 +17,9 @@ const Departmentlower = (props) => {
           <img src={props?.img} className="w-full h-full object-cover object-left-top rounded-full shadow-xl flex-grow-0 flex-shrink-0" alt='' />
         </div>
         <span className='w-full inline-block h-[180px] overflow-hidden text-justify text-ellipsis mt-2'>
-          <h2 className="text-blue-800 text-2xl font-semibold">{props?.name}</h2>
-          <h2 className='font-medium'>(Head of Department)</h2>
-          <p className="mt-2 text-gray-600 flex-wrap">{props?.message}</p>
+          <h2 className="text-blue-800 text-start w-[calc(100%-100px)] text-xl lg:text-2xl font-semibold">{props?.name}</h2>
+          <h2 className='text-sm sm:text-base font-medium'>(Head of Department)</h2>
+          <p className="mt-2 text-sm sm:text-base text-gray-600 flex-wrap">{props?.message}</p>
         </span>
         <div className="flex justify-end mt-4" onClick={() => navigate(`/dept/${dept}/messageofHOD`)}>
           <span className="text-sm font-medium text-indigo-500 cursor-pointer">Read More &rarr;</span>
