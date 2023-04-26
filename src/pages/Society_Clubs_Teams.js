@@ -51,7 +51,7 @@ const Society_Clubs_Tems = () => {
                           </div>
                           <div className="p-6 w-72">
                             <h5 className="text-lg font-bold mb-4">{item?.title}</h5>
-                            <p className="mb-6">{item?.description}</p>
+                            <p className="text-justify mb-6 overflow-y-auto max-h-[250px] px-2 scrollbar">{item?.description}</p>
                             <ul className="list-inside flex mx-auto justify-center">
                               <a href="#!" className="px-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" className="w-4 h-4 text-blue-600">
@@ -113,9 +113,9 @@ const Society_Clubs_Tems = () => {
                               />
                             </div>
                           </div>
-                          <div className="p-6 w-72">
+                          <div className="p-3 w-72">
                             <h5 className="text-lg font-bold mb-4">{item?.title}</h5>
-                            <p className="text-justify mb-6">{item?.description}</p>
+                            <p className="text-justify mb-6 overflow-y-auto max-h-[250px] px-2 scrollbar">{item?.description}</p>
                             <ul className="list-inside flex mx-auto justify-center">
                               <a href="#!" className="px-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" className="w-4 h-4 text-blue-600">
@@ -179,7 +179,7 @@ const Society_Clubs_Tems = () => {
                           </div>
                           <div className="p-6 w-72">
                             <h5 className="text-lg font-bold mb-4">{item?.title}</h5>
-                            <p className="mb-6">{item?.description}</p>
+                            <p className="text-justify mb-6 overflow-y-auto max-h-[250px] px-2 scrollbar">{item?.description}</p>
                             <ul className="list-inside flex mx-auto justify-center">
                               <a href="#!" className="px-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" className="w-4 h-4 text-blue-600">
