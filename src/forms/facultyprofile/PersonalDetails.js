@@ -18,9 +18,9 @@ function PersonalDetails({ edit, data }) {
         "me": "Mechanical Engineering",
         "ipe": "Industrial And Production Enginnering",
         "ma": "Mathematics",
-        "phy": "Physics",
+        "ph": "Physics",
         "tt": "Textile Technology",
-        "hum": "Humanities",
+        "hm": "Humanities",
         "cy": "Chemistry",
         'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
     }

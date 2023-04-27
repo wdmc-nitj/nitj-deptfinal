@@ -11,22 +11,22 @@ function VisionandMission() {
   const dept = useLocation().pathname.split('/')[2];
   const { data, loading, error, reFetch } = useFetch(`/dept/${dept}/messageofHOD`);
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <div className='w-[98%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-1 xl:mx-3 mt-[60px] pt-[54px] place-items-center'>
+    <div className='flex flex-col justify-center items-center mb-4'>
+      <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-auto mt-[60px] pt-[54px] place-items-center'>
         <Heading name="Vision" />
-        <p className='px-4 text-justify justify-center'>
+        <p className='px-2 sm:px-4 text-sm sm:text-base text-justify justify-center'>
           {data?.vision}
         </p>
       </div>
-      <div className='w-[98%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-1 xl:mx-3 mt-[60px] pt-[54px] place-items-center'>
+      <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-auto mt-[60px] pt-[54px] place-items-center'>
         <Heading name="Missions" />
-        <p className='px-4 text-justify justify-center'>
+        <p className='px-2 sm:px-4 text-sm sm:text-base text-justify justify-center'>
           {data?.mission}
         </p>
       </div>
-      <div className='w-[98%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-1 xl:mx-3 mt-[60px] pt-[54px] place-items-center'>
+      <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-auto mt-[60px] pt-[54px] place-items-center'>
         <Heading name="Quality Policy" />
-        <p className='px-4 text-justify justify-center'>
+        <p className='px-2 sm:px-4 text-sm sm:text-base text-justify justify-center'>
           {data?.QualityStatements}
         </p>
       </div>

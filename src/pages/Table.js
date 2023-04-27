@@ -21,7 +21,7 @@ function    Table({ tablehead, data }) {
                         <option value={100}>100</option>
                     </select>
                 </div>
-                <div className='my-1'><input className='mx-w-full border outline-none p-2 rounded' placeholder='Search' /></div>
+                <div className='m-1'><input className='w-36 sm:w-full border outline-none p-2 rounded' placeholder='Search' /></div>
             </div>
             <div className="relative mx-auto overflow-x-auto">
                 <table className="min-w-[500px] md:min-w-[800px] text-sm text-left text-gray-800 scroll-auto border rounded-md">
