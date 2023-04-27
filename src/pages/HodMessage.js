@@ -57,12 +57,12 @@ function HodMessage() {
           <p className="font2 font-medium text-[28px] lg:text-[44px]">HoD's Message </p>
           <div className="bg-accent bg-teal-600 w-full lg:w-[111px] h-[1px] lg:h-[5px]"></div>
         </div>
-        <p className="text-gray-800 lg:text-lg lg:leading-[30px] text-justify">
+        <p className="text-gray-800 text-sm sm:text-base lg:leading-[30px] text-justify">
               {data?.message}
           <br /> <br />
           Wish you all the best.
           <br /> <br />
-          <span className="font-semibold">{data?.name}</span>
+          <span className="text-base sm:text-lg font-semibold">{data?.name}</span>
         </p>
       </div>
 

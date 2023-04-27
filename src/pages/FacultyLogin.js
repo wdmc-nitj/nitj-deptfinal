@@ -12,7 +12,7 @@ function FacultyLogin() {
   return (
     <section className="bg-blue-50/60 w-full">
       <div className="flex flex-col items-center mt-24 px-6 mx-auto h-screen">
-        <span className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <span className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
           <i className="fa-solid fa-user mr-4"></i>
           Faculty Login
         </span>
@@ -45,7 +45,7 @@ function FacultyLogin() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="block mb-2 text-sm font-medium text-gray-900"
                 >
                   Password
                 </label>

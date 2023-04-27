@@ -20,9 +20,9 @@ function Navbar({menu,setMenu}) {
         "me": "Mechanical Engineering",
         "ipe": "Industrial and Production Enginnering",
         "ma": "Mathematics",
-        "phy": "Physics",
+        "ph": "Physics",
         "tt": "Textile Technology",
-        "hum": "Humanities & Management",
+        "hm": "Humanities & Management",
         "cy": "Chemistry",
         'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
     }

@@ -17,7 +17,7 @@ const Departmentupper = (props) => {
 
                 <div className="px-2 pt-5 h-[300px]">
                     <h1 className='text-center font-medium text-2xl m-2'>Department of {props.name}</h1>
-                    <p className="mb-3 font-normal text-justify px-3 overflow-y-auto scrollbar text-gray-700 h-[190px]">{props.introduction}</p>
+                    <p className="mb-3 text-justify px-3 overflow-y-auto scrollbar text-gray-700 h-[190px]">{props.introduction}</p>
                     {/* <div className='block m-4 p-2'>
                         <button className=' float-right text-green-700 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
                     </div>  */}

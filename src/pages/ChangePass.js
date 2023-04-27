@@ -16,7 +16,7 @@ function ChangePass() {
         data?.isValid ? (
           <section className="bg-blue-50 w-full">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-              <span className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+              <span className="flex items-center mb-6 text-2xl font-semibold text-gray-900">
                 <i className="fa-solid fa-user mr-4"></i>
                 Faculty Login
               </span>
@@ -48,7 +48,7 @@ function ChangePass() {
                     <div>
                       <label
                         htmlFor="password"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        className="block mb-2 text-sm font-medium text-gray-900"
                       >
                         Password
                       </label>
