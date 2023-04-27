@@ -1,5 +1,5 @@
 {
-  "homepage": ".",
+  "homepage": "https://departments.nitj.ac.in/",
   "name": "directorscorner",
   "version": "0.1.0",
   "private": true,
@@ -37,11 +37,12 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
+    "start": "PORT=4455 react-scripts start",
     "go": "vite",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "live": "serve -s build -p 8085"
   },
   "eslintConfig": {
     "extends": [
@@ -50,7 +51,7 @@
     ]
   },
   "engines": {
-    "node": "16.14.0",
+    "node": "16.x",
     "npm": "8.3.1"
   },
   "browserslist": {
