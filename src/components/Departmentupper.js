@@ -32,7 +32,7 @@ const Departmentupper = (props) => {
                 </div>
                 <div className="p-5 h-[300px]">
                     <ul>
-                        <li className='text-lg text-left font-bol'>
+                        <li className='text-lg text-left font-bold'>
                             Vision
                         </li>
                         <li>
