@@ -31,8 +31,22 @@ const Departmentupper = (props) => {
                     </iframe>
                 </div>
                 <div className="p-5 h-[300px]">
-                    <h1 className='text-center text-2xl m-2 font-medium'>Vision and Mission</h1>
-                    <p className="mb-3 font-normal text-justify text-gray-700 h-[170px] overflow-hidden">{data.vision}<br/>{data.mission}</p>
+                    <ul>
+                        <li className='text-lg text-left font-bol'>
+                            Vision
+                        </li>
+                        <li>
+                            {data.vision}
+                        </li>
+                        <br></br>
+                        <li className='text-lg text-left font-bold'>
+                            Mission
+                        </li>
+                        <li>
+                            {data.mission}
+                        </li>
+                    </ul>
+                    <p className="mb-3 font-normal text-justify text-gray-700 overflow-hidden"><br/></p>
                     <div className='block p-2'>
                         <Link to={`/dept/${dept}/MissionandVision`}>
                         <button className=' float-right text-blue-600 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
