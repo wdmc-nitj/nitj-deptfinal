@@ -15,7 +15,7 @@ function Navbar({menu,setMenu}) {
         "ce": "Civil Engineering",
         "ch": "Chemical Engineering",
         "ece": "Electronics and Communication Engineering",
-        "ee": "Electrical and Electronics Engineering",
+        "ee": "Electrical Engineering",
         "ice": "Instrumentation and Control Engineering",
         "me": "Mechanical Engineering",
         "ipe": "Industrial and Production Enginnering",
