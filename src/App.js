@@ -8,7 +8,7 @@ function App() {
     "ce":"Civil Engineering",
     "ch":"Chemical Engineering",
     "ece":"Electronics And Communication Engineering",
-    "ee":"Electrical And Electronics Engineering",
+    "ee":"Electrical Engineering",
     "ice":"Instrumentation And Control Engineering",
     "me":"Mechanical Engineering",
     "ipe":"Industrial And Production Enginnering",
