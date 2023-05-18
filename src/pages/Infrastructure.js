@@ -7,7 +7,7 @@ function Infrastructure() {
   const [url,setUrl]=useState(useLocation());
   const {data,error,loading,reFetch}=useFetch(url.pathname+'?q=Infrastructure');
   return (
-    <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 sm:p-4 mx-auto sm:mx-3 mt-[60px] pt-[54px] place-items-center'>
+    <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-auto sm:mx-3 mt-[60px] pt-[54px] place-items-center'>
             <Heading name="Infrastructure" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 sm:m-4 p-2 place-items-center gap-4 antialiased text-gray-900">
