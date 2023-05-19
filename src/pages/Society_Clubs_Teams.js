@@ -34,14 +34,14 @@ const Society_Clubs_Tems = () => {
       <Heading name="Society/Clubs/Teams" />
       <div className="w-full mt-12 px-6 mx-auto">
         {
-          Soceity && <section className="mb-20 text-gray-800 text-center">
+          Soceity && <section className="mb-20 text-center">
             <h2 className="text-5xl font-bold mb-16">Departments <u className="text-blue-600">Societies</u></h2>
             <div id='scrollcontrol' className='w-full'>
               <div className="cards w-full flex snap-x overflow-x-auto scrollhide delay-200 scroll-smooth gap-x-6 px-3 pt-[80px] pb-4">
                 {
                   data.filter((e) => e.type === "Societies")?.map((item, i) => {
                     return (
-                      <div key={i} className="mb-0 w-72 h-full">
+                      <div key={i} className="mb-0 w-80 h-full">
                         <div className="w-full rounded-lg shadow shadow-blue-500 h-full bg-white">
                           <div className="flex justify-center w-full">
                             <div className="flex justify-center -mt-[75px]" >
@@ -49,9 +49,9 @@ const Society_Clubs_Tems = () => {
                               />
                             </div>
                           </div>
-                          <div className="p-6 w-72">
+                          <div className="p-3 w-80">
                             <h5 className="text-lg font-bold mb-4">{item?.title}</h5>
-                            <p className="text-justify mb-6 overflow-y-auto max-h-[250px] px-2 scrollbar">{item?.description}</p>
+                            <p className="text-justify mb-6 overflow-y-auto max-h-[170px] px-2 scrollbar">{item?.description}</p>
                             <ul className="list-inside flex mx-auto justify-center">
                               <a href="#!" className="px-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" className="w-4 h-4 text-blue-600">
@@ -98,14 +98,14 @@ const Society_Clubs_Tems = () => {
         }
 
         {
-          Club && <section className="mb-20 text-gray-800 text-center">
+          Club && <section className="mb-20 text-center">
             <h2 className="text-5xl font-bold mb-16">Departments <u className="text-blue-600">Clubs</u></h2>
             <div id='scrollcontrol3' className='w-full'>
               <div className="cards w-full flex snap-x overflow-x-auto scrollhide delay-200 scroll-smooth gap-x-6 px-3 pt-[80px] pb-4">
                 {
                   data.filter((e) => e.type === "Club")?.map((item, i) => {
                     return (
-                      <div key={i} className="mb-0 w-72 h-full">
+                      <div key={i} className="mb-0 w-80 h-full">
                         <div className="w-full rounded-lg shadow shadow-blue-500 h-full bg-white">
                           <div className="flex justify-center w-full">
                             <div className="flex justify-center -mt-[75px]" >
@@ -113,9 +113,9 @@ const Society_Clubs_Tems = () => {
                               />
                             </div>
                           </div>
-                          <div className="p-3 w-72">
+                          <div className="p-3 w-80">
                             <h5 className="text-lg font-bold mb-4">{item?.title}</h5>
-                            <p className="text-justify mb-6 overflow-y-auto max-h-[250px] px-2 scrollbar">{item?.description}</p>
+                            <p className="text-justify mb-6 overflow-y-auto max-h-[180px] px-2 scrollbar">{item?.description}</p>
                             <ul className="list-inside flex mx-auto justify-center">
                               <a href="#!" className="px-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" className="w-4 h-4 text-blue-600">
@@ -162,14 +162,14 @@ const Society_Clubs_Tems = () => {
         }
 
         {
-          Team && <section className="mb-20 text-gray-800 text-center">
+          Team && <section className="mb-20 text-center">
             <h2 className="text-5xl font-bold mb-16">Departments <u className="text-blue-600">Team</u></h2>
             <div id='scrollcontrol2' className='w-full'>
               <div className="cards w-full flex snap-x overflow-x-auto scrollhide delay-200 scroll-smooth gap-x-6 px-3 pt-[80px] pb-4">
                 {
                   data.filter((e) => e.type === "Team")?.map((item, i) => {
                     return (
-                      <div key={i} className="mb-0 w-72 h-full">
+                      <div key={i} className="mb-0 w-80 h-full">
                         <div className="w-full rounded-lg shadow shadow-blue-500 h-full bg-white">
                           <div className="flex justify-center w-full">
                             <div className="flex justify-center -mt-[75px]" >
@@ -177,9 +177,9 @@ const Society_Clubs_Tems = () => {
                               />
                             </div>
                           </div>
-                          <div className="p-6 w-72">
+                          <div className="p-3 w-80">
                             <h5 className="text-lg font-bold mb-4">{item?.title}</h5>
-                            <p className="text-justify mb-6 overflow-y-auto max-h-[250px] px-2 scrollbar">{item?.description}</p>
+                            <p className="mb-6 overflow-y-auto max-h-[180px] px-2 scrollbar">{item?.description}</p>
                             <ul className="list-inside flex mx-auto justify-center">
                               <a href="#!" className="px-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" className="w-4 h-4 text-blue-600">

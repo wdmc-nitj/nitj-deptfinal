@@ -58,7 +58,7 @@ function FacultyLogin() {
                   required=""
                 />
               </div>
-              {status!=null && status=='failed' && <p className="text-red-400">
+              {status!=null && status==='failed' && <p className="text-red-400">
                 Invalid Email ID and Password
               </p>}
               <div

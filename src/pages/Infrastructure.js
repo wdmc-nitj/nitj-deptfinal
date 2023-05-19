@@ -20,7 +20,7 @@ function Infrastructure() {
                 </div>
                 <div className="relative px-4 -mt-8 md:-mt-12">
                   <div className="max-w-fit mx-auto bg-white flex items-center justify-center p-4 md:p-6 rounded-lg shadow-lg">
-                    <h4 title={item?.title} className="text-xl font-semibold uppercase leading-tight truncate">{item?.title}</h4>
+                  <h4 title={item?.title} className="text-xl font-semibold uppercase leading-tight truncate cursor-pointer">{item?.title}</h4>
                   </div>
                 </div>
 

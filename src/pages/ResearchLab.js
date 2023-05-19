@@ -16,12 +16,12 @@ function ResearchLab() {
           data && data.map((item, i) => {
             return (
               item.type === "Research Labs" && <div key={i} className='w-full my-4 sm:mx-4 p-2'>
-                <div className="w-full border-2 object-cover object-center rounded-lg shadow-md overflow-hidden">
-                  <img src={item?.img} alt=" random imgee" className="w-full object-cover object-center rounded-lg shadow-md hover:scale-110 duration-500" />
+                <div className="w-full h-72 border-2 object-cover object-center rounded-lg shadow-md overflow-hidden">
+                  <img src={item?.img} alt=" random image" className="w-full h-full object-cover object-center rounded-lg shadow-md hover:scale-110 duration-500" />
                 </div>
                 <div className="relative px-4 -mt-8 md:-mt-12">
                   <div className="max-w-fit mx-auto bg-white flex items-center justify-center p-4 md:p-6 rounded-lg shadow-lg">
-                    <h4 title={item?.title} className="text-xl font-semibold uppercase leading-tight truncate">{item?.title}</h4>
+                  <h4 title={item?.title} className="text-xl font-semibold uppercase leading-tight truncate cursor-pointer">{item?.title}</h4>
                   </div>
                 </div>
 

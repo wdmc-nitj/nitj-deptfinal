@@ -1,5 +1,6 @@
-.body {
-  font-family: "Poppins", sans-serif;
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: hsla(242,83%,7%);
 }
 
 .scrollbar::-webkit-scrollbar {

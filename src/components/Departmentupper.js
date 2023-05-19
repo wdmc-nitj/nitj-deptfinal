@@ -11,13 +11,13 @@ const Departmentupper = (props) => {
             {/* // department intro */}
             <div className="bg-white rounded-lg border border-gray-200 shadow-md md:w-1/2 md:mx-2 my-2">
 
-                <div className='flex justify-center items-center'>
-                    <img className="rounded-t-lg" src={props.departmentimage} alt="..." />
+                <div className='flex justify-center items-center h-56'>
+                    <img className="rounded-t-lg w-full h-full" src={props.departmentimage} alt="..." />
                 </div>
 
-                <div className="px-2 pt-5 h-[300px]">
-                    <h1 className='text-center font-medium text-2xl m-2'>Department of {props.name}</h1>
-                    <p className="mb-3 text-justify px-3 overflow-y-auto scrollbar text-gray-700 h-[190px]">{props.introduction}</p>
+                <div className="px-2 pt-5 h-[340px]">
+                    <h1 className='text-center font-semi-bold text-2xl m-2'>Department of {props.name}</h1>
+                    <p className="mb-3 text-justify px-3 overflow-y-auto scrollbar h-[210px]">{props.introduction}</p>
                     {/* <div className='block m-4 p-2'>
                         <button className=' float-right text-green-700 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
                     </div>  */}
@@ -30,26 +30,25 @@ const Departmentupper = (props) => {
                         src="https://www.youtube.com/embed/fd2hUOmm8kA?controls=0&amp;start=280&mute=1" title="NITJ" >
                     </iframe>
                 </div>
-                <div className="p-5 h-[300px]">
+                <div className="p-5 h-[290px]">
                     <ul>
-                        <li className='text-lg text-left font-bold'>
+                        <li className='text-lg text-left font-semibold'>
                             Vision
                         </li>
-                        <li>
+                        <li className='h-[100px] text-justify overflow-hidden'>
                             {data.vision}
                         </li>
-                        <br></br>
-                        <li className='text-lg text-left font-bold'>
+                        <li className='text-lg text-left font-semibold mt-2'>
                             Mission
                         </li>
-                        <li>
+                        <li className='h-[100px] text-justify overflow-hidden'>
                             {data.mission}
                         </li>
                     </ul>
-                    <p className="mb-3 font-normal text-justify text-gray-700 overflow-hidden"><br/></p>
+                    
                     <div className='block p-2'>
                         <Link to={`/dept/${dept}/MissionandVision`}>
-                        <button className=' float-right text-blue-600 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
+                        <button className=' float-right pb-4 text-blue-600 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
                         </Link>
                     </div>
                 </div>

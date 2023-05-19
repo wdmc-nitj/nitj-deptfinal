@@ -9,6 +9,7 @@ import Exceldownloadpdf from './Img/Exceldownload.png'
 import axios from 'axios';
 import { SERVER_URL } from '../config/server';
 import PersonalDetails from '../forms/facultyprofile/PersonalDetails';
+import default_avatar from './Img/default_avatar.jpg'
 function Profile({ peopleType }) {
 
     let navigate = useNavigate()
@@ -151,12 +152,12 @@ function Profile({ peopleType }) {
                                     <div className="flex w-[calc('100%-9rem')]">
                                         <div className="flex-none w-auto max-w-full px-3">
                                             <div className="w-20 h-20 xl:w-24 xl:h-24 flex-grow-0 flex-shrink-0">
-                                                <img src={item?.img} className="w-full h-full object-cover object-left-top rounded-xl shadow-xl flex-grow-0 flex-shrink-0" alt='...' />
+                                                <img src={item?item.img:default_avatar} className="w-full h-full object-cover object-left-top rounded-xl shadow-xl flex-grow-0 flex-shrink-0" alt='...' />
                                             </div>
                                         </div>
                                         <div className="flex-none w-auto max-w-full px-3 my-auto">
                                             <div className="h-full">
-                                                <h5 className="mb-1 text-gray-700 text-xl font-semibold">{item?.name}</h5>
+                                                <h5 className="mb-1 text-xl font-semibold">{item?.name}</h5>
                                                 <p title={item?.position} className="text-zinc-500 mb-0 font-medium leading-normal w-96 xl:w-full whitespace-nowrap overflow-hidden">{item?.position}</p>
                                             </div>
                                         </div>

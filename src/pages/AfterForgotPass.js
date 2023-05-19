@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { SERVER_URL } from '../config/server';
 function AfterForgotPass() {
   const url = useLocation();
@@ -16,7 +16,7 @@ function AfterForgotPass() {
               <h3 className="pt-4 mb-2 font-semibold text-2xl">
                 Forgot Your Password?
               </h3>
-              <p className="mb-4 text-sm text-gray-700">
+              <p className="mb-4 text-sm">
                 We get it, stuff happens. Just enter your email address below
                 and we'll send you a link to reset your password!
               </p>
@@ -28,13 +28,13 @@ function AfterForgotPass() {
             >
               <div className="mb-4">
                 <label
-                  className="block mb-2 text-sm font-bold text-gray-700"
+                  className="block mb-2 text-sm font-bold"
                   for="email"
                 >
                   Email
                 </label>
                 <input
-                  className="w-full p-3 text-sm bg-blue-50 leading-tight text-gray-700 border rounded shadow-inner appearance-none focus:outline-none focus:shadow-outline"
+                  className="w-full p-3 text-sm bg-blue-50 leading-tight border rounded shadow-inner appearance-none focus:outline-none focus:shadow-outline"
                   id="email"
                   type="email"
                   name="email"
@@ -49,8 +49,8 @@ function AfterForgotPass() {
                   Reset Password
                 </button>
               </div>
-              {status && status == "success" && <p>Email sent!</p>}
-              {status && status == "failure" && (
+              {status && status === "success" && <p>Email sent!</p>}
+              {status && status === "failure" && (
                 <p>Email not valid for selected profile!</p>
               )}
               <hr className="mb-6 border-t" />

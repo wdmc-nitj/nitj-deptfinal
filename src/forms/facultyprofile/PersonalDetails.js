@@ -38,7 +38,7 @@ function PersonalDetails({ edit, data }) {
                                                 feild?.map((item, i) => {
                                                     return (
                                                         <div key={i} className="col-span-6 sm:col-span-3">
-                                                            <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium text-gray-700 px-1">{item}</label>
+                                                            <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">{item}</label>
                                                             <textarea type="text" name={item} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"></textarea>
                                                         </div>
                                                     )
@@ -50,7 +50,7 @@ function PersonalDetails({ edit, data }) {
                                                 address?.map((item, i) => {
                                                     return (
                                                         <div key={i} className="col-span-6 sm:col-span-3">
-                                                            <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium text-gray-700 px-1">{item}</label>
+                                                            <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">{item}</label>
                                                             <textarea type="text" name={item} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"></textarea>
                                                         </div>
                                                     )
@@ -59,11 +59,11 @@ function PersonalDetails({ edit, data }) {
                                         </div>
                                         <div className='grid grid-cols-6 gap-6 mt-4'>
                                             <div className="col-span-6 sm:col-span-3">
-                                                <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium text-gray-700 px-1">Phone</label>
+                                                <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">Phone</label>
                                                 <textarea type="text" className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"></textarea>
                                             </div>
                                             <div className="col-span-6 sm:col-span-3">
-                                                <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium text-gray-700 px-1">Fax</label>
+                                                <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">Fax</label>
                                                 <textarea type="text" className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"></textarea>
                                             </div>
                                         </div>

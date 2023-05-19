@@ -32,7 +32,7 @@ function Navbar({menu,setMenu}) {
     }, [data])
     return (
         <div>
-            <nav className="scroll-smooth z-50 w-full bg-white lg:flex lg:items-center lg:justify-between lg:px-4 font-['Poppins'] shadow">
+            <nav className="scroll-smooth z-50 w-full bg-white lg:flex lg:items-center lg:justify-between lg:px-4 shadow">
                 <div className="flex justify-between p-1 items-center ">
                     <div className='flex items-center justify-center'>
                         <img className="w-[3.5rem] inline mx-2 cursor-pointer" src={logo} alt="logo" />

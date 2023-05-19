@@ -37,7 +37,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "PORT=4455 react-scripts start",
+    "start": "react-scripts start",
     "go": "vite",
     "build": "react-scripts build",
     "test": "react-scripts test",

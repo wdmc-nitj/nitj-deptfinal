@@ -154,7 +154,7 @@ function Menu({ menu, setMenu }) {
                                                         
                                                         }}>
                                                         <i className="fa-sm fa-regular fa-circle-check stroke-current w-4 h-4 mr-1 pt-3"></i>
-                                                        <span className="block p-1 text-sm text-gray-700 hover:text-blue-900" >{iteml.l}</span>
+                                                        <span className="block p-1 text-sm hover:text-blue-900" >{iteml.l}</span>
                                                     </li>
                                                 )
                                             })

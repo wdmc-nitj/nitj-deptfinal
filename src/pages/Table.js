@@ -64,7 +64,7 @@ function    Table({ tablehead, data }) {
 
             <div className="w-full my-2 px-2 flex flex-1 items-center justify-around">
                 <div>
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm">
                         Showing
                         <span className="font-medium mx-1">{row * (page - 1) + 1}</span>
                         to
