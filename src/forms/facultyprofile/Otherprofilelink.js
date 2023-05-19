@@ -31,14 +31,14 @@ function Otherprofilelink({ edit, data }) {
                     <form className="w-full max-w-lg shadow-md border rounded p-3" onSubmit={handleSubmit}>
                         <div className="flex flex-wrap -mx-3 mb-6">
                             <div className="w-full px-3">
-                                <label className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2" htmlhtmlFor="grid-password">
+                                <label className="block uppercase tracking-wide text-sm font-bold mb-2" htmlhtmlFor="grid-password">
                                     Personal Link
                                 </label>
                                 <textarea type="text" className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" onChange={(e) => setLink(e.target.value)} value={link} placeholder="Title"></textarea>
                                 
                             </div>
                             <div className="w-full px-3">
-                                <label className="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2" htmlhtmlFor="grid-password" >
+                                <label className="block uppercase tracking-wide text-sm font-bold mb-2" htmlhtmlFor="grid-password" >
                                     Google Scholar Link
                                 </label>
                                 <textarea type="text" className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" onChange={(e) => setGooglelink(e.target.value)} value={googlelink}></textarea>

@@ -63,11 +63,11 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
                                                     return (
                                                         Editfeild < 0 ?
                                                             <div key={i} className="col-span-6 sm:col-span-3">
-                                                                <label htmlhtmlFor="last-name" className="block text-sm font-medium text-gray-700 px-1">{item}</label>
+                                                                <label htmlhtmlFor="last-name" className="block text-sm font-medium px-1">{item}</label>
                                                                 <textarea type="text" name={item} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"></textarea>
                                                             </div> :
                                                             <div key={i} className="col-span-6 sm:col-span-3">
-                                                                <label htmlhtmlFor="last-name" className="block text-sm font-medium text-gray-700 px-1">{item}</label>
+                                                                <label htmlhtmlFor="last-name" className="block text-sm font-medium px-1">{item}</label>
                                                                 <textarea type="text" name={item} onChange={(e) => setChangedata(changedata[item] = e.target.value)} value={changedata[item]} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" ></textarea>
                                                             </div>
                                                     )
@@ -149,7 +149,7 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
                         {data?.length === 0 && <h1 className='w-full font-medium px-6 py-4 text-lg border border-t-0'>No data available</h1>}
                         <div className="w-full my-2 px-2 flex flex-1 items-center justify-between">
                             <div>
-                                <p className="text-sm text-gray-700">
+                                <p className="text-sm">
                                     Showing
                                     <span className="font-medium mx-1">{row*(page-1)+1}</span>
                                     to

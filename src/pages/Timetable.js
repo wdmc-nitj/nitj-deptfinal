@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import OpenPdf from './OpenPdf'
-import Time from '../components/Pdf/TimeIT.pdf'
 import Heading from '../components/Heading'
 import { useParams } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'

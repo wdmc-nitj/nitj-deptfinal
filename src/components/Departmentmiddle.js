@@ -9,11 +9,11 @@ const Departmentmiddle = () => {
     const dept = useParams()?.dept;
     const Activity = useFetch(`/dept/${dept}/Activity`).data.sort((x, y) =>
         // true values first
-        (x.new === y.new)? 0 : x.new? -1 : 1
+        (x.new === y.new) ? 0 : x.new ? -1 : 1
         // false values first
         // return (x === y)? 0 : x? 1 : -1;
     );
-    const News = useFetch(`/dept/${dept}/news`).data.sort(((b,c)=> b.new===c.new?0:b.new?-1:1));
+    const News = useFetch(`/dept/${dept}/news`).data.sort(((b, c) => b.new === c.new ? 0 : b.new ? -1 : 1));
 
     return (
         <>
@@ -25,9 +25,9 @@ const Departmentmiddle = () => {
                     <div className='scrollbar max-w-full block h-80 overflow-y-auto overflow-x-clip px-3'>
                         {
                             Activity ? Activity.map((n, i) =>
-                                <div key={i} className='flex gap-1 items-start flex-auto relative mb-3'>
-                                    <span className='pr-2 mt-2 mr-2 w-2 h-2 rounded-full bg-black'></span>
-                                    <span className="hover:font-medium"><a target='_blank' href={`${n?.link}`}>{n?.title}</a>&nbsp;<span className={"absolute pt-1 text-lg "+(n?.new?'':'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
+                                <div key={i} className='flex gap-1 items-start relative mb-3'>
+                                    <span className='mt-[9px] w-[6px] h-[6px] rounded-full bg-black'></span>&nbsp;
+                                    <span className="w-full hover:font-semibold"><a target='_blank' href={`${n?.link}`}>{n?.title}</a>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
                                     </span>
                                 </div>
                             ) : <h1>Data not available</h1>
@@ -40,9 +40,9 @@ const Departmentmiddle = () => {
                         {
                             News ? News.map((n, i) => {
                                 return (
-                                    <div key={i} className='flex gap-1 items-start flex-auto relative mb-3'>
-                                        <span className='pr-2 mt-2 mr-2 w-2 h-2 rounded-full bg-black'></span>
-                                        <span className="hover:font-medium"><a target='_blank' href={`${n?.link}`}>{n?.title}</a>&nbsp;<span className={"absolute pt-1 text-lg "+(n?.new?'':'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
+                                    <div key={i} className='flex gap-1 items-start relative mb-3'>
+                                        <span className='mt-[9px] w-[6px] h-[6px] rounded-full bg-black'></span>&nbsp;
+                                        <span className="w-full hover:font-semibold"><a target='_blank' href={`${n?.link}`}>{n?.title}</a>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
                                         </span>
                                     </div>)
                             }

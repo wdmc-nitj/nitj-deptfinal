@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
-import people from './Img/People.png'
+import people from './Img/default_avatar.jpg'
 import searchgif from './Vedio/search.gif'
 function Placement({ cnt = Infinity }) {
     
@@ -39,7 +39,7 @@ function Placement({ cnt = Infinity }) {
                 cnt===0 ?
                     <div className='mb-4 block mx-auto'>
                         <div className='w-[75%] sm:w-full m-2  h-[21rem] flex items-center justify-center'>
-                            <div className='card border h-full border-white text-gray-700 rounded-lg flex flex-col items-center text-2xl font-semibold italic justify-center'>
+                            <div className='card border h-full border-white rounded-lg flex flex-col items-center text-2xl font-semibold italic justify-center'>
                                 <img src={searchgif} alt='...' />
                                 <span className='my-10 italic'>No Pages Found!</span>
                             </div>

@@ -30,7 +30,7 @@ function Students() {
                     </div>
                 </div>
 
-                <OpenPdf link={data?.find((ele) => ele.year==state)?.link} />
+                <OpenPdf link={data?.find((ele) => ele.year===state)?.link} />
             </div>
             
         </div>

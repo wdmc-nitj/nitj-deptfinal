@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Error from "./Errorpage";
 import { SERVER_URL } from '../config/server';
@@ -60,7 +60,7 @@ function ChangePass() {
                         required=""
                       />
                     </div>
-                    {status && status == 'passwordMismatch' && <div>Both passwords should match</div>}
+                    {status && status === 'passwordMismatch' && <div>Both passwords should match</div>}
                     <button
                       type="submit"
                       className="w-[80%] block text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none shadow font-medium rounded-lg text-sm px-5 py-2.5 text-center mx-auto"

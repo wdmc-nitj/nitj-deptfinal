@@ -14,7 +14,7 @@ const Card = () => {
             </div>
             <span className='w-full inline-block h-[180px] overflow-hidden text-justify text-ellipsis mt-2'>
                 <h2 className="text-blue-800 text-2xl font-semibold">{club?.title}</h2>
-                <p className="mt-8 text-gray-600 flex-wrap">{club?.description}</p>
+                <p className="mt-8 flex-wrap">{club?.description}</p>
             </span>
             <div className="flex justify-end mt-4" onClick={() => navigate(`/dept/${dept}/SocietyClubs`)}>
                 <span className="text-sm font-medium text-indigo-500 cursor-pointer">Read More &rarr;</span>

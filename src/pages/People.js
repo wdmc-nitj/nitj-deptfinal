@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import defaultImg from '../components/Img/user.png'
+import defaultImg from '../components/Img/default_avatar.jpg'
 import { Link, useLocation } from 'react-router-dom';
 import Heading from '../components/Heading';
 
@@ -25,7 +25,7 @@ function People({ Title, Data }) {
                                         <div className="w-32 h-32 xl:w-36 xl:h-36 flex-grow-0 flex-shrink-0">
                                             {
                                                 item?.img ? <img src={item?.img} className="w-full h-full object-fill object-center rounded-full shadow-xl border flex-grow-0 flex-shrink-0" alt='...' />:
-                                                <img src={defaultImg} className="w-full h-full object-fill object-center rounded-full shadow-xl border flex-grow-0 flex-shrink-0 pt-1 opacity-70" alt='...' />
+                                                <img src={defaultImg} className="w-full h-full object-fill object-center rounded-full shadow-xl border flex-grow-0 flex-shrink-0 opacity-70" alt='...' />
                                             }
                                         </div>
                                         <div className="flex flex-col flex-grow leading-8 md:mr-2 xl:mr-5 text-center sm:text-start md:justify-start mt-8 md:mt-0 sm:ml-9 md:mb-0">
