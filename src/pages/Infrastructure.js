@@ -10,12 +10,12 @@ function Infrastructure() {
     <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-auto sm:mx-3 mt-[60px] pt-[54px] place-items-center'>
             <Heading name="Infrastructure" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 sm:m-4 p-2 place-items-center gap-4 antialiased text-gray-900">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 sm:m-4 sm:p-2 place-items-center gap-4 antialiased text-gray-900">
         {
           data ? data.map((item, i) => {
             return (
               item.type==="Infrastructure"&&<div key={i} className='w-full my-4 sm:mx-4 p-2'>
-                <div className="w-full h-72 border-2 object-cover object-center rounded-lg shadow-md overflow-hidden">
+                <div className="w-full h-60 sm:h-72 border-2 object-cover object-center rounded-lg shadow-md overflow-hidden">
                   <img src={item?.img} alt=" random image" className="w-full h-full object-cover object-center rounded-lg shadow-md hover:scale-110 duration-500" />
                 </div>
                 <div className="relative px-4 -mt-8 md:-mt-12">
