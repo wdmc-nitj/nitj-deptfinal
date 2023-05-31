@@ -23,7 +23,7 @@ function Placement({ cnt = Infinity }) {
 
                             <div className="flex md:flex-row border-t-0 text-[rgba(0,105,140,1)] max-w-min py-8 text-left text-base items-center content-center px-[18px]">
                                 <div className="w-32 h-32 md:w-36 md:h-36 flex-grow-0 flex-shrink-0">
-                                    <img src={item.img?item.img:people} className="w-full h-full object-cover object-top rounded-full shadow-xl flex-grow-0 flex-shrink-0 border-2" />
+                                    <img src={item.img?item.img:people} className="w-full h-full object-fill object-center rounded-full shadow-xl flex-grow-0 flex-shrink-0 border-2" />
                                 </div>
                                 <div className="flex flex-col flex-grow leading-8 mr-5 md:justify-start md:mt-0 ml-7 md:ml-9 md:mb-0 w-52">
                                     <div className="text-[22.5px]">{item?.name}</div>
