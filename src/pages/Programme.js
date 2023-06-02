@@ -34,7 +34,7 @@ function Programme() {
                                     <div key={i} className="py-4">
                                         <div className='w-full px-4 py-2 border-2 rounded shadow-md'>
                                             <div className="flex items-center justify-between my-2">
-                                                <div className='flex flex-col items-start justify-center'>
+                                                <div className={"flex flex-col justify-center delay-500 "+((item["Program of Study"]===ProgramofStudy&&item?.branch===branch)?"w-full items-center":"items-start")}>
                                                     <span className="text-xl font-semibold">{item["Program of Study"]}</span>
                                                     <span className='text-gray-700'>({item?.branch})</span>
                                                 </div>
@@ -45,7 +45,9 @@ function Programme() {
                                                      setBranch("");setProgramofStudy(""); HandleScroll();
                                                 }}><i className="fa-solid cursor-pointer fa-minus"></i></span>
                                             </div>
-                                            {item["Program of Study"]===ProgramofStudy&&item?.branch===branch&&<ProgrammeCom programInfo={programInfo}/>}
+                                            <div className={"w-full overflow-hidden transition-opacity ease-in-out "+((item["Program of Study"]===ProgramofStudy&&item?.branch===branch)?"opacity-100":"h-0 opacity-0")}>
+                                                {<ProgrammeCom programInfo={programInfo}/>}
+                                            </div>
                                         </div>
                                     </div>
                                 )
