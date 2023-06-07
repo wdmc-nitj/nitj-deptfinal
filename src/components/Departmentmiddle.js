@@ -27,7 +27,7 @@ const Departmentmiddle = () => {
                             Activity ? Activity.map((n, i) =>
                                 <div key={i} className='flex gap-1 items-start relative mb-3'>
                                     <span className='mt-[9px] w-[6px] h-[6px] rounded-full bg-black'></span>&nbsp;
-                                    <span className="w-full hover:font-semibold"><a target='_blank' href={`${n?.link}`}>{n?.title}</a>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
+                                    <span className="w-full hover:text-[rgba(0,105,140,1)]"><a target='_blank' href={`${n?.link}`}>{n?.title}</a>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
                                     </span>
                                 </div>
                             ) : <h1>Data not available</h1>
@@ -42,7 +42,7 @@ const Departmentmiddle = () => {
                                 return (
                                     <div key={i} className='flex gap-1 items-start relative mb-3'>
                                         <span className='mt-[9px] w-[6px] h-[6px] rounded-full bg-black'></span>&nbsp;
-                                        <span className="w-full hover:font-semibold"><a target='_blank' href={`${n?.link}`}>{n?.title}</a>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
+                                        <span className="w-full hover:text-[rgba(0,105,140,1)]"><a target='_blank' href={`${n?.link}`}>{n?.title}</a>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
                                         </span>
                                     </div>)
                             }

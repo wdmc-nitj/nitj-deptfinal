@@ -126,7 +126,7 @@ function Menu({ menu, setMenu }) {
                     <span className="ml-2 font-bold py-2">{departments[dept]}</span>
                 </span> */}
 
-                <div className={"mx-auto lg:mx-0 lg:mr-1 lg:flex flex-col items-center w-[98%] overflow-y-auto mt-1 mb-3 py-1 " + (menu ? 'flex' : 'hidden')}>
+                <div className={"mx-auto lg:mx-0 lg:mr-1 lg:flex flex-col items-center w-[98%] overflow-y-auto my-3 py-1 " + (menu ? 'flex' : 'hidden')}>
                     <div className='w-full px-1'>
                         <span className={"flex items-center w-full h-10 px-3 mt-2 rounded cursor-pointer active:translate-y-[2px] shadow-sm border border-gray-200/75 " + (linkOpen === -1 ? 'border-sky-200' : '')} onClick={() => { navigate(`/dept/${dept}/Home`); setLinkOpen(-1); setMenu(!menu); }}>
                             <i className="pl-1 pt-[2px] w-6 h-6 stroke-current fa fa-home"></i>
