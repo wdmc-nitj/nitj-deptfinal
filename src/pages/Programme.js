@@ -15,10 +15,6 @@ function Programme() {
         setProgramInfo(Programs[0])
     }, [Programs])
 
-    const HandleScroll=()=>{
-        window.scrollTo(0,100);
-    }
-    console.log(Programs);
     return (
         <>
             <div className="text-gray-800 w-full h-full scroll-smooth">
@@ -39,13 +35,13 @@ function Programme() {
                                                     <span className='text-gray-700'>({item?.branch})</span>
                                                 </div>
                                                 <span className={(item["Program of Study"]===ProgramofStudy&&item?.branch===branch)?"hidden":""} onClick={() => {
-                                                    setProgramInfo(Programs[i]); setBranch(item?.branch);setProgramofStudy(item["Program of Study"]); HandleScroll();
+                                                    setProgramInfo(Programs[i]); setBranch(item?.branch);setProgramofStudy(item["Program of Study"]);
                                                 }}><i className="fa-solid cursor-pointer fa-plus"></i></span>
                                                 <span className={(item["Program of Study"]===ProgramofStudy&&item?.branch===branch)?"":"hidden"}  onClick={() => {
-                                                     setBranch("");setProgramofStudy(""); HandleScroll();
+                                                     setBranch("");setProgramofStudy("");
                                                 }}><i className="fa-solid cursor-pointer fa-minus"></i></span>
                                             </div>
-                                            <div className={"w-full overflow-hidden transition-opacity ease-in-out "+((item["Program of Study"]===ProgramofStudy&&item?.branch===branch)?"opacity-100":"h-0 opacity-0")}>
+                                            <div className={"w-full overflow-hidden transition-opacity ease-in-out "+((item["Program of Study"]===ProgramofStudy&&item?.branch===branch)?"opacity-100":"hidden")}>
                                                 {<ProgrammeCom programInfo={programInfo}/>}
                                             </div>
                                         </div>

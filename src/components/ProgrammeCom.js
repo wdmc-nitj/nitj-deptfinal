@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 function ProgrammeCom({programInfo}) {
     
     return (
         <>
-            <div className="text-gray-600 w-full h-full">
-                
+            <div className="text-gray-600 w-full h-full">    
                 <div>
                     <div className='mb-8'>
                         <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 my-[60px] pt-[54px] place-items-center'>

@@ -36,13 +36,12 @@ function Test() {
                 <div className="relative w-full overflow-hidden">
                     <div className='relative bg-gradient-to-b from-accent to-transparent bg-cover bg-center w-full items-center transition-all justify-center'>
                         <img src={image? image[value]?.link:""} className='w-screen aspect-video sm:h-[450px] block align-middle' alt="" />
-                        <div className='absolute bg-gradient-to-b from-accent to-transparent bg-cover bg-center flex flex-col w-full h-fit bottom-0 items-center justify-center '>
-                            <div className="flex text-2xl text-center sm:text-3xl m-2 mb-1 font-bold text-white">
-                                <span className='hidden md:flex'>Department of {departments[dept]}</span>
-                                <span className='flex md:hidden'>{departments[dept]}</span>
+                        <div className='absolute bg-gradient-to-b from-accent to-transparent bg-cover bg-center flex flex-col w-full h-fit bottom-0 items-center justify-center p-1'>
+                            <div className="flex text-lg text-center sm:text-2xl mx-2 mb-0 font-bold text-white">
+                                <span className='flex'>Department of {departments[dept]}</span>
                             </div>
-                            <h2 className="text-xl sm:text-2xl m-2 mt-1 font-bold text-white">
-                                NITJ<span className="mx-2 p-1 font-medium uppercase">Welcomes you</span> 
+                            <h2 className="sm:text-xl mx-2 mt-1 font-bold text-white">
+                                NITJ<span className="mx-2 font-medium uppercase">Welcomes you</span> 
                             </h2>
                         </div>
                         <div className='top-0 absolute w-full h-full flex items-center justify-between p-2'>
