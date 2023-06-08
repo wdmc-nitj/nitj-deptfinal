@@ -10,7 +10,7 @@ function People({ Title, Data }) {
 
 
     return (
-        <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-auto my-[60px] pt-[54px] place-items-center'>
+        <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto my-[60px] pt-[54px] place-items-center'>
             <Heading name={Title} />
             {/* <div className='flex items-center justify-center w-full my-3 mx-auto mb-16'>
                 <input placeholder='Search results' defaultValue={""} onChange={(e) => { }} className='w-11/12 md:w-3/4 p-2 text-lg rounded border-2 shadow-lg border-gray-300 focus:border-gray-400 focus:outline-none' />

@@ -25,7 +25,7 @@ function PersonalDetails({ edit, data }) {
         'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
     }
     return (
-        <div>
+        <div className='overflow-x-auto'>
             {
                 edit ? <div className="mt-10 sm:mt-0 shadow-md border-2 rounded">
                     <div className="">

@@ -8,7 +8,7 @@ function ProgrammeCom({programInfo}) {
                 <div>
                     <div className='mb-8'>
                         <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 my-[60px] pt-[54px] place-items-center'>
-                            <div className='absolute -mt-[78px] p-2 px-4 bg-[rgba(0,105,140,1)] font-[400] text-[#fff] shadow-lg rounded-3xl text-xl sm:text-2xl'>Program Outcomes</div>
+                            <div className='absolute -mt-[78px] p-2 px-4 bg-[rgba(0,105,140,1)] font-[400] text-[#fff] shadow-lg rounded-3xl text-lg sm:text-2xl'>Program Outcomes</div>
                             <ol>
                                 {
                                     programInfo && programInfo["Program Outcomes"]?.map((ele, i) => {
@@ -28,7 +28,7 @@ function ProgrammeCom({programInfo}) {
                     </div>
                     <div className='mb-8'>
                         <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 my-[60px] pt-[54px] place-items-center'>
-                            <div className='absolute -mt-[78px] p-2 px-4 bg-[rgba(0,105,140,1)] font-[400] text-[#fff] shadow-lg rounded-3xl text-xl sm:text-2xl'>Program Specific Outcomes</div>
+                            <div className='absolute -mt-[78px] p-2 px-4 bg-[rgba(0,105,140,1)] font-[400] text-[#fff] shadow-lg rounded-3xl text-lg sm:text-2xl'>Program Specific Outcomes</div>
                             <ol >
 
                                 {programInfo && programInfo["Program Specific Outcomes"]?.map((ele, i) => {
@@ -43,7 +43,7 @@ function ProgrammeCom({programInfo}) {
                     </div>
                     <div className='mb-8'>
                         <div className='w-full rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 my-[60px] pt-[54px] place-items-center'>
-                            <div className='absolute -mt-[78px] p-2 px-4 bg-[rgba(0,105,140,1)] font-[400] text-[#fff] shadow-lg rounded-3xl text-xl sm:text-2xl'>Program Educational Objectives</div>
+                            <div className='absolute -mt-[78px] p-2 px-4 bg-[rgba(0,105,140,1)] font-[400] text-[#fff] shadow-lg rounded-3xl text-lg sm:text-2xl'>Program Educational Objectives</div>
                             <div className=''>
                                 <ol>
                                     {programInfo && programInfo["Program Educational Objectives"]?.map((ele, i) => {

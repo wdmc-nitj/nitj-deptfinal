@@ -28,7 +28,7 @@ function Programme() {
                             Programs.map((item, i) => {
                                 return (
                                     <div key={i} className="py-4">
-                                        <div className='w-full px-4 py-2 border-2 rounded shadow-md'>
+                                        <div className='w-full p-2 border-2 rounded shadow-md'>
                                             <div className="flex items-center justify-between my-2">
                                                 <div className={"flex flex-col justify-center delay-500 "+((item["Program of Study"]===ProgramofStudy&&item?.branch===branch)?"w-full items-center":"items-start")}>
                                                     <span className="text-xl font-semibold">{item["Program of Study"]}</span>
