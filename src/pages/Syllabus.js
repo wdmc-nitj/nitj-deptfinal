@@ -4,10 +4,9 @@ import Heading from '../components/Heading'
 import { useParams } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
 function Syllabus() {
-
+    
     const {data} = useFetch(`/dept/${useParams()?.dept}/Syllabus`);
-    //console.log(data);
-    const [state,setState]= useState("B.Tech")
+    const [state,setState]= useState("Select Programme");
     return (
         <div className='w-[98%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-1 xl:mx-3 my-[60px] pt-[54px] place-items-center'>
             <Heading name="Syllabus" />
@@ -18,8 +17,10 @@ function Syllabus() {
                         <select id="states" className="border-none outline-none"  onChange={(e)=>{
                             setState(e.target.value);
                         }}>
-                            <option value="B.Tech">B.Tech</option>
-                            <option value="M.Tech">M.Tech</option>
+                            <option value="Select Programme">Select Programme</option>
+                            {data?.map((e)=>{
+                                return <option value={e?.type}>{e?.type}</option>
+                            })}
                         </select>
                     </div>
                 </div>
