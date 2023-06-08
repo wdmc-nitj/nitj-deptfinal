@@ -35,8 +35,8 @@ function Navbar({menu,setMenu}) {
             <nav className="scroll-smooth z-50 w-full bg-white lg:flex lg:items-center lg:justify-between lg:px-4 shadow">
                 <div className="flex justify-between p-1 items-center ">
                     <div className='flex items-center justify-center'>
-                        <img className="w-[3.5rem] inline mx-2 cursor-pointer" src={logo} alt="logo" />
-                        <div className="text-base sm:text-xl ml-2 leading-5 text-[#0054A6]  cursor-pointer font-bold">
+                        <img className="w-[3.5rem] inline mx-1 sm:mx-2 cursor-pointer" src={logo} alt="logo" />
+                        <div className="ml-2 text-sm sm:text-xl leading-5 text-[#0054A6]  cursor-pointer font-semibold">
                             <div className='flex-col'>
             
                             <a href="#"><span className='inline-block'>Department of</span> {departments[dept]}</a>

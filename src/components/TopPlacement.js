@@ -21,7 +21,7 @@ function TopPlacement() {
 
   return (
     <>
-      <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-4 mx-auto my-[60px] pt-[54px] place-items-center'>
+      <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto my-[60px] pt-[54px] place-items-center'>
         <Heading name="Current Top Placements" />
         <div id='scrollcontrol' className='relative'>
           <div className='cards flex snap-x overflow-x-auto scrollhide delay-200 scroll-smooth'>
