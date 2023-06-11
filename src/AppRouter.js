@@ -82,7 +82,7 @@ const AppRouter = () => {
               <main className='flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible min-h-screen'>
                 <div className="w-full flex mt-0">
                   <Routes>
-                    <Route path='/dept/:dept/Home' element={<Homepage />} />
+                    <Route path='/dept/:dept/Home/:id' element={<Homepage />} />
                     <Route path='/dept/:dept/Placement' element={<AllPlacement />} />
                     <Route path='/*' element={<Error />} />
                     {/* About us */}

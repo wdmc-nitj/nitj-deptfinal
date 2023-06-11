@@ -59,7 +59,7 @@ function FacultyLogin() {
                 />
               </div>
               {status!=null && status==='failed' && <p className="text-red-400">
-                Invalid Email ID and Password
+                Invalid Email ID or Password
               </p>}
               <div
                 onClick={() => navigate(`/dept/${dept}/onClickForgotPass`)}
