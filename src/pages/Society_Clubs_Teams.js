@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useFetch from '../hooks/useFetch';
 import { useLocation, useParams } from 'react-router-dom';
 import Heading from '../components/Heading';
+import Loading from '../components/Loading';
 const Society_Clubs_Tems = () => {
   const { data, error, loading } = useFetch(`/dept/${useParams()?.dept}/SocietyClubs`);
   const scrollNextPage = (id) => {
@@ -27,12 +28,12 @@ const Society_Clubs_Tems = () => {
   useEffect(() => {
     Intialize()
   })
-  
+
   return (
     <div className='w-[98%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-1 xl:mx-3 my-[60px] pt-[54px] place-items-center'>
 
       <Heading name="Society/Clubs/Teams" />
-      <div className="w-full mt-12 px-6 mx-auto">
+      {!loading ? <div className="w-full mt-12 px-6 mx-auto">
         {
           Soceity && <section className="mb-20 text-center">
             <h2 className="text-5xl font-bold mb-16">Departments <u className="text-blue-600">Societies</u></h2>
@@ -224,7 +225,8 @@ const Society_Clubs_Tems = () => {
             </div>
           </section>
         }
-      </div>
+      </div> : <Loading />}
+
     </div>
   )
 }

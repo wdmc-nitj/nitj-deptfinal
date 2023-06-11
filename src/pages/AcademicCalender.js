@@ -3,6 +3,7 @@ import OpenPdf from './OpenPdf'
 import Heading from '../components/Heading'
 import useFetch from '../hooks/useFetch'
 import { useParams } from 'react-router-dom'
+import Loading from '../components/Loading'
 
 function AcademicCalender() {
     const data = useFetch(`/dept/${useParams()?.dept}/deptCalendar`).data;
@@ -13,7 +14,8 @@ function AcademicCalender() {
             <div className='shadow shadow-blue-400 md:m-4 pb-2'>
                 <div className='flex items-center w-full py-3 font-medium text-lg px-4 shadow-md shadow-blue-200'>
                 </div>
-                <OpenPdf link={data[0]?.link} />
+                {data.length>0?<OpenPdf link={data[0]?.link} />:<Loading/>}
+                
             </div>
         </div>
     )
