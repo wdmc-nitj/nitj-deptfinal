@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import ProgrammeCom from '../components/ProgrammeCom';
+import Loading from '../components/Loading';
 
 function Programme() {
     const dept = useParams()?.dept;
@@ -23,13 +24,13 @@ function Programme() {
                         <h1 className="text-2xl sm:text-3xl font-semibold mb-4 text-gray-900">Programmes of Study</h1>
                         <p className="lg:w-2/3 mx-auto leading-relaxed text-base">The Department offers following Undergraduate, Postgraduate and Research Programmes</p>
                     </div>
-                    <div className="">
+                    {Programs.length>0?<div className="">
                         {
                             Programs.map((item, i) => {
                                 return (
                                     <div key={i} className="py-4">
                                         <div className='w-full p-2 border-2 rounded shadow-md'>
-                                            <div className="flex items-center justify-between my-2">
+                                            <div className="flex items-center justify-between my-2 px-2">
                                                 <div className={"flex flex-col justify-center delay-500 "+((item["Program of Study"]===ProgramofStudy&&item?.branch===branch)?"w-full items-center":"items-start")}>
                                                     <span className="text-xl font-semibold">{item["Program of Study"]}</span>
                                                     <span className='text-gray-700'>({item?.branch})</span>
@@ -49,7 +50,8 @@ function Programme() {
                                 )
                             })
                         }
-                    </div>
+                    </div>:<Loading/>}
+                    
                 </div>
 
             </div>

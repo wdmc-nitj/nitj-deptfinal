@@ -4,15 +4,15 @@ import Heading from '../components/Heading';
 import useFetch from '../hooks/useFetch';
 
 import classes from './c.module.css';
+import Loading from '../components/Loading';
 
 function ContactUs() {
 
-  const {data} = useFetch(`/dept/${useParams()?.dept}/contactus`);
+  const {data,loading} = useFetch(`/dept/${useParams()?.dept}/contactus`);
   return (
     <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto my-[60px] pt-[54px] place-items-center'>
       <Heading name="Contact Us" />
-
-      <div className='flex-1 shadow p-8 rounded-md'>
+      {!loading?<div className='flex-1 shadow p-8 rounded-md'>
         <div className=' w-11/12 mx-auto'>
           <div className="w-full bg-white relative flex flex-wrap py-6 rounded">
             <div className="lg:w-1/2 px-6 ">
@@ -37,7 +37,8 @@ function ContactUs() {
           </div>
         </div>
 
-      </div>
+      </div>:<Loading/>}
+      
     </div>
   )
 }

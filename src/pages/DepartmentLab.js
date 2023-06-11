@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import Heading from '../components/Heading';
+import Loading from '../components/Loading';
 
 function DepartmentLab() {
     const url = useLocation();
@@ -11,8 +12,7 @@ function DepartmentLab() {
     return (
         <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto mt-[60px] pt-[54px] place-items-center'>
             <Heading name="Department Labs" />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 sm:m-4 sm:p-2 place-items-center gap-4 antialiased text-gray-900">
+            {data.length>0?<div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 sm:m-4 sm:p-2 place-items-center gap-4 antialiased text-gray-900">
                 {
                     data ? data.map((item, i) => {
                         return (
@@ -30,7 +30,8 @@ function DepartmentLab() {
                         )
                     }) : <h1>Data not Available</h1>
                 }
-            </div>
+            </div>:<Loading/>}
+            
         </div>
     )
 }

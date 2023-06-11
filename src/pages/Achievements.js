@@ -7,23 +7,23 @@ import Citations from '../components/Img/Citations.png'
 import People from '../components/Img/People.png'
 import Publication from '../components/Img/Publication.png'
 import placement from '../components/Img/placement.png'
+import Loading from '../components/Loading';
 function Achievements() {
 
   const data = useFetch(`/dept/${useParams()?.dept}/Achievement`)?.data;
-  const map={
-    'Publications':Publication,
-    'Patents':Patents,
-    'Citations':Citations,
-    'Faculty':People,
-    'Placements':placement,
+  const map = {
+    'Publications': Publication,
+    'Patents': Patents,
+    'Citations': Citations,
+    'Faculty': People,
+    'Placements': placement,
     'Highest Package': 'https://cdn-icons-png.flaticon.com/512/2058/2058969.png'
   }
 
   return (
     <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto sm:mx-3 mt-[60px] pt-[54px] place-items-center'>
       <Heading name="Achievements" />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
+      {data.length > 0 ? <div className="grid grid-cols-1 md:grid-cols-2 gap-2 place-items-center" >
         {
           data[0]?.achievement?.map((item, i) => {
             return (
@@ -35,7 +35,7 @@ function Achievements() {
                     }
                   </div>
 
-              
+
 
                   <div className="flex flex-col flex-grow leading-8 mr-5 text-start justify-start ml-9 w-40 xl:w-56">
                     <div className="text-2xl font-semibold">{item?.title}</div>
@@ -47,7 +47,8 @@ function Achievements() {
             )
           })
         }
-      </div>
+      </div> : <Loading/>}
+
     </div>
   )
 }
