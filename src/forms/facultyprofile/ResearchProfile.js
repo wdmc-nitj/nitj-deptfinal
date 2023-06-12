@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { SERVER_URL } from '../../config/server';
 
-function ResearchProfile({ edit,data ,faculty}) {
+function ResearchProfile({ edit,data ,faculty,token}) {
     const dept = useLocation().pathname.split('/')[2];
-    const [interset, setInterset] = useState(data[0]['Research Interests']);
-    const [researchlink, setResearchlink] = useState(data[0]['Brief Research Profile'])
+    const [interset, setInterset] = useState(data['Research Interests']);
+    const [researchlink, setResearchlink] = useState(data['Brief Research Profile'])
     const handleSubmit=async(e)=>{
 
         let newRow = {};
@@ -19,7 +19,7 @@ function ResearchProfile({ edit,data ,faculty}) {
         }
 
         try {
-            await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}?q=research_profile`,newRow);
+            await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=research_profile`,newRow);
         } catch (error) {
             
         }

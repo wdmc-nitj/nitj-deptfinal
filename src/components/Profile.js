@@ -27,11 +27,10 @@ function Profile({ peopleType }) {
         }
     }
     const { data, loading, error, reFetch } = useFetch(`/dept/${dept}/${peopleType}/${id}/${token}`);
-
     const [isLogin, setIsLogin] = useState(false);
     useEffect(() => {
         window.scrollTo(0, 0);
-        setIsLogin(data?.validation?.status?.login);
+        setIsLogin(data?.validation?.login);
     }, [data])
     const map = {
         'Journal Publications': 'journal',
@@ -178,7 +177,7 @@ function Profile({ peopleType }) {
                           <img src={downloadpdf} alt="download pdf" className='w-full' />
                         </a>
                         <button onClick={() => { !data?.validation?.status?.login ? navigate(`/dept/${dept}/login`) : logout() }} className={"bg-[#0054A6] ml-2 text-white text-base duration-500 w-20 xl:w-24 py-2 px-3 text-center shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}>
-                          {!data?.validation?.status?.login ? "Login" : "Logout"}
+                          {!data?.validation?.login ? "Login" : "Logout"}
                         </button>
                       </div>
                     </div>
@@ -210,7 +209,7 @@ function Profile({ peopleType }) {
                           <span title='Download Table in Excel Format' className={"w-12 cursor-pointer px-3 "}>
                             <img src={Exceldownloadpdf} alt="Excel download" />
                           </span>
-                          {isLogin && <>
+                          {data?.validation?.isFaculty && Link[active]?.Title!=='Personal Details' && <>
                             <span className={"cursor-pointer px-3 " + (edit ? 'hidden ' : '') + (isLogin ? '' : 'hidden')}><i className="fa-solid fa-eye"></i></span>
                             <span title='View as Table' className={"cursor-pointer px-3 " + (edit ? '' : 'hidden ')} onClick={() => setview()}><i className="fa-solid fa-eye-slash"></i></span>
                             <span title='Add new data' className={'cursor-pointer px-3'} onClick={() => setedit()}><i className="fa-solid fa-pen-to-square"></i></span>
@@ -219,9 +218,9 @@ function Profile({ peopleType }) {
                       </div>
                       <div className='p-2 mt-4'>
                         {active === 0 && <PersonalDetails edit={edit} data={data?.data[0]} />}
-                        {active === 1 && <Otherprofilelink edit={edit} isLogin={isLogin} data={data?.data[0]} />}
-                        {active === 2 && <ResearchProfile edit={edit} isLogin={isLogin} data={data?.data[0]['research_profile']} faculty={data?.data[0]} />}
-                        {active > 2 && <BaseTable edit={edit} tablehead={Link[active].thead} faculty={data?.data[0]} data={data?.data[0][map[Link[active].Title]]} Editfeild={Editfeild} HandleEdit={HandleEdit} feild={Link[active].feild} isLogin={isLogin} title={map[Link[active].Title]} />}
+                        {active === 1 && <Otherprofilelink edit={edit} isLogin={isLogin} data={data?.data[0]} token={token} />}
+                        {active === 2 && <ResearchProfile edit={edit} isLogin={isLogin} data={data?.data[0]['research_profile']} faculty={data?.data[0]} token={token} />}
+                        {active > 2 && <BaseTable edit={edit} tablehead={Link[active].thead} faculty={data?.data[0]} data={data?.data[0][map[Link[active].Title]]} Editfeild={Editfeild} HandleEdit={HandleEdit} feild={Link[active].feild} isLogin={isLogin} title={map[Link[active].Title]} token={token} />}
                         {/* <BaseTable edit={edit} /> */}
                       </div>
                     </div>
