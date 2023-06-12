@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { SERVER_URL } from '../config/server';
+import { Link } from "react-router-dom";
 function AfterForgotPass() {
   const url = useLocation();
   const dept = url.pathname.split("/")[2];
@@ -41,6 +42,10 @@ function AfterForgotPass() {
                   placeholder="Enter Email Address..."
                 />
               </div>
+              {status && status === "success" && <p className="text-sm p-4 text-red-500">Email sent. Please click on the link and reset your password.</p>}
+              {status && status === "failure" && (
+                <p className="text-sm p-4 text-red-500">Email not found in database. Please try with a valid college(@nitj.ac.in) email.</p>
+              )}
               <div className="mb-6 text-center">
                 <button
                   className="w-full px-4 py-2 font-bold text-white bg-red-500 rounded-full hover:bg-red-700 focus:outline-none focus:shadow-outline"
@@ -49,18 +54,14 @@ function AfterForgotPass() {
                   Reset Password
                 </button>
               </div>
-              {status && status === "success" && <p>Email sent!</p>}
-              {status && status === "failure" && (
-                <p>Email not valid for selected profile!</p>
-              )}
               <hr className="mb-6 border-t" />
-              {/* <div className="text-center">
+              <div className="text-center">
                 <Link to={{ pathname: `/dept/${dept}/Login` }}>
                   <span className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
                     Already have an account? Login!
                   </span>
                 </Link>
-              </div> */}
+              </div>
             </form>
           </div>
         </div>
