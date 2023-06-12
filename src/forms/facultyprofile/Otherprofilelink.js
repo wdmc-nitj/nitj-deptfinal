@@ -3,11 +3,10 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { SERVER_URL } from '../../config/server';
 
-function Otherprofilelink({ edit, data }) {
+function Otherprofilelink({ edit, data,token }) {
     const dept = useLocation().pathname.split('/')[2];
-    //console.log(data)
-    const [link, setLink] = useState(data['personal_link'] ? data['personal_link'][0]['Personal Link'] : '');
-    const [googlelink, setGooglelink] = useState(data['personal_link'] ? data['personal_link'][0]['Google Scholar Link'] : '');
+    const [link, setLink] = useState(data['personal_link'] ? data['personal_link']['Personal Link'] : '');
+    const [googlelink, setGooglelink] = useState(data['personal_link'] ? data['personal_link']['Google Scholar Link'] : '');
     const handleSubmit = async (e) => {
 
         let newRow = {};
@@ -19,7 +18,7 @@ function Otherprofilelink({ edit, data }) {
             }
         }
         try {
-            await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${data._id}?q=personal_link`, newRow);
+            await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`, newRow);
         } catch (error) {
             //console.log(error);
         }
@@ -34,14 +33,14 @@ function Otherprofilelink({ edit, data }) {
                                 <label className="block uppercase tracking-wide text-sm font-bold mb-2" htmlhtmlFor="grid-password">
                                     Personal Link
                                 </label>
-                                <textarea type="text" className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" onChange={(e) => setLink(e.target.value)} value={link} placeholder="Title"></textarea>
+                                <textarea type="text" name='Personal Link' className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" onChange={(e) => setLink(e.target.value)} value={link} placeholder="Title"></textarea>
                                 
                             </div>
                             <div className="w-full px-3">
                                 <label className="block uppercase tracking-wide text-sm font-bold mb-2" htmlhtmlFor="grid-password" >
                                     Google Scholar Link
                                 </label>
-                                <textarea type="text" className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" onChange={(e) => setGooglelink(e.target.value)} value={googlelink}></textarea>
+                                <textarea type="text" name='Google Scholar Link' className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" onChange={(e) => setGooglelink(e.target.value)} value={googlelink}></textarea>
                             </div>
                         </div>
                         <div className="flex px-3 w-full justify-end">

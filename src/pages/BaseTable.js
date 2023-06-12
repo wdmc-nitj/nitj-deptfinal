@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
+import { SERVER_URL } from '../config/server';
 
-function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin ,faculty,title}) {
+function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin ,faculty,title,token}) {
     const [changedata, setChangedata] = useState(data);
     const Setdata = () => {
         var val = Editfeild < 0 ? 0 : Editfeild;
@@ -18,6 +19,9 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
         Setdata();
         setPage(1)
     }, [changedata,row,title])
+    useEffect(()=>{
+        setChangedata(data);
+    },[Editfeild]);
     //console.log(title);
     const handleSubmit=async(e)=>{
         
@@ -33,7 +37,7 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
         data.push(newRow);
         else data[Editfeild] = newRow;
         try {
-            await axios.put(`http://localhost:8000/dept/${dept}/Faculty/${faculty._id}?q=${title}`,data);
+            await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=${title}`,data);
         } catch (error) {
             //console.log(error);
         }
@@ -43,7 +47,8 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
 
         const newRow = data.filter((val,ind)=> ind!==index);
         try {
-            await axios.put(`http://localhost:8000/dept/${dept}/Faculty/${faculty._id}?q=${title}`,newRow);
+            const resp = await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=${title}`,newRow);
+            window.location.reload();
         } catch (error) {
             //console.log(error);
         }
