@@ -16,6 +16,7 @@ function Profile({ peopleType }) {
     const dept = useParams()?.dept;
     var id = useLocation().pathname.split('/').at(-1);
     var token = "";
+    
     if(document.cookie){
         var initialArr = document.cookie.split(';');
         if(initialArr.length){
@@ -27,11 +28,17 @@ function Profile({ peopleType }) {
         }
     }
     const { data, loading, error, reFetch } = useFetch(`/dept/${dept}/${peopleType}/${id}/${token}`);
+    console.log(data);
     const [isLogin, setIsLogin] = useState(false);
+    const [facultyEditable, setFacultyEditable] = useState(false);
+
     useEffect(() => {
         window.scrollTo(0, 0);
-        setIsLogin(data?.validation?.login);
+        console.log(data?.validation?.status?.login);
+        setIsLogin(data?.validation?.status?.login);
+        setFacultyEditable(data?.validation?.status?.isFaculty);
     }, [data])
+
     const map = {
         'Journal Publications': 'journal',
         'Profile Links': 'personal_link',
@@ -173,11 +180,8 @@ function Profile({ peopleType }) {
                     </div>
                     <div className={"items-center justify-center bg-white z-20 h-full absolute right-0 mx-2 duration-200 " + (loginOpen ? 'flex w-40 opacity-100' : 'hidden sm:flex opacity-0 sm:opacity-100')}>
                       <div className='flex w-full items-center justify-center'>
-                        <a title="Download Profile as PDF" href='#' className='w-8 sm:w-10 mt-1 active:translate-y-[2px]'>
-                          <img src={downloadpdf} alt="download pdf" className='w-full' />
-                        </a>
-                        <button onClick={() => { !data?.validation?.status?.login ? navigate(`/dept/${dept}/login`) : logout() }} className={"bg-[#0054A6] ml-2 text-white text-base duration-500 w-20 xl:w-24 py-2 px-3 text-center shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}>
-                          {!data?.validation?.login ? "Login" : "Logout"}
+                        <button onClick={() => { !isLogin ? navigate(`/dept/${dept}/login`) : logout() }} className={"bg-[#0054A6] ml-2 text-white text-base duration-500 w-20 xl:w-24 py-2 px-3 text-center shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110"}>
+                          {!isLogin ? "Login" : "Logout"}
                         </button>
                       </div>
                     </div>
@@ -206,10 +210,7 @@ function Profile({ peopleType }) {
                       <div className="flex justify-between items-center my-2 shadow-lg py-2 rounded-t border">
                         <div className="text-lg font-medium px-3 py-1">{Link[active]?.Title}</div>
                         <div className='flex items-center justify-center mx-2'>
-                          <span title='Download Table in Excel Format' className={"w-12 cursor-pointer px-3 "}>
-                            <img src={Exceldownloadpdf} alt="Excel download" />
-                          </span>
-                          {data?.validation?.isFaculty && Link[active]?.Title!=='Personal Details' && <>
+                          {isLogin && facultyEditable && Link[active]?.Title!=='Personal Details' && <>
                             <span className={"cursor-pointer px-3 " + (edit ? 'hidden ' : '') + (isLogin ? '' : 'hidden')}><i className="fa-solid fa-eye"></i></span>
                             <span title='View as Table' className={"cursor-pointer px-3 " + (edit ? '' : 'hidden ')} onClick={() => setview()}><i className="fa-solid fa-eye-slash"></i></span>
                             <span title='Add new data' className={'cursor-pointer px-3'} onClick={() => setedit()}><i className="fa-solid fa-pen-to-square"></i></span>
