@@ -1,2 +1,2 @@
-const SERVER_URL="https://www.nitj.ac.in/api"
+const SERVER_URL="http://localhost:8000/api"
 module.exports = {SERVER_URL}
