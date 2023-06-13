@@ -5,8 +5,8 @@ import { SERVER_URL } from '../../config/server';
 
 function ResearchProfile({ edit,data ,faculty,token}) {
     const dept = useLocation().pathname.split('/')[2];
-    const [interset, setInterset] = useState(data['Research Interests']);
-    const [researchlink, setResearchlink] = useState(data['Brief Research Profile'])
+    const [interset, setInterset] = useState(data?data['Research Interests']:"");
+    const [researchlink, setResearchlink] = useState(data?data['Brief Research Profile']:"")
     const handleSubmit=async(e)=>{
 
         let newRow = {};
