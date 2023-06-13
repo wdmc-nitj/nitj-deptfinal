@@ -28,15 +28,13 @@ function Profile({ peopleType }) {
         }
     }
     const { data, loading, error, reFetch } = useFetch(`/dept/${dept}/${peopleType}/${id}/${token}`);
-    console.log(data);
     const [isLogin, setIsLogin] = useState(false);
     const [facultyEditable, setFacultyEditable] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        console.log(data?.validation?.status?.login);
-        setIsLogin(data?.validation?.status?.login);
-        setFacultyEditable(data?.validation?.status?.isFaculty);
+        setIsLogin(data?.validation?.login);
+        setFacultyEditable(data?.validation?.isFaculty);
     }, [data])
 
     const map = {
@@ -219,9 +217,9 @@ function Profile({ peopleType }) {
                       </div>
                       <div className='p-2 mt-4'>
                         {active === 0 && <PersonalDetails edit={edit} data={data?.data[0]} />}
-                        {active === 1 && <Otherprofilelink edit={edit} isLogin={isLogin} data={data?.data[0]} token={token} />}
-                        {active === 2 && <ResearchProfile edit={edit} isLogin={isLogin} data={data?.data[0]['research_profile']} faculty={data?.data[0]} token={token} />}
-                        {active > 2 && <BaseTable edit={edit} tablehead={Link[active].thead} faculty={data?.data[0]} data={data?.data[0][map[Link[active].Title]]} Editfeild={Editfeild} HandleEdit={HandleEdit} feild={Link[active].feild} isLogin={isLogin} title={map[Link[active].Title]} token={token} />}
+                        {active === 1 && <Otherprofilelink edit={edit} isLogin={facultyEditable} data={data?.data[0]} token={token} />}
+                        {active === 2 && <ResearchProfile edit={edit} isLogin={facultyEditable} data={data?.data[0]['research_profile']} faculty={data?.data[0]} token={token} />}
+                        {active > 2 && <BaseTable edit={edit} tablehead={Link[active].thead} faculty={data?.data[0]} data={data?.data[0][map[Link[active].Title]]} Editfeild={Editfeild} HandleEdit={HandleEdit} feild={Link[active].feild} isLogin={facultyEditable} title={map[Link[active].Title]} token={token} />}
                         {/* <BaseTable edit={edit} /> */}
                       </div>
                     </div>
