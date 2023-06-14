@@ -36,24 +36,6 @@ const AppRouter = () => {
   
   window.scrollTo(0,0);
   const [menu, setMenu] = useState(false);
-  // const departments={
-
-  //   "it":"Information Technology",
-  //   "cse":"Computer Science and Engineering",
-  //   "bt":"Bio Technology",
-  //   "ce":"Civil Engineering",
-  //   "ch":"Chemical Engineering",
-  //   "ec":"Electronics And Communication Engineering",
-  //   "ee":"Electrical And Electronics Engineering",
-  //   "ice":"Instrumentation And Control Engineering",
-  //   "me":"Mechanical Engineering",
-  //   "ipe":"Industrial And Production Enginnering",
-  //   "ma":"Mathematics",
-  //   "ph":"Physics",
-  //   "tt":"Textile Technology",
-  //   "hm":"Humanities",
-  //   "cy":"chemistry"
-  // }
   // const ProtectorRoute=({children})=>{
   //   const dept=useLocation().pathname.split('/')[2];
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { departments } from '../../config/server';
 
 function PersonalDetails({ edit, data }) {
     const tablehead = ['Name', 'Designation', 'Department', 'Qualification', 'Address', 'Phone', 'Email ID', 'Fax'];
@@ -6,24 +7,7 @@ function PersonalDetails({ edit, data }) {
     const address = ['address1', 'address2', 'city', 'pin', 'state']
     const Phone = data['address']['phone']
     const Fax = data['address']['fax']
-    const departments = {
-        "it": "Information Technology",
-        "cse": "Computer Science and Engineering",
-        "bt": "Bio Technology",
-        "ce": "Civil Engineering",
-        "ch": "Chemical Engineering",
-        "ec": "Electronics And Communication Engineering",
-        "ee": "Electrical And Electronics Engineering",
-        "ice": "Instrumentation And Control Engineering",
-        "me": "Mechanical Engineering",
-        "ipe": "Industrial And Production Enginnering",
-        "ma": "Mathematics",
-        "ph": "Physics",
-        "tt": "Textile Technology",
-        "hm": "Humanities",
-        "cy": "Chemistry",
-        'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
-    }
+
     return (
         <div className='overflow-x-auto'>
             {
