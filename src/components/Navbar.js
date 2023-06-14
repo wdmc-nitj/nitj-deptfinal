@@ -2,30 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import logo from './Img/logo.png'
+import { departments } from '../config/server';
 function Navbar({menu,setMenu}) {
     let navigate = useNavigate();
     const dept = useLocation().pathname.split('/')[2];
     var id = useLocation().pathname.split('/').at(-1);
     const { data, loading, error, reFetch } = useFetch(`/dept/${dept}/Faculty`);
     const [isLogin, setIsLogin] = useState(false);
-    const departments = {
-        "it": "Information Technology",
-        "cse": "Computer Science and Engineering",
-        "bt": "Bio Technology",
-        "ce": "Civil Engineering",
-        "ch": "Chemical Engineering",
-        "ece": "Electronics and Communication Engineering",
-        "ee": "Electrical Engineering",
-        "ice": "Instrumentation and Control Engineering",
-        "me": "Mechanical Engineering",
-        "ipe": "Industrial and Production Enginnering",
-        "ma": "Mathematics",
-        "ph": "Physics",
-        "tt": "Textile Technology",
-        "hm": "Humanities & Management",
-        "cy": "Chemistry",
-        'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
-    }
+    
     useEffect(() => {
         window.scrollTo(0, 0);
         setIsLogin(data?.validation?.status?.login);

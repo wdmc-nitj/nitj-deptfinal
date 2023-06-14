@@ -1,24 +1,8 @@
 import './App.css';
 import AppRouter from './AppRouter';
+import { departments } from './config/server';
 function App() {
-  const departments={
-    "it":"Information Technology",
-    "cse":"Computer Science and Engineering",
-    "bt":"Bio Technology",
-    "ce":"Civil Engineering",
-    "ch":"Chemical Engineering",
-    "ece":"Electronics And Communication Engineering",
-    "ee":"Electrical Engineering",
-    "ice":"Instrumentation And Control Engineering",
-    "me":"Mechanical Engineering",
-    "ipe":"Industrial And Production Enginnering",
-    "ma":"Mathematics",
-    "ph":"Physics",
-    "tt":"Textile Technology",
-    "hm":"Humanities & Management",
-    "cy":"Chemistry",
-    'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
-  }
+  
   const arr= window.location.pathname.split('/');
   arr.forEach((ele,i)=>{
     if(ele==="dept"){
