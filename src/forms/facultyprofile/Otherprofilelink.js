@@ -58,7 +58,9 @@ function Otherprofilelink({ edit, data,token }) {
                                 <tr>
                                     <td className="font-bold pr-4 pl-2 py-2">Personal Link</td>
                                     <td className="text-sm font-bold pr-4 pl-2 py-2">:</td>
-                                    <td>{link}</td>
+                                    <td><div onClick={()=>{
+                                        window.open(link,"_blank");
+                                    }}  className='text-orange-400 hover:underline'>{link && data['name']}</div></td>
                                 </tr>
                                 <tr>
                                     <td className="font-bold pr-4 pl-2 py-2">Google Scholar Link</td>
