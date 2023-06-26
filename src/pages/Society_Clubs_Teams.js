@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import useFetch from '../hooks/useFetch';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Heading from '../components/Heading';
 import Loading from '../components/Loading';
 const Society_Clubs_Tems = () => {
-  const { data, error, loading } = useFetch(`/dept/${useParams()?.dept}/SocietyClubs`);
+  const { data, loading } = useFetch(`/dept/${useParams()?.dept}/SocietyClubs`);
   const scrollNextPage = (id) => {
     const gallery = document.querySelector(id);
     const gallery_scroller = gallery.querySelector('.cards');

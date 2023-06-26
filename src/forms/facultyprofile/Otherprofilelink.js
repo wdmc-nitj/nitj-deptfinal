@@ -54,7 +54,7 @@ function Otherprofilelink({ edit, data,token }) {
                 </div> :
                     <div className="overflow-x-auto relative my-2 scrollbar min-w-[570px]">
                         <div className="flex max-w-full justify-between items-center p-4 shadow-md">
-                            <table>
+                            <table className='text-sm sm:text-base'>
                                 <tr>
                                     <td className="font-bold pr-4 pl-2 py-2">Personal Link</td>
                                     <td className="text-sm font-bold pr-4 pl-2 py-2">:</td>

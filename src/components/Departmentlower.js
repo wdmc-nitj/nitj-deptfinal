@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import Card from './Card';
 import default_avatar from './Img/default_avatar.jpg'
 const Departmentlower = (props) => {
   let navigate = useNavigate();
-  const [url, setUrl] = useState(useLocation());
+  const url = useLocation();
   const dept = url.pathname.split('/')[2];
   return (
     <div className='flex flex-col md:flex-row lg:flex-col xl:flex-row w-[98%] justify-around items-center px-2 md:px-4 place-items-center mx-auto'>

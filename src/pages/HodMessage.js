@@ -1,17 +1,17 @@
 import React from 'react'
-import { useState } from 'react';
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import default_avatar from '../components/Img/default_avatar.jpg'
 import Loading from '../components/Loading';
 function HodMessage() {
+  const url = useLocation();
+  const dept = url.pathname.split('/')[2];
+  const { data, loading } = useFetch(`/dept/${dept}/messageofHOD`);
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  const [url, setUrl] = useState(useLocation());
-  const dept = url.pathname.split('/')[2];
-  const { data, loading, error, reFetch } = useFetch(`/dept/${dept}/messageofHOD`);
+  
   return (
     <>
       {!loading ? <div className="main-body w-full flex flex-col gap-8 lg:gap-12 my-12 md:my-24">

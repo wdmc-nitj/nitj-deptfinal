@@ -1,7 +1,5 @@
 import React from 'react'
-import useFetch from '../hooks/useFetch'
-import { useParams } from 'react-router-dom';
-// import pdf from '../components/Pdf/syllabus.pdf'
+
 function OpenPdf({link}) {
 
   return (

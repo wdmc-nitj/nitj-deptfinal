@@ -54,7 +54,7 @@ function ResearchProfile({ edit,data ,faculty,token}) {
                 </div> :
                     <div className="overflow-x-auto relative my-2 min-w-[570px] scrollbar">
                         <div className="flex max-w-full justify-between items-center p-4 shadow-md">
-                            <table>
+                            <table className='text-sm sm:text-base'>
                                 <tbody>
                                     <tr>
                                         <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Research Interests</td>

@@ -1,13 +1,12 @@
 import React, {useRef, useState} from "react";
 import { useLocation, Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import Error from "./Errorpage";
 import { SERVER_URL } from '../config/server';
 
 function ChangePass() {
   let url = useLocation();
-  const status = url.pathname.split("/")[5];
-  const { data, loading, error, reFetch } = useFetch(url.pathname);
+  // const status = url.pathname.split("/")[5];
+  const { data, loading } = useFetch(url.pathname);
   const dept = url.pathname.split("/")[2];
   const token = url.pathname.split("/")[4];
 
@@ -21,7 +20,7 @@ function ChangePass() {
       if(passwordStatus) setpasswordStatus(false);
       setMessage("Password should be minimum 6 characters long.");
     }
-    else if(password.current.value!=repassword.current.value){
+    else if(password.current.value!==repassword.current.value){
       if(passwordStatus) setpasswordStatus(false);
       setMessage("Passwords should match");
     }

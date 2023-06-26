@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React } from 'react'
 import gif from "./Vedio/New.gif";
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch.js'
@@ -27,7 +27,7 @@ const Departmentmiddle = () => {
                             {
                                 Activity ? Activity.map((n, i) => {
                                     return (
-                                        <li class="py-3 w-full">
+                                        <li className="py-3 w-full">
                                             <div className='relative'>
                                                 <span className="w-full text-sm sm:text-base hover:text-[rgba(0,105,140,1)] cursor-pointer"><span onClick={() => { if (n.link !== undefined && n.link !== "") window.open(n?.link, "_blank"); }}>{n?.title}</span>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
                                                 </span>
@@ -47,7 +47,7 @@ const Departmentmiddle = () => {
                             {
                                 News ? News.map((n, i) => {
                                     return (
-                                        <li class="py-3 w-full">
+                                        <li className="py-3 w-full">
                                             <div className='relative'>
                                                 <span className="w-full text-sm sm:text-base hover:text-[rgba(0,105,140,1)] cursor-pointer"><span onClick={() => { if (n.link !== undefined && n.link !== "") window.open(n?.link, "_blank"); }}>{n?.title}</span>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
                                                 </span>

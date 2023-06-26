@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { SERVER_URL } from "../config/server";
 
 function FacultyLogin() {

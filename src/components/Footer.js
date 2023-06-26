@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
 import logo from './Img/logo.png'
 import { useRef } from 'react'
 function Footer({ scroll, handlescroll }) {

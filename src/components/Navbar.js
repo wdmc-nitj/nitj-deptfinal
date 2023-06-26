@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import logo from './Img/logo.png'
 import { departments } from '../config/server';
 function Navbar({menu,setMenu}) {
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
     const dept = useLocation().pathname.split('/')[2];
-    var id = useLocation().pathname.split('/').at(-1);
-    const { data, loading, error, reFetch } = useFetch(`/dept/${dept}/Faculty`);
-    const [isLogin, setIsLogin] = useState(false);
+    const { data } = useFetch(`/dept/${dept}/Faculty`);
+    // const [isLogin, setIsLogin] = useState(false);
     
     useEffect(() => {
         window.scrollTo(0, 0);
-        setIsLogin(data?.validation?.status?.login);
+        // setIsLogin(data?.validation?.status?.login);
     }, [data])
     return (
         <div>
