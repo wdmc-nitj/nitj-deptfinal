@@ -64,16 +64,17 @@ function PersonalDetails({ edit, data }) {
                         </div>
                     </div>
                 </div> :
-                    <div>
+                <div className='overflow-x-auto relative my-2 scrollbar min-w-[500px]'>
+                    <div className='flex max-w-full justify-between items-center text-sm sm:text-base p-2 sm:p-4 shadow-md'>
                         <table>
                             <tbody>
                                 {
                                     feild.map((item, i) => {
                                         return (
                                             <tr key={i}>
-                                                <td className="w-48 align-top font-bold pr-4 pl-2 py-2">{tablehead[i]}</td>
+                                                <td className="w-48 align-top font-bold pr-4 pl-2 py-2 text-sm sm:text-base">{tablehead[i]}</td>
                                                 <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
-                                                <td className='align-top pr-4 pl-2 py-2'>
+                                                <td className='align-top pr-4 pl-2 py-2 w-full text-sm sm:text-base'>
                                                     {
                                                         item === "education_qualification" ?
                                                             <div>
@@ -119,6 +120,7 @@ function PersonalDetails({ edit, data }) {
                             </tbody>
                         </table>
                     </div>
+                </div>
             }
         </div>
     )

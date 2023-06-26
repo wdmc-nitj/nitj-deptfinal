@@ -1,11 +1,11 @@
-import {React,useState} from 'react'
+import {React} from 'react'
 import People from './People'
 import useFetch from '../hooks/useFetch';
 import { useLocation } from 'react-router-dom';
 import Loading from '../components/Loading';
 function PhdScholar() {
-    const [url,setUrl]=useState(useLocation());
-    const {data,loading,error,reFetch}=useFetch(url.pathname);
+    const url = useLocation();
+    const {data,loading}=useFetch(url.pathname);
     
     return (
         

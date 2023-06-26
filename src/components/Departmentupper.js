@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import useFetch from '../hooks/useFetch';
 const Departmentupper = (props) => {
     const dept = useLocation().pathname.split('/')[2];
-    const {data,error,loading,refetch} = useFetch(`/dept/${dept}/messageOfHOD`);
+    const {data} = useFetch(`/dept/${dept}/messageOfHOD`);
     
     return (
 

@@ -17,7 +17,7 @@ function Homepage() {
         now.setTime(expireTime);
         document.cookie = `nitjsession=${sessionID};expires=${now.toUTCString()};path=/;`;
     }
-  }, []);
+  }, [params?.id]);
 
   return (
     <div className="flex items-center flex-col w-full h-full px-auto mt-0">

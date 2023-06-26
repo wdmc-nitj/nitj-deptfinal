@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import defaultImg from '../components/Img/default_avatar.jpg'
 import { Link, useLocation } from 'react-router-dom';
 import Heading from '../components/Heading';
 
 function People({ Title, Data }) {
-    const [url, setUrl] = useState(useLocation());
+    const url = useLocation();
     const dept = url.pathname.split('/')[2];
     const page = url.pathname.split('/')[3];
 
@@ -15,7 +15,7 @@ function People({ Title, Data }) {
             {/* <div className='flex items-center justify-center w-full my-3 mx-auto mb-16'>
                 <input placeholder='Search results' defaultValue={""} onChange={(e) => { }} className='w-11/12 md:w-3/4 p-2 text-lg rounded border-2 shadow-lg border-gray-300 focus:border-gray-400 focus:outline-none' />
             </div> */}
-            <div className='grid grid-cols-1 xl:grid-cols-2 gap-4 w-full mt-4'>
+            <div className='grid grid-cols-1 xl:grid-cols-2 gap-4 w-full my-4 sm:px-2'>
                 {
                     Data ? Data.map((item, i) => {
                         return (

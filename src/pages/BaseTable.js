@@ -12,17 +12,20 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
     // //console.log(changedata)
     const dept = useLocation().pathname.split('/')[2];
     const [row, setrow] = useState(8); //row per page
+    const [asec, setAsec] = useState(false);
     const totalrow = data.length;
     const totalPage = Math.ceil(totalrow / row);
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
+    
     useEffect(() => {
         Setdata();
         setPage(1)
     }, [changedata,row,title])
     useEffect(()=>{
         setChangedata(data);
-    },[Editfeild]);
+    },[Editfeild,data]);
     //console.log(title);
+    
     const handleSubmit=async(e)=>{
         
         let newRow = {};
@@ -92,8 +95,8 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
                         </div>
                     </div>
                 </div> :
-                <div className='flex flex-col items-center justify-between border-t border-gray-200 bg-white shadow-md sm:rounded-lg w-full overflow-auto'>
-                    <div className='flex w-full items-center justify-around'>
+                <div className='flex flex-col items-center justify-between bg-white sm:rounded-lg w-full overflow-auto'>
+                    <div className='flex w-[98%] items-center my-1'>
                         <div className='flex items-center my-1 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2 rounded'>
                             <label htmlFor="states" className="mr-2">Rows per Page :</label>
                             <select id="states" value={row} onChange={(e) => setrow(e.target.value)} className="border-none outline-none">
@@ -104,16 +107,16 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
                                 <option value={100}>100</option>
                             </select>
                         </div>
-                        <div className='my-1'><input className='w-36 sm:w-full border outline-none p-2 rounded' placeholder='Search' /></div>
+                        {/* <div className='my-1'><input className='w-36 sm:w-full border outline-none p-2 rounded' placeholder='Search' /></div> */}
                     </div>
                     <div className="relative overflow-x-auto rounded w-full border">
                         <table className="min-w-[800px] w-full text-sm text-left text-gray-800 scroll-auto">
-                            <thead className="text-gray-700 uppercase bg-gray-100 shadow">
+                            <thead className="text-gray-700 uppercase bg-gray-100 sm:shadow">
                                 <tr>
                                     {
                                         tablehead.map((item, i) => {
                                             return (
-                                                <th key={i} scope="col" className="px-6 py-3 border border-gray-300">
+                                                <th key={i} scope="col" className="px-6 py-3 border cursor-pointer border-gray-300" onClick={()=>item==="Year"&&setAsec(!asec)}>
                                                     {item}
                                                 </th>
                                             )
@@ -126,7 +129,7 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
                             </thead>
                             <tbody>
                                 {
-                                    data?.map((Item, i) => {
+                                    data?.sort(((b, c) => asec?(b.Year - c.Year):(c.Year - b.Year)))?.map((Item, i) => {
                                         return (
                                             (i>=row*(page-1) && i<row*(page)) && <tr key={i} className="border-b">
                                                 {
@@ -152,7 +155,7 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
                             </tbody>
                         </table>
                         {data?.length === 0 && <h1 className='w-full font-medium px-6 py-4 text-lg border border-t-0'>No data available</h1>}
-                        <div className="w-full my-2 px-2 flex flex-1 items-center justify-between">
+                        <div className="w-full min-w-[800px] my-2 px-2 flex flex-1 items-center justify-between">
                             <div>
                                 <p className="text-sm">
                                     Showing

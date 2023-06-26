@@ -15,7 +15,6 @@ import Programme from './pages/Programme';
 import Faculty from './pages/Faculty';
 import Staff from './pages/Staff';
 import Students from './pages/Students';
-import Alumni from './pages/Alumni';
 import PhdScholar from './pages/PhdScholar';
 import Profile from './components/Profile';
 import FacultyLogin from './pages/FacultyLogin';

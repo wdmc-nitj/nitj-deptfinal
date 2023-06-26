@@ -8,7 +8,8 @@ import Loading from '../components/Loading';
 function Programme() {
     const dept = useParams()?.dept;
     const [programInfo, setProgramInfo] = useState({});
-    const Programs = useFetch(`/dept/${dept}/programmeInfo`).data;
+    const {data,loading} = useFetch(`/dept/${dept}/programmeInfo`);
+    const Programs=data;
     const [branch, setBranch] = useState("");
     const [ProgramofStudy, setProgramofStudy] = useState("");
     useEffect(() => {
@@ -24,7 +25,7 @@ function Programme() {
                         <h1 className="text-2xl sm:text-3xl font-semibold mb-4 text-gray-900">Programmes of Study</h1>
                         <p className="lg:w-2/3 mx-auto leading-relaxed text-base">The Department offers following Undergraduate, Postgraduate and Research Programmes</p>
                     </div>
-                    {Programs.length>0?<div className="">
+                    {!loading?<div className="">
                         {
                             Programs.map((item, i) => {
                                 return (
