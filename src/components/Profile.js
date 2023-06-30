@@ -223,7 +223,7 @@ function Profile({ peopleType }) {
                     <div className="text-base sm:text-lg font-semibold px-3 py-1">{Link[active]?.Title}</div>
                     <div className='flex items-center justify-center mx-2'>
                       <span title='Download Excel File' className={"cursor-pointer px-3 h-6 active:scale-95 " + (active > 2 ? '' : 'hidden')} onClick={() => ExportToExcel()}>
-                        <img className='w-full h-full' src={Exceldownloadpdf} alt='Download Excel File' />
+                        <img className='h-full' src={Exceldownloadpdf} alt='Download Excel File' />
                       </span>
                       {isLogin && facultyEditable && Link[active]?.Title !== 'Personal Details' && <>
                         <span title='View as Table' className={"cursor-pointer px-3 " + (edit ? '' : 'hidden ')} onClick={() => setview()}><i className="fa-solid fa-eye-slash"></i></span>

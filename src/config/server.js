@@ -1,4 +1,4 @@
-const SERVER_URL="https://nitj.ac.in/api";
+const SERVER_URL="http://localhost:8000/api";
 const departments = {
     "it": "Information Technology",
     "cse": "Computer Science and Engineering",
