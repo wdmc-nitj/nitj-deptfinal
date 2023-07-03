@@ -49,11 +49,12 @@ function BaseTable({ edit, tablehead, data, Editfeild, HandleEdit,feild,isLogin 
     const handleDelete =async(index)=>{
 
         const newRow = data.filter((val,ind)=> ind!==index);
+        if(!window.confirm("Do you really want to delete?")) return;
         try {
             const resp = await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=${title}`,newRow);
             window.location.reload();
         } catch (error) {
-            //console.log(error);
+            alert("Some error occured");
         }
     }
     return (

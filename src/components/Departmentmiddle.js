@@ -46,11 +46,10 @@ const Departmentmiddle = () => {
                         <ul className='w-full flex list-disc flex-col justify-between divide-y-2'>
                             {
                                 News ? News.map((n, i) => {
-                                    console.log(n);
                                     return (
                                         <li className="py-3 w-full">
                                             <div className='relative'>
-                                                <span className="w-full text-sm sm:text-base hover:text-[rgba(0,105,140,1)] cursor-pointer"><span onClick={() => { if (n.pdfLink !== undefined && n.pdfLink !== "") window.open(n?.pdfLink, "_blank"); }}>{n?.title}</span>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
+                                                <span className="w-full text-sm sm:text-base hover:text-[rgba(0,105,140,1)] cursor-pointer"><span onClick={() => { if (n.pdfLink !== undefined && n.pdfLink !== "") window.open(n?.pdfLink, "_blank"); else if(n.link!==undefined && n.link!=="")window.open(n?.link, "_blank");}}>{n?.title}</span>&nbsp;<span className={"absolute pt-[5px] text-lg " + (n?.new ? '' : 'hidden')}><img className='min-w-[32px]' src={gif} alt='...' /></span>
                                                 </span>
                                             </div>
                                         </li>

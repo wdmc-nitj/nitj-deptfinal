@@ -128,7 +128,6 @@ function Profile({ peopleType }) {
     Data = data?.data[0][map[Link[active].Title]];
 
     exportFromJSON({ data: Data, fileName: Link[active].Title, exportType: exportFromJSON.types.xls })
-    // console.log(cars)
   }
   const logout = async (e) => {
     try {
