@@ -5,8 +5,8 @@ function PersonalDetails({ edit, data }) {
     const tablehead = ['Name', 'Designation', 'Department', 'Qualification', 'Address', 'Phone', 'Email ID', 'Fax'];
     const feild = ['name', 'designation', 'department', 'education_qualification'];
     const address = ['address1', 'address2', 'city', 'pin', 'state']
-    const Phone = data['address']['phone']
-    const Fax = data['address']['fax']
+    const Phone = data['address']?data['address']['phone']:""
+    const Fax = data['address']?data['address']['fax']:""
     return (
         <div className='overflow-x-auto'>
             {
@@ -89,7 +89,7 @@ function PersonalDetails({ edit, data }) {
                                                                     })
                                                                 }
                                                             </div> : item === "department" ? departments[data[item]] : data[item]
-                                                    }
+                                                    }N
                                                 </td>
                                             </tr>
                                         )
@@ -101,7 +101,7 @@ function PersonalDetails({ edit, data }) {
                                     <td className='align-top pr-4 pl-2 py-2'>
                                         {
                                             address.map((item, i) => {
-                                                return <span className='mx-1' key={i}>{data['address'][item]}</span>
+                                                return <span className='mx-1' key={i}>{data['address']?data['address'][item]:""}</span>
                                             })
                                         }
                                     </td>
