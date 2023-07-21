@@ -38,17 +38,17 @@ function HodMessage() {
                 <div className="flex flex-row">
                   <p className="basis-3/12 md:basis-[15%] font-semibold text-justify">EPABX</p>
                   <p className="">: &nbsp; &nbsp;</p>
-                  <p> +91-181-2690301,2690453</p>
+                  <p> {data?.EPABX}</p>
                 </div>
                 <div className="flex flex-row">
                   <p className="basis-3/12 md:basis-[15%] font-semibold">Extn.</p>
                   <p className="">: &nbsp; &nbsp;</p>
-                  <p>1000 (O), 1002 (PA)</p>
+                  <p>{data?.Extn}</p>
                 </div>
                 <div className="flex flex-row">
                   <p className="basis-3/12 md:basis-[15%] font-semibold">Fax</p>
                   <p className="">: &nbsp; &nbsp;</p>
-                  <p>+91-181-2690932</p>
+                  <p>{data?.Fax}</p>
                 </div>
               </div>
             </div>
