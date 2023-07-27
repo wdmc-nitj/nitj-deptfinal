@@ -13,7 +13,7 @@ const departments = {
     "ma": "Mathematics",
     "ph": "Physics",
     "tt": "Textile Technology",
-    "hm": "Humanities",
+    "hm": "Humanities and Management",
     "cy": "Chemistry",
     'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
 }
