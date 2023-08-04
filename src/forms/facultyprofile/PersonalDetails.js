@@ -89,7 +89,7 @@ function PersonalDetails({ edit, data }) {
                                                                     })
                                                                 }
                                                             </div> : item === "department" ? departments[data[item]] : data[item]
-                                                    }N
+                                                    }
                                                 </td>
                                             </tr>
                                         )
