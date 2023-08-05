@@ -17,9 +17,9 @@ function Timetable() {
                         <select id="states" className="border-none outline-none" onChange={(e)=>{
                             setState(e.target.value);
                         }}>
-                            <option value="B.Tech">B.Tech</option>
-                            <option value="M.Tech">M.Tech</option>
-                            <option value="MBA">MBA</option>
+                            {data?.map((e)=>{
+                                return <option value={e?.type}>{e?.type}</option>
+                            })}
                         </select>
                     </div>
                 </div>
