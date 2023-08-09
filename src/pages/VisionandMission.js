@@ -12,14 +12,18 @@ function VisionandMission() {
     window.scrollTo(0, 0);
   }, []);
 
-  const renderPoints = (text) => {
-    if (!text) return null;
-    const points = text.split('\n').map((point, index) => (
-      <li key={index} className='px-2 sm:px-4 text-sm sm:text-base text-justify'>
-        {point}
-      </li>
-    ));
-    return <ul>{points}</ul>;
+  const renderPoints = (pointsArray) => {
+    if (!pointsArray) return null;
+    
+    return (
+      <ul>
+        {pointsArray.map((point, index) => (
+          <li key={index} className='px-2 sm:px-4 text-sm sm:text-base text-justify'>
+            {point}
+          </li>
+        ))}
+      </ul>
+    );
   };
 
   return (
