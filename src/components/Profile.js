@@ -37,6 +37,9 @@ function Profile({ peopleType }) {
     window.scrollTo(0, 0);
     setIsLogin(data?.validation?.login);
     setFacultyEditable(data?.validation?.isFaculty);
+    if(localStorage.getItem('activeTab')) {
+      setActive(Number(localStorage.getItem('activeTab')))
+    }
   }, [data])
 
   const map = {
@@ -122,6 +125,11 @@ function Profile({ peopleType }) {
     setedit();
     SetEditfeild(i);
   }
+
+  const setActiveHelper = (index) => {
+    localStorage.setItem('activeTab',index);
+    setActive(index);
+  }
   
   const ExportToExcel = () => {
     var Data = [];
@@ -205,7 +213,7 @@ function Profile({ peopleType }) {
                     <div className='cards scrollhide flex items-center snap-x h-14 border-t border-b m-2 overflow-x-auto overflow-y-hidden'>
                       {Link.map((Item, i) => {
                         return (
-                          <div key={i+item._id} className={"border snap-center shrink-0 w-max rounded-xl px-3 py-1.5 m-1 cursor-pointer hover:text-purple-600 active:scale-95 duration-150 " + (active === i ? 'border-slate-800 text-purple-700 font-semibold' : '')} onClick={() => { setActive(i); setview() }}>{Item?.Title}</div>
+                          <div key={i+item._id} className={"border snap-center shrink-0 w-max rounded-xl px-3 py-1.5 m-1 cursor-pointer hover:text-purple-600 active:scale-95 duration-150 " + (active === i ? 'border-slate-800 text-purple-700 font-semibold' : '')} onClick={() => { setActiveHelper(i); setview() }}>{Item?.Title}</div>
                         )
                       })}
                     </div>
