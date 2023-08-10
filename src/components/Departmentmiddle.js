@@ -8,11 +8,15 @@ import Heading from './Heading';
 const Departmentmiddle = () => {
     const dept = useParams()?.dept;
     const Activity = useFetch(`/dept/${dept}/Activity`).data.sort((x, y)=>{
+        if(x?.order===y?.order) return x.new === y.new ? 0 : x.new ? -1 : 1
         return x?.order<y?.order
     }
         
     );
-    const News = useFetch(`/dept/${dept}/news`).data.sort(((b, c) => b.new === c.new ? 0 : b.new ? -1 : 1));
+    const News = useFetch(`/dept/${dept}/news`).data.sort((x, y)=>{
+        if(x?.order===y?.order) return x.new === y.new ? 0 : x.new ? -1 : 1
+        return x?.order<y?.order
+    });
     return (
         <>
             <div className='flex flex-col md:flex-row w-[98%] justify-around items-center p-2 md:p-4 pb-0 place-items-center mx-auto'>
