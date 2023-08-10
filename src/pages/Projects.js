@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import Loading from '../components/Loading'
 
 function Projects() {
-    const tablehead = ['Sr No', "Project Title", "Year of sanction", "Funding Agency", "SANCTION AMOUNT RS IN LAC"]
+    const tablehead = ['Sr No', "Project Title", "Year of sanction", "Funding Agency", "SANCTION AMOUNT RS IN LAC","Link"]
     const {data,loading} = useFetch(`/dept/${useParams()?.dept}/Projects`)
     // //console.log(data)
     return (
