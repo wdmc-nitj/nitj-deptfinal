@@ -7,11 +7,10 @@ import Heading from './Heading';
 
 const Departmentmiddle = () => {
     const dept = useParams()?.dept;
-    const Activity = useFetch(`/dept/${dept}/Activity`).data.sort((x, y) =>
-        // true values first
-        (x.new === y.new) ? 0 : x.new ? -1 : 1
-        // false values first
-        // return (x === y)? 0 : x? 1 : -1;
+    const Activity = useFetch(`/dept/${dept}/Activity`).data.sort((x, y)=>{
+        return x?.order<y?.order
+    }
+        
     );
     const News = useFetch(`/dept/${dept}/news`).data.sort(((b, c) => b.new === c.new ? 0 : b.new ? -1 : 1));
     return (
