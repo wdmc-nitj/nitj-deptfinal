@@ -95,7 +95,7 @@ function PersonalDetails({ edit, data }) {
                                         )
                                     })
                                 }
-                                <tr>
+                                {/* <tr>
                                     <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Address</td>
                                     <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
                                     <td className='align-top pr-4 pl-2 py-2'>
@@ -105,7 +105,7 @@ function PersonalDetails({ edit, data }) {
                                             })
                                         }
                                     </td>
-                                </tr>
+                                </tr> */}
                                 <tr>
                                     <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Phone</td>
                                     <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
