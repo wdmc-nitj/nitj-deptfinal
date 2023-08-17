@@ -2,20 +2,24 @@ import { Department } from "../components/department";
 import Imagesroll from "../components/Imagesroll";
 import TopPlacement from "../components/TopPlacement";
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Homepage() {
   const params = useParams();
-
+  const dept = params?.dept;
+  const navigate = useNavigate();
   useEffect(() => {
     const sessionID = params?.id;
-
+    const redirection = params?.redirect
     if (sessionID != null) {   
         var now = new Date();
         var time = now.getTime();
         var expireTime = time + 90*24*60*60;
         now.setTime(expireTime);
         document.cookie = `nitjsession=${sessionID};expires=${now.toUTCString()};path=/;`;
+    }
+    if(redirection){
+      navigate(`/dept/${dept}/Faculty/${redirection}`)
     }
   }, [params?.id]);
 
