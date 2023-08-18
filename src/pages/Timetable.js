@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import OpenPdf from './OpenPdf'
 import Heading from '../components/Heading'
 import { useParams } from 'react-router-dom'
@@ -6,7 +6,11 @@ import useFetch from '../hooks/useFetch'
 import Loading from '../components/Loading'
 function Timetable() {
     const {data,loading} = useFetch(`/dept/${useParams()?.dept}/TimeTable`);
-    const [state,setState]= useState("B.Tech")
+    const [state,setState]= useState("");
+    useEffect(()=>{
+        setState(data[0]?.link);
+        return ()=>{}
+    },[data]);
     return (
         <div className='w-[98%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-1 xl:mx-3 my-[60px] pt-[54px] place-items-center'>
             <Heading name="Time Table" />
@@ -18,12 +22,12 @@ function Timetable() {
                             setState(e.target.value);
                         }}>
                             {data?.map((e)=>{
-                                return <option value={e?.type}>{e?.type}</option>
+                                return <option value={e?.link}>{e?.type}</option>
                             })}
                         </select>
                     </div>
                 </div>
-                <OpenPdf link={data.find((ele) => ele.type===state)?.link} />
+                <OpenPdf link={state} />
             </div>:<Loading/>}
             
         </div>
