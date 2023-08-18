@@ -2,7 +2,7 @@ import { Department } from "../components/department";
 import Imagesroll from "../components/Imagesroll";
 import TopPlacement from "../components/TopPlacement";
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 function Homepage() {
   const params = useParams();
@@ -10,7 +10,8 @@ function Homepage() {
   const navigate = useNavigate();
   useEffect(() => {
     const sessionID = params?.id;
-    const redirection = params?.redirect
+    const [searchParams, setSearchParams] = useSearchParams()
+    const redirection = searchParams?.redirect
     if (sessionID != null) {   
         var now = new Date();
         var time = now.getTime();
