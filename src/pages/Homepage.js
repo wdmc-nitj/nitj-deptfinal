@@ -7,11 +7,12 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 function Homepage() {
   const params = useParams();
   const dept = params?.dept;
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams()
+  console.log()
   useEffect(() => {
     const sessionID = params?.id;
-    // const [searchParams, setSearchParams] = useSearchParams()
-    // const redirection = searchParams?.redirect
+    const redirection = searchParams?.entries()?.next()?.value ?searchParams?.entries()?.next()?.value[1]:undefined
     if (sessionID != null) {   
         var now = new Date();
         var time = now.getTime();
@@ -19,9 +20,9 @@ function Homepage() {
         now.setTime(expireTime);
         document.cookie = `nitjsession=${sessionID};expires=${now.toUTCString()};path=/;`;
     }
-    // if(redirection){
-    //   navigate(`/dept/${dept}/Faculty/${redirection}`)
-    // }
+    if(redirection){
+      navigate(`/dept/${dept}/Faculty/${redirection}`)
+    }
   }, [params?.id]);
 
   return (
