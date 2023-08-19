@@ -9,7 +9,6 @@ function Homepage() {
   const dept = params?.dept;
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams()
-  console.log()
   useEffect(() => {
     const sessionID = params?.id;
     const redirection = searchParams?.entries()?.next()?.value ?searchParams?.entries()?.next()?.value[1]:undefined
