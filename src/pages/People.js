@@ -11,7 +11,6 @@ function People({ Title, Data }) {
     const navigate = useNavigate();
 
     if(Title === 'Faculty' && Data.length){
-        console.log(Data);
         Data.sort((a, b) => {
             return a['order'] - b['order'];
         })
