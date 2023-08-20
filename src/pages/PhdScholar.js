@@ -9,7 +9,7 @@ function PhdScholar() {
     
     return (
         <>
-        {!loading?<People Title="PhD Scholars" Data={data}/>:<Loading/>}
+            {!loading?<People Title="PhD Scholars" Data={data}/>:<Loading/>}
         </>
     )
 }

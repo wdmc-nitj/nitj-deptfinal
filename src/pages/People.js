@@ -2,6 +2,7 @@ import React from 'react'
 import defaultImg from '../components/Img/default_avatar.jpg'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Heading from '../components/Heading';
+import { data } from 'autoprefixer';
 
 function People({ Title, Data }) {
     const url = useLocation();
@@ -9,7 +10,12 @@ function People({ Title, Data }) {
     const page = url.pathname.split('/')[3];
     const navigate = useNavigate();
 
-    console.log(Data);
+    if(Title === 'Faculty' && Data.length){
+        console.log(Data);
+        Data.sort((a, b) => {
+            return a['order'] - b['order'];
+        })
+    }
 
     return (
         <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto my-[60px] pt-[54px] place-items-center'>
@@ -20,7 +26,9 @@ function People({ Title, Data }) {
             <div className='grid grid-cols-1 xl:grid-cols-2 gap-4 w-full my-4 sm:px-2'>
                 {
                     Data ? Data.map((item, i) => {
-                        item = item['ID']
+                        if(Title === 'Faculty'){
+                            item = item['ID']
+                        }
                         return (
                             <div key={i} className="flex flex-col flex-grow content-center h-full justify-center mt-0 text-inherit shadow hover:shadow-lg hover:shadow-blue-500 shadow-blue-400 rounded-lg my-4 cursor-pointer">
                                 <div className="flex flex-col sm:flex-row border-t-0 text-[rgba(0,105,140,1)] py-3 text-left text-base items-center content-center px-[14px] xl:px-[18px]">
