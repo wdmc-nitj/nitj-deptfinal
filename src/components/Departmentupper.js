@@ -7,14 +7,14 @@ const Departmentupper = (props) => {
     
     return (
 
-        <div className='flex flex-col md:flex-row w-[98%] justify-around items-center p-2 md:p-4 pb-0 place-items-center mx-auto'>
+        <div className='flex flex-col  w-[98%] justify-around items-center p-2 md:p-4 pb-0 place-items-center mx-auto'>
             {/* // department intro */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow-md md:w-1/2 md:mx-2 my-2">
-                <div className='flex rounded-t-lg overflow-hidden justify-center items-center bg-[#b9d7f6] max-h-56 sm:h-56'>
+            <div className="bg-white rounded-lg border border-gray-200 shadow-md  md:mx-2 my-2">
+                <div className='flex rounded-t-lg overflow-hidden justify-center items-center bg-[#b9d7f6]  sm:h-[450px]'>
                     <img className="object-fill w-full h-full" src={props.departmentimage} alt="..." />
                 </div>
 
-                <div className="px-2 pt-5 h-[300px] sm:h-[340px]">
+                <div className="px-2 pt-5 h-[230px] sm:h-[219px]">
                     <h1 className='text-[#0054A6] text-center text-lg lg:text-xl font-semibold leading-tight tracking-wide mb-3'>Department of {props.name}</h1>
                     <p className="mb-3 text-sm sm:text-base text-justify px-3 overflow-y-auto scrollbar h-[200px] sm:h-[240px]">{props.introduction}</p>
                     {/* <div className='block m-4 p-2'>
@@ -22,7 +22,10 @@ const Departmentupper = (props) => {
                     </div>  */}
                 </div>
             </div>
-            <div className="bg-white rounded-lg border border-gray-200 shadow-md md:w-1/2 md:mx-2 my-2">
+            {/* 1st complete */}
+
+{/* Vision And Mission */}
+            {/* <div className="bg-white rounded-lg border border-gray-200 shadow-md md:w-1/2 md:mx-2 my-2">
 
                 <div className='flex justify-center items-center'>
                     <iframe className='w-full aspect-[2.11] rounded-lg'
@@ -51,7 +54,7 @@ const Departmentupper = (props) => {
                         </Link>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
         </div>
 

@@ -9,14 +9,17 @@ import useFetch from '../hooks/useFetch';
 export const Department = () => {
 
   const dept=useParams()?.dept;
+  
   const {data}=useFetch(`/dept/${dept}/messageofHOD`);
     const department =useFetch(`/dept/${dept}/description`)?.data;
   return (
     <div>
+      {console.log(data)}
+      {console.log(department)}
     <Departmentupper name={dept.toUpperCase()} introduction={department?.description}
  departmentimage={department?.img}/>
-    <Departmentmiddle/>
     <Departmentlower name={data?.name} img= {data?.img} message={data?.message}/>
+    <Departmentmiddle/>
     </div>
   )
 }
