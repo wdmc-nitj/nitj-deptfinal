@@ -7,9 +7,10 @@ import Loading from '../components/Loading';
 function Faculty() {
     const url = useLocation();
     const {data,loading}=useFetch(url.pathname);
+    
     return (
         <>
-        {!loading>0?<People Title="Faculty" Data={data}/>:<Loading/>}
+            {!loading>0?<People Title="Faculty" Data={data.length > 0 ? data[0]['faculty'] : []}/>:<Loading/>}
         </>
         
     )

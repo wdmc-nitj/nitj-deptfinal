@@ -8,9 +8,8 @@ function PhdScholar() {
     const {data,loading}=useFetch(url.pathname);
     
     return (
-        
         <>
-        {!loading?<People Title="PhD Scholars" Data={data}/>:<Loading/>}
+            {!loading?<People Title="PhD Scholars" Data={data}/>:<Loading/>}
         </>
     )
 }
