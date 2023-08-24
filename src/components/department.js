@@ -14,8 +14,6 @@ export const Department = () => {
     const department =useFetch(`/dept/${dept}/description`)?.data;
   return (
     <div>
-      {console.log(data)}
-      {console.log(department)}
     <Departmentupper name={dept.toUpperCase()} introduction={department?.description}
  departmentimage={department?.img}/>
     <Departmentlower name={data?.name} img= {data?.img} message={data?.message}/>
