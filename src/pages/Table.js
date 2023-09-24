@@ -6,7 +6,6 @@ function Table({ tablehead, data }) {
     const totalrow = data.length;
     const totalPage = Math.ceil(totalrow / row);
     const [page, setPage] = useState(1)
-
     return (
 
         <div className='overflow-auto w-full shadow-md'>
@@ -51,7 +50,7 @@ function Table({ tablehead, data }) {
                                                         <td key={{ i, j }} className="align-top px-6 py-4 text-gray-900 border-r">
                                                             {item==="Link"?
                                                             <a target="_blank" href={Item[item]}><i className="fa-solid fa-link"></i></a>
-                                                            :<span>{Item[item.toUpperCase()]}</span>}
+                                                            :<span>{Item[item]}</span>}
                                                         </td>
                                                     )
                                                 })

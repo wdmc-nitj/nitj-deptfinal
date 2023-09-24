@@ -96,7 +96,7 @@ function Profile({ peopleType }) {
   }, {
     Title: 'PG Dissertation Guided',
     thead: ['Student Name', 'Dissertation Title', 'Status', 'Year', 'Co-Supervisor'],
-    feild: ['Co-Supervisor', 'Dissertation Title', 'Status', 'Year', 'Student Name']
+    feild: ['Student Name', 'Dissertation Title', 'Status', 'Year', 'Co-Supervisor']
   }, {
     Title: 'Patents',
     thead: ['Name', 'Reg./Ref. No.', 'Date of Award/Filling', 'Organization', 'Status'],
@@ -188,7 +188,7 @@ function Profile({ peopleType }) {
                   <div className="flex-none w-auto max-w-full px-3 my-auto">
                     <div className="h-full">
                       <h5 className="mb-1 text-xl font-semibold">{item?.name}</h5>
-                      <p title={item?.position} className="text-zinc-500 mb-0 font-medium leading-normal w-96 xl:w-full whitespace-nowrap overflow-hidden">{item?.position}</p>
+                      {/* <p title={item?.position} className="text-zinc-500 mb-0 font-medium leading-normal w-96 xl:w-full whitespace-nowrap overflow-hidden">{item?.position}</p> */}
                     </div>
                   </div>
                 </div>

@@ -7,7 +7,6 @@ import Loading from '../components/Loading';
 function Faculty() {
     const url = useLocation();
     const {data,loading}=useFetch(url.pathname);
-    console.log(data);
     
     return (
         <>
