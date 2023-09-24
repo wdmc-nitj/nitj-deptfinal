@@ -11,7 +11,7 @@ function Faculty() {
     
     return (
         <>
-            {!loading>0?<People Title="Faculty" Data={data.length > 0 ? data[0]['faculty'] : []}/>:<Loading/>}
+            {!loading>0?<People Title="Faculty" Data={data.length > 0 ? data : []}/>:<Loading/>}
         </>
         
     )
