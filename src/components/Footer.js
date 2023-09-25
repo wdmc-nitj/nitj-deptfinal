@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import logo from './Img/logo.png'
 import { useRef } from 'react'
 import useFetch from '../hooks/useFetch'
+
+
 function Footer({ scroll, handlescroll }) {
     const footref = useRef(null);
     const HscrollIntoView = () => {
@@ -78,8 +80,12 @@ function Footer({ scroll, handlescroll }) {
                                 data?.map((item, i) => {
 
                                     return (item?.column === 0) && (
-                                        <a href={item?.link} className="hover:text-yellow-300 hover:underline">{item?.title}</a>
+                                        <a href={item?.link.includes('nitj.ac.in') ? item?.link : `https://nitj.ac.in/${item?.link}`}  className="hover:text-yellow-300 hover:underline">
+                                          {item?.title}
+                                        </a>
                                     )
+                                    
+                                    
                                 })
                             }
 
