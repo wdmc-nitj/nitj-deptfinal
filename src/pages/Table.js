@@ -50,7 +50,7 @@ function Table({ tablehead, data }) {
                                                         <td key={{ i, j }} className="align-top px-6 py-4 text-gray-900 border-r">
                                                             {item==="Link"?
                                                             <a target="_blank" href={Item[item]}><i className="fa-solid fa-link"></i></a>
-                                                            :<span>{Item[item]}</span>}
+                                                            :<span>{Item[item.toUpperCase()]}</span>}
                                                         </td>
                                                     )
                                                 })
