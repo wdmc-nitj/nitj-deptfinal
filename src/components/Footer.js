@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
+
 import logo from './Img/logo.png'
 import { useRef } from 'react'
+import useFetch from '../hooks/useFetch'
 function Footer({ scroll, handlescroll }) {
     const footref = useRef(null);
     const HscrollIntoView = () => {
@@ -12,6 +14,7 @@ function Footer({ scroll, handlescroll }) {
     useEffect(() => {
         HscrollIntoView();
     }, [HscrollIntoView])
+    const { data } = useFetch(`/footer/get/all`);
 
     return (
 
@@ -69,66 +72,52 @@ function Footer({ scroll, handlescroll }) {
                 </div>
                 <div className="hidden basis-2/3 p-[25px] lg:block">
                     <h2 className="my-1 text-xl font-semibold">Quick Links</h2>
-                    <div className="flex flex-row p-[15px]">
-                        <div className="flex basis-1/4 flex-col text-[11px] lg:text-[14px]">
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Admission</a>
-                            <br />
-                            <a href="#" className="hover:text-yellow-300 hover:underline">UnderGrad Courses</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">PostGrad Courses</a>
-                            <br />
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Departments</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Academic Calender</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Clubs And Societies</a>
-                            <br />
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Campus Life</a>
+                    <div className="flex flex-row justify-between p-[20px]">
+                        <div className="flex  flex-col text-[11px] lg:text-[14px]">
+                            {
+                                data?.map((item, i) => {
+
+                                    return (item?.column === 0) && (
+                                        <a href={item?.link} className="hover:text-yellow-300 hover:underline">{item?.title}</a>
+                                    )
+                                })
+                            }
+
                         </div>
                         <div className="flex basis-1/4 flex-col text-[11px] lg:text-[14px]">
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Faculty</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Staff</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Recruitment</a>
-                            <br />
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Research</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Patent</a>
+                            {
+                                data?.map((item, i) => {
+
+                                    return (item?.column === 1) && (
+                                        <a href={item?.link} className="hover:text-yellow-300 hover:underline">{item?.title}</a>
+                                    )
+                                })
+                            }
                         </div>
                         <div className="flex basis-1/4 flex-col text-[11px] lg:text-[14px]">
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Institute Prospectus(2019-2020)</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Annual Reports</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">MOM</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">UGC Act</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">NIT Act and statutes</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Pension</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Ministry of Education Notifications</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Annual Property Return</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">Rules/Policies</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">ARIIA(2020-2021)</a>
+                            {
+                                data?.map((item, i) => {
+
+                                    return (item?.column === 2) && (
+                                        <a href={item?.link} className="hover:text-yellow-300 hover:underline">{item?.title}</a>
+                                    )
+
+
+
+
+                                })
+                            }
                         </div>
-                        <div className="flex basis-1/4 flex-col text-[11px] lg:text-[14px]">
-                            <a href="#" className="hover:text-yellow-300 hover:underline">ARIIA (2020-2021)</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">NIRF-2022</a>
-                            <a href="#" className="hover:text-yellow-300 hover:underline">NewsLetter</a>
                         </div>
-                    </div>
                 </div>
             </div>
             <div
                 className="border-t border-zinc-400 flex flex-col bg-slate-800 px-20 p-[20px] text-center text-white lg:flex-row justify-between">
                 <div className="pb-[10px] text-[12px] lg:pb-0 lg:text-[15px]">
-                    © Copyright 2022, All Rights Reserved NIT Jalandhar
+                    © Copyright 2023, All Rights Reserved NIT Jalandhar
                 </div>
                 <div className="text-[12px] lg:text-[15px]">
-                    <a href="#" className="mx-1 hover:text-yellow-300 hover:underline lg:mx-2">Other NITs</a>
-                    |
-                    <a href="#" className="mx-1 hover:text-yellow-300 hover:underline lg:mx-2">MoU</a>
-                    |
-                    <a href="#" className="mx-1 hover:text-yellow-300 hover:underline lg:mx-2">GIAN</a>
-                    |
-                    <a href="#" className="mx-1 hover:text-yellow-300 hover:underline lg:mx-2">TEQIP</a>
-                    |
-                    <a href="#" className="mx-1 hover:text-yellow-300 hover:underline lg:mx-2">Anti Ragging</a>
-                    |
-                    <a href="#" className="mx-1 hover:text-yellow-300 hover:underline lg:mx-2">Terms of Use</a>
-                    |
-                    <a href="#" className="mx-1 hover:text-yellow-300 hover:underline lg:mx-2">Credits</a>
+                    Developed in-house by Website Development and Management Committee (WDMC)
                 </div>
             </div>
 
