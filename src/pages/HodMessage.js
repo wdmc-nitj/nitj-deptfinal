@@ -35,21 +35,7 @@ function HodMessage() {
                   <p className="">: &nbsp; &nbsp;</p>
                   <p>{data?.phone} (O)</p>
                 </div>
-                <div className="flex flex-row">
-                  <p className="basis-3/12 md:basis-[15%] font-semibold text-justify">EPABX</p>
-                  <p className="">: &nbsp; &nbsp;</p>
-                  <p> {data?.EPABX}</p>
-                </div>
-                <div className="flex flex-row">
-                  <p className="basis-3/12 md:basis-[15%] font-semibold">Extn.</p>
-                  <p className="">: &nbsp; &nbsp;</p>
-                  <p>{data?.Extn}</p>
-                </div>
-                <div className="flex flex-row">
-                  <p className="basis-3/12 md:basis-[15%] font-semibold">Fax</p>
-                  <p className="">: &nbsp; &nbsp;</p>
-                  <p>{data?.Fax}</p>
-                </div>
+                
               </div>
             </div>
           </div>
