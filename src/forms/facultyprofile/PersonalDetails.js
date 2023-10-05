@@ -2,7 +2,7 @@ import React from 'react'
 import { departments } from '../../config/server';
 
 function PersonalDetails({ edit, data }) {
-    const tablehead = ['Name', 'Designation', 'Department', 'Qualification', 'Address', 'Phone', 'Email ID', 'Fax'];
+    const tablehead = ['Name', 'Designation', 'Department', 'Qualification', 'Address', 'Phone', 'Email ID'];
     const feild = ['name', 'designation', 'department', 'education_qualification'];
     const address = ['address1', 'address2', 'city', 'pin', 'state']
     const Phone = data['address']?data['address']['phone']:""
@@ -110,11 +110,6 @@ function PersonalDetails({ edit, data }) {
                                     <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Phone</td>
                                     <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
                                     <td className='align-top pr-4 pl-2 py-2'>{Phone}</td>
-                                </tr>
-                                <tr>
-                                    <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Fax</td>
-                                    <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
-                                    <td className='align-top pr-4 pl-2 py-2'>{Fax}</td>
                                 </tr>
                             </tbody>
                         </table>
