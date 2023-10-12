@@ -2,9 +2,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import Heading from '../components/Heading';
 import useFetch from '../hooks/useFetch';
-
-import classes from './c.module.css';
 import Loading from '../components/Loading';
+import { openInNewWindow } from '../helper';
 
 function ContactUs() {
 
@@ -17,7 +16,7 @@ function ContactUs() {
           <div className="w-full bg-white relative flex flex-wrap py-6 rounded">
             <div className="lg:w-1/2 px-6 ">
               <h2 className="title-font font-semibold text-gray-900 tracking-widest">Address</h2>
-              <p className={`mt-1 ${classes.x}` }>{data?.Address}</p>
+              <p className={`mt-1` }>{data?.Address}</p>
             </div>
             <div className="lg:w-1/2 px-6 mt-4 lg:mt-0">
               <h2 className="title-font font-semibold text-gray-900 tracking-widest text-xs">Office Email</h2>
@@ -29,10 +28,10 @@ function ContactUs() {
 
           <div className="mt-2">
             <div className="pt-2 flex items-center justify-center text-lg text-white">
-              <a href={data?.FacebookUrl} className="w-8 h-8 rounded-full bg-blue-600 hover:bg-orange-600 mx-1 grid place-items-center" ><i className="fa-brands fa-facebook-f"></i></a>
-              <a href={data?.InstagramUrl} className="w-8 h-8 rounded-full bg-blue-600 hover:bg-orange-600 mx-1 grid place-items-center" ><i className="fa-brands fa-instagram"></i></a>
-              <a href={data?.TwitterUrl} className="w-8 h-8 rounded-full bg-blue-600 hover:bg-orange-600 mx-1 grid place-items-center" ><i className="fa-brands fa-twitter"></i></a>
-              <a href={data?.LinkedinUrl} className="w-8 h-8 rounded-full bg-blue-600 hover:bg-orange-600 mx-1 grid place-items-center" ><i className="fa-brands fa-linkedin"></i></a>
+            {data?.FacebookUrl &&  <div onClick={()=>openInNewWindow(data?.FacebookUrl)} className="w-8 h-8 rounded-full bg-blue-600 hover:bg-orange-600 mx-1 grid place-items-center" ><i className="fa-brands fa-facebook-f"></i></div>}
+{         data?.InstagramUrl &&     <div onClick={()=>openInNewWindow(data?.InstagramUrl)} className="w-8 h-8 rounded-full bg-blue-600 hover:bg-orange-600 mx-1 grid place-items-center" ><i className="fa-brands fa-instagram"></i></div>}
+            { data?.TwitterUrl&& <div onClick={()=>openInNewWindow(data?.TwitterUrl)} className="w-8 h-8 rounded-full bg-blue-600 hover:bg-orange-600 mx-1 grid place-items-center" ><i className="fa-brands fa-twitter"></i></div>}
+             {data?.LinkedinUrl && <div onClick={()=>openInNewWindow(data?.LinkedinUrl)} className="w-8 h-8 rounded-full bg-blue-600 hover:bg-orange-600 mx-1 grid place-items-center" ><i className="fa-brands fa-linkedin"></i></div>}
             </div>
           </div>
         </div>
