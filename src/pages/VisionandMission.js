@@ -16,13 +16,13 @@ function VisionandMission() {
     if (!pointsArray) return null;
     
     return (
-      <ul>
-        {pointsArray.map((point, index) => (
-          <li key={index} className='px-2 sm:px-4 text-sm sm:text-base text-justify'>
+        <ul className='list-disc list-inside'>
+          {pointsArray.map((point, index) => (
+            <li key={index} className='px-2 sm:px-4 text-sm sm:text-base text-justify'>
             {point}
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
     );
   };
 
