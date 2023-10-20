@@ -10,8 +10,11 @@ function Publications() {
     const {data,loading} = useFetch(`/dept/${useParams()?.dept}/Faculty`)
     let publications = []
     data.map((ele) => {
-        if(ele.journal){
-            publications.push(...ele.journal);
+        if(ele?.ID?.journal){
+            console.log(ele?.ID?.journal);
+            ele.ID.journal?.map((journal) => {
+                publications.push(journal);
+            })
         }
     })
     return (

@@ -96,7 +96,7 @@ function Profile({ peopleType }) {
   }, {
     Title: 'PG Dissertation Guided',
     thead: ['Student Name', 'Dissertation Title', 'Status', 'Year', 'Co-Supervisor'],
-    feild: ['Student Name', 'Dissertation Title', 'Status', 'Year', 'Co-Supervisor']
+    feild: ['Co-Supervisor', 'Dissertation Title', 'Status', 'Year', 'Student Name']
   }, {
     Title: 'Patents',
     thead: ['Name', 'Reg./Ref. No.', 'Date of Award/Filling', 'Organization', 'Status'],
