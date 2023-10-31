@@ -29,7 +29,7 @@ function Navbar({menu,setMenu}) {
                     </div>
 
                     <div className="cursor-pointer text-black mx-2 mr-3 lg:hidden block" onClick={()=>setMenu(!menu)}>
-                        <i className="fa-xl fa-solid fa-bars text-blue-700"></i>
+                        <i className="fa-xl fa-solid fa-bars text-[#0054A6]"></i>
                     </div>
                 </div>
 

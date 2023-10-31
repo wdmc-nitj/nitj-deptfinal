@@ -10,9 +10,14 @@ const Departmentupper = (props) => {
         <div className='flex flex-col md:flex-row w-[98%] justify-around items-center p-2 md:p-4 pb-0 place-items-center mx-auto'>
             {/* // department intro */}
             <div className="bg-white rounded-lg border border-gray-200 shadow-md md:w-1/2 md:mx-2 my-2">
-                <div className='flex rounded-t-lg overflow-hidden justify-center items-center bg-[#b9d7f6] max-h-56 sm:h-56'>
-                    <img className="object-fill w-full h-full" src={props.departmentimage} alt="..." />
+            <div className='relative group rounded-t-lg overflow-hidden justify-center items-center bg-[#b9d7f6] max-h-56 sm:h-56'>
+            <img className="object-fill w-full h-full" src={props.departmentimage} alt="..." />
+
+                <div className="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-25 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {props.name} building.
                 </div>
+            </div>
+
 
                 <div className="px-2 pt-5 h-[300px] sm:h-[340px]">
                     <h1 className='text-[#0054A6] text-center text-lg lg:text-xl font-semibold leading-tight tracking-wide mb-3'>Department of {props.name}</h1>

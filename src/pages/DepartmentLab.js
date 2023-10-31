@@ -3,11 +3,27 @@ import { useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import Heading from '../components/Heading';
 import Loading from '../components/Loading';
+import { useState } from 'react';
+import PopupCard from '../components/PopupCard';
 
 function DepartmentLab() {
     const url = useLocation();
     const dept = url.pathname.split('/')[2];
     const { data, loading } = useFetch(`/dept/${dept}/Infrastructure?q=Department Labs`);
+    
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null); 
+
+    const openPopup = (item) => {
+        setIsPopupOpen(true);
+        setSelectedItem(item); 
+    };
+
+    const closePopup = () => {
+        setIsPopupOpen(false);
+        setSelectedItem(null); 
+    };
+
 
     return (
         <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto mt-[60px] pt-[54px] place-items-center'>
@@ -17,15 +33,27 @@ function DepartmentLab() {
                     data ? data.map((item, i) => {
                         return (
                             item.type === "Department Labs" && <div key={i} className='w-full my-4 sm:mx-4 p-2'>
-                                <div className="w-full h-60 sm:h-72 border-2 object-cover object-center rounded-lg shadow-md overflow-hidden">
-                                    <img src={item?.img} alt="..." className="w-full h-full object-cover object-center rounded-lg shadow-md hover:scale-110 duration-500" />
-                                </div>
-                                <div className="relative px-4 -mt-8 md:-mt-10">
-                                    <div className="max-w-fit mx-auto bg-white flex items-center justify-center p-4 md:p-6 rounded-lg shadow-lg">
-                                        <h4 title={item?.title} className="text-xl font-semibold uppercase leading-tight truncate cursor-pointer">{item?.title}</h4>
-                                    </div>
+                                <div className="w-full h-60 sm:h-72 border-2 object-cover object-center relative rounded-lg shadow-md bg-grey overflow-hidden group">
+                                <img
+                                    src={item?.img}
+                                    alt="Departement Labs"
+                                    className="w-full h-full object-cover object-center rounded-lg group-hover:scale-110 shadow-md duration-500"
+                                />
+                                {item.imgdesp ? <div className="absolute cursor-pointer z-10 p-2 inset-0 flex items-center justify-center text-xl font-bold text-white bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 duration-300 transition" onClick={() => openPopup(item)}>
+                                    {item?.title && item.title.length > 40 ? `${item.title.slice(0, 40)}...` : item.title}
+                                </div>:null}
                                 </div>
 
+                                <div className=" z-20 relative px-4 -mt-7 md:-mt-9">
+                                <div className="max-w-fit mx-auto bg-white flex items-center  justify-center p-4 sm:p-6 rounded-lg shadow-lg">
+                                    <h4 title={item?.title} className="text-xl cursor-pointer font-semibold uppercase leading-tight truncate">{item?.title}</h4>
+                                </div>
+                                </div>
+
+                                
+                                {selectedItem && isPopupOpen && selectedItem === item && (
+                                <PopupCard isOpen={isPopupOpen} onClose={closePopup} title={selectedItem?.title} description={selectedItem?.imgdesp} />
+                                )}
                             </div>
                         )
                     }) : <h1>Data not Available</h1>
