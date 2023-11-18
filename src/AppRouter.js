@@ -29,7 +29,9 @@ import ChangePass from './pages/ChangePass';
 import Society_Clubs_Teams from './pages/Society_Clubs_Teams';
 import AcademicCalender from './pages/AcademicCalender';
 import Timetable from './pages/Timetable';
+import ImgDesp from './pages/ImgDesp'
 import Navbar from './components/Navbar';
+
 import { useState } from 'react';
 const AppRouter = () => {
   
@@ -102,6 +104,7 @@ const AppRouter = () => {
                     <Route path='/dept/:dept/Projects' element={<Projects />} />
                     <Route path='/dept/:dept/Consultancy' element={<Consultancy />} />
                     <Route path='/dept/:dept/SocietyClubs' element={<Society_Clubs_Teams />} />
+                    <Route path='dept/:dept/ImgDesp/:itemId' element={<ImgDesp/>}/>
 
                   </Routes>
                 </div>

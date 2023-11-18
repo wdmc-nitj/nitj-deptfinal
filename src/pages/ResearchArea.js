@@ -1,36 +1,20 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { Navigate, Link, Route, useLocation } from 'react-router-dom'; 
 import useFetch from '../hooks/useFetch';
 import Heading from '../components/Heading';
 import Loading from '../components/Loading';
-import PopupCard from '../components/PopupCard';
 
 function ResearchArea() {
-  
   const url = useLocation();
   const dept = url.pathname.split('/')[2];
   const { data, loading } = useFetch(`/dept/${dept}/Infrastructure?q=Research Area`);
-
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null); // Store the selected card's data
-
-  const openPopup = (item) => {
-    setIsPopupOpen(true);
-    setSelectedItem(item); // Store the selected item
-  };
-
-  const closePopup = () => {
-    setIsPopupOpen(false);
-    setSelectedItem(null); // Clear the selected item when the popup is closed
-  };
 
   return (
     <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto my-[60px] pt-[54px] place-items-center'>
       <Heading name="Research Areas" />
       {!loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 sm:m-4 sm:p-2 place-items-center gap-4 antialiased text-gray-900">
-          {data ? (
+          {data && data.length > 0 ? (
             data.map((item, i) => {
               return (
                 item.type === "Research Area" && (
@@ -41,9 +25,12 @@ function ResearchArea() {
                         alt="Research Area"
                         className="w-full h-full object-cover object-center rounded-lg group-hover:scale-110 shadow-md duration-500"
                       />
-                      {item.imgdesp ? <div className="absolute cursor-pointer z-10 p-2 inset-0 flex items-center justify-center text-xl font-bold text-white bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 duration-300 transition" onClick={() => openPopup(item)}>
+                      {item.imgdesp ? (
+                        <Link to={`/dept/${dept}/Imgdesp/${item._id}`} className="absolute cursor-pointer z-10 p-2 inset-0 flex items-center justify-center text-xl font-bold text-white bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 duration-300 transition">
                         {item?.title && item.title.length > 40 ? `${item.title.slice(0, 40)}...` : item.title}
-                      </div>:null}
+                      </Link>
+                      
+                      ) : null}
                     </div>
 
                     <div className=" z-20 relative px-4 -mt-7 md:-mt-9">
@@ -51,11 +38,6 @@ function ResearchArea() {
                         <h4 title={item?.title} className="text-xl cursor-pointer font-semibold uppercase leading-tight truncate">{item?.title}</h4>
                       </div>
                     </div>
-
-                    
-                    {selectedItem && isPopupOpen && selectedItem === item && (
-                      <PopupCard isOpen={isPopupOpen} onClose={closePopup} title={selectedItem?.title} description={selectedItem?.imgdesp} />
-                    )}
                   </div>
                 )
               );
