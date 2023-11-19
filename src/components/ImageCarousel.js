@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function ImageCarousel({ images }) {
-  console.log(images.length);
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function ImageCarousel({ images }) {
             <div className='relative bg-gradient-to-b from-accent to-transparent bg-cover bg-center w-full items-center transition-all justify-center'>
               {currentImage && (
                 <img
-                  src={currentImage.link}
+                  src={currentImage?.link}
                   className='w-full h-auto aspect-video sm:max-h-[450px] block align-middle rounded-md'
                   alt=''
                 />
