@@ -1,17 +1,14 @@
 import React from "react";
 import ImageCarousel from "../components/ImageCarousel";
 import Heading from "../components/Heading";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import useFetch from "../hooks/useFetch";
-import { SERVER_URL } from "../config/server";
 
 
 
 
 function ImgDesp() {
-  const location = useLocation();
-  const url = useLocation();
 
   const id = useParams().itemId
   const dept = useParams().dept
@@ -30,7 +27,7 @@ function ImgDesp() {
               { (
                 <img
                   src={data?.mainImage}
-                  className=' h-auto aspect-video sm:max-h-[450px] block align-middle rounded-md'
+                  className='w-full h-auto aspect-video sm:max-h-[450px] block align-middle rounded-md'
                   alt='Lab Image'
                 />
                 )}
@@ -49,10 +46,10 @@ function ImgDesp() {
           </div>
         </div>
       </div>
-      {(data?.incharge ||data?.location ) && <div className="flex bg-gray-600 p-[30px] my-[5px] justify-around items-center ">
-              { data?.incharge&& <div className='text-white text-[20px]'>Incharge: <span className="font-extrabold">{data?.incharge}</span></div>}
+      {(data?.incharge ||data?.location ) && <div className="p-[30px] my-[5px]  ">
+        <div className="bg-gray-600 p-[20px] rounded flex justify-around items-center">      { data?.incharge&& <div className='text-white text-[20px]'>Incharge: <span className="font-extrabold">{data?.incharge}</span></div>}
                 { data?.location&& <div className='text-white text-[20px]'>location: <span className="font-extrabold">{data?.location}</span></div>}</div>
-      }
+     </div> }
       {data?.images  &&  data?.images.map((image) =>{
         
         return <ImageCarousel data={image} />
