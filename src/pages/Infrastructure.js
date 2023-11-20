@@ -11,7 +11,7 @@ function Infrastructure() {
   const { data, loading } = useFetch(url.pathname + '?q=Infrastructure');
 
   const handleImageClick = (item) => {
-    navigate(`/dept/${dept}/Imgdesp/${item._id}`, { state: { data: item } });
+    navigate(`/dept/${dept}/Imgdesp/${item._id}`);
   };
 
 
@@ -25,7 +25,7 @@ function Infrastructure() {
               item.type === "Infrastructure" && <div key={i} className='w-full my-4 sm:mx-4 p-2'>
                 <div className="w-full h-60 sm:h-72 border-2 object-cover object-center relative rounded-lg shadow-md bg-grey overflow-hidden group "  onClick={() => handleImageClick(item)}>
                       <img
-                        src={item?.img[0].link}
+                        src={item?.mainImage}
                         alt="Infrastructure"
                         className="w-full h-full object-cover object-center rounded-lg group-hover:scale-110 shadow-md duration-500"
                       />
@@ -39,9 +39,6 @@ function Infrastructure() {
                         <h4 title={item?.title} className="text-xl cursor-pointer font-semibold uppercase leading-tight truncate">{item?.title}</h4>
                       </div>
                     </div>
-
-                    
-          
                   </div>
             )
           }) : <h1>Data not Available</h1>
