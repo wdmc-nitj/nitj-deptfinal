@@ -12,7 +12,7 @@ function DepartmentLab() {
     const { data, loading } = useFetch(`/dept/${dept}/Infrastructure?q=Department Labs`);
     
     const handleImageClick = (item) => {
-        navigate(`/dept/${dept}/Imgdesp/${item._id}`, { state: { data: item } });
+        navigate(`/dept/${dept}/Imgdesp/${item._id}`);
       };
 
 
@@ -26,13 +26,13 @@ function DepartmentLab() {
                             item.type === "Department Labs" && <div key={i} className='w-full my-4 sm:mx-4 p-2'>
                                 <div className="w-full h-60 sm:h-72 border-2 object-cover object-center relative rounded-lg shadow-md bg-grey overflow-hidden group" >
                                 <img
-                                    src={item?.img[0].link}
+                                    src={item?.mainImage}
                                     alt="Departement Labs"
                                     className="w-full h-full object-cover object-center rounded-lg group-hover:scale-110 shadow-md duration-500"
                                 />
-                                {item.title ? <div className="absolute cursor-pointer z-10 p-2 inset-0 flex items-center justify-center text-xl font-bold text-white bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 duration-300 transition" onClick={() => handleImageClick(item)}>
-                                    {item?.title && item.title.length > 40 ? `${item.title.slice(0, 40)}...` : item.title}
-                                </div>:null}
+                                {item?.title && <div className="absolute cursor-pointer z-10 p-2 inset-0 flex items-center justify-center text-xl font-bold text-white bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 duration-300 transition" onClick={() => handleImageClick(item)}>
+                                    {item.title}
+                                </div>}
                                 </div>
 
                                 <div className=" z-20 relative px-4 -mt-7 md:-mt-9">

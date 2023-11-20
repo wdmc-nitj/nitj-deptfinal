@@ -8,11 +8,11 @@ function ImageCarousel({ data }) {
       <div className='flex flex-col my-[100px] border p-[20px]'>
         <div className='mt-0 m-2 w-full rounded-md flex overflow-hidden'>
           <div className='relative w-full overflow-hidden'>
-            <div className='relative px-[200px] bg-center flex items-center transition-all justify-center'>
+            <div className='relative px-[100px] bg-center flex items-center transition-all justify-center'>
               { (
                 <img
-                  src={"http://localhost:3000/static/media/logo.f2c76d0937070ba81dc0.png"}
-                  className=' h-auto aspect-video sm:max-h-[450px] block align-middle rounded-md'
+                  src={data?.img}
+                  className='w-full h-auto aspect-video sm:max-h-[450px] block align-middle rounded-md'
                   alt=''
                 />
                 )}
