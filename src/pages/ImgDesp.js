@@ -26,7 +26,7 @@ function ImgDesp() {
             <div className='relative px-[200px] bg-center flex items-center transition-all justify-center'>
               { (
                 <img
-                  src={data?.mainImage}
+                  src={data?.img}
                   className='w-full h-auto aspect-video sm:max-h-[450px] block align-middle rounded-md'
                   alt='Lab Image'
                 />

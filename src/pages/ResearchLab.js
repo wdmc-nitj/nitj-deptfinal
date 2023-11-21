@@ -27,7 +27,7 @@ function ResearchLab() {
                   <div key={i} className='w-full my-4 sm:mx-4 p-2'>
                     <div className="w-full h-60 sm:h-72 border-2 object-cover object-center relative rounded-lg shadow-md bg-grey overflow-hidden group"  onClick={() => handleImageClick(item)}>
                       <img
-                        src={item?.mainImage}
+                        src={item?.img}
                         alt="Research Labs"
                         className="w-full h-full object-cover object-center rounded-lg group-hover:scale-110 shadow-md duration-500"
                       />
