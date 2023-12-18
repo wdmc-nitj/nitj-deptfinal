@@ -16,6 +16,7 @@ const Departmentlower = (props) => {
         <div className="absolute right-4 w-32 h-32 flex-grow-0 flex-shrink-0 flex justify-center md:justify-end -mt-20 mb-1 ml-auto mr-0">
           <img src={props?props.img:default_avatar} className="w-full h-full object-cover object-left-top rounded-full shadow-xl flex-grow-0 flex-shrink-0" alt='' />
         </div>
+        
         <span className='w-full inline-block h-[180px] overflow-hidden text-justify text-ellipsis mt-2'>
           <h2 className="text-[#0054A6] text-start w-[calc(100%-105px)] text-lg lg:text-xl font-semibold leading-tight tracking-wide">{props?.name}</h2>
           <h2 className='text-sm sm:text-base font-medium'>(Head of Department)</h2>
