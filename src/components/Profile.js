@@ -90,6 +90,10 @@ function Profile({ peopleType }) {
     thead: ['Designation', 'Organisation'],
     feild: ['Designation', 'Organisation']
   }, {
+    Title: 'Consultancy',
+    thead: ['Role', 'Project Type', 'Title', 'Funding Agency', 'From', 'To', 'Amount', 'Status', 'Co-Investigator'],
+    feild: ['Role', 'Project Type', 'Title', 'Funding Agency', 'From', 'To', 'Amount', 'Status', 'Co-investigator']
+  }, {
     Title: 'PhD Supervised',
     thead: ['Scholar Name', 'Research Topic', 'Status', 'Year', 'Co-Supervisor'],
     feild: ['Scholar Name', 'Research Topic', 'Status', 'Year', 'Co-Supervisor']
@@ -213,7 +217,7 @@ function Profile({ peopleType }) {
                     <div className='cards scrollhide flex items-center snap-x h-14 border-t border-b m-2 overflow-x-auto overflow-y-hidden'>
                       {Link.map((Item, i) => {
                         return (
-                          <div key={i+item._id} className={"border snap-center shrink-0 w-max rounded-xl px-3 py-1.5 m-1 cursor-pointer hover:text-purple-600 active:scale-95 duration-150 " + (active === i ? 'border-slate-800 text-purple-700 font-semibold' : '')} onClick={() => { setActiveHelper(i); setview() }}>{Item?.Title}</div>
+                          <div key={i+item._id} className={"border snap-center shrink-0 w-max rounded-xl px-3 py-1.5 m-1 cursor-pointer hover:text-purple-600 active:scale-95 duration-150 " + (active === i ? 'border-slate-800 text-purple-700 font-semibold' : '')} onClick={() => { setActiveHelper(i); setview() }}>{Item?.Title=="Patents"?"Patents/IPR": Item?.Title}</div>
                         )
                       })}
                     </div>
@@ -227,7 +231,7 @@ function Profile({ peopleType }) {
                 </div>
                 <div className='w-[98%] my-2 duration-200 shadow-md'>
                   <div className="flex justify-between items-center my-2 shadow-lg py-2 rounded-t border">
-                    <div className="text-base sm:text-lg font-semibold px-3 py-1">{Link[active]?.Title}</div>
+                    <div className="text-base sm:text-lg font-semibold px-3 py-1">{Link[active]?.Title=="Patents"?"Patents/IPR":Link[active]?.Title}</div>
                     <div className='flex items-center justify-center mx-2'>
                       <span title='Download Excel File' className={"cursor-pointer px-3 h-6 active:scale-95 " + (active > 2 ? '' : 'hidden')} onClick={() => ExportToExcel()}>
                         <img className='h-full' src={Exceldownloadpdf} alt='Download Excel File' />
@@ -240,10 +244,10 @@ function Profile({ peopleType }) {
                     </div>
                   </div>
                   <div className='p-2 mt-4'>
-                    {active === 0 && <PersonalDetails edit={edit} data={data?.data[0]} />}
+                    {active === 0 && <PersonalDetails edit={edit} data={data?.data[0]} token={token}/>}
                     {active === 1 && <Otherprofilelink edit={edit} isLogin={facultyEditable} data={data?.data[0]} token={token} />}
                     {active === 2 && <ResearchProfile edit={edit} isLogin={facultyEditable} data={data?.data[0]['research_profile']} faculty={data?.data[0]} token={token} />}
-                    {active > 2 && <BaseTable edit={edit} tablehead={Link[active].thead} faculty={data?.data[0]} data={data?.data[0][map[Link[active].Title]]} Editfeild={Editfeild} HandleEdit={HandleEdit} feild={Link[active].feild} isLogin={facultyEditable} title={map[Link[active].Title]} token={token} />}
+                    {active > 2 && <BaseTable edit={edit} tablehead={Link[active].thead} faculty={data?.data[0]} data={data?.data[0][map[Link[active].Title]]?data?.data[0][map[Link[active].Title]]:[]} Editfeild={Editfeild} HandleEdit={HandleEdit} feild={Link[active].feild} isLogin={facultyEditable} title={map[Link[active].Title]} token={token} />}
                     {/* <BaseTable edit={edit} /> */}
                   </div>
                 </div>

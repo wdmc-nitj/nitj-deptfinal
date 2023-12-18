@@ -18,7 +18,8 @@ function VisionandMission() {
     return (
         <ul className='list-disc list-inside'>
           {pointsArray.map((point, index) => (
-            <li key={index} className='px-2 sm:px-4 text-sm sm:text-base text-justify'>
+            <li key={index} className='px-2 sm:px-4 text-sm sm:text-base text-justify list-none'>
+               <i className="fas fa-lightbulb mx-2"></i> 
             {point}
             </li>
           ))}
