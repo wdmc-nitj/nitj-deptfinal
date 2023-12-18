@@ -20,7 +20,7 @@ function Homepage() {
         document.cookie = `nitjsession=${sessionID};expires=${now.toUTCString()};path=/;`;
     }
     if(redirection){
-      navigate(`/dept/${dept}/Faculty/${redirection}`)
+      navigate(`/dept/${dept}/Faculty/${redirection}?id=${redirection}`)
     }
   }, [params?.id]);
 
