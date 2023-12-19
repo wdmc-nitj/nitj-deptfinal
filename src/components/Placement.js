@@ -20,7 +20,7 @@ function Placement({ cnt = Infinity }) {
                 loading ? <Loading /> :
                     <>
                         {
-                            data?.map((item, i) => {
+                            data?.sort((a,b)=> b.package - a.package).map((item, i) => {
                                 return (i < cnt) &&
                                     (
                                         <div key={i} className="flex flex-col snap-start shrink-0 flex-grow items-center content-center mt-0 text-inherit max-w-md">

@@ -111,8 +111,6 @@ function Profile({ peopleType }) {
       },
     });
 
-    console.log(profileData);
-
     const MyDocument = () => (
       <Document>
         <Page size="A4" style={styles.page}>
@@ -316,6 +314,31 @@ function Profile({ peopleType }) {
     },
     {
       Title: "Research Projects",
+      thead: [
+        "Role",
+        "Project Type",
+        "Title",
+        "Funding Agency",
+        "From",
+        "To",
+        "Amount",
+        "Status",
+        "Co-Investigator",
+      ],
+      feild: [
+        "Role",
+        "Project Type",
+        "Title",
+        "Funding Agency",
+        "From",
+        "To",
+        "Amount",
+        "Status",
+        "Co-investigator",
+      ],
+    },
+    {
+      Title: "Conference",
       thead: [
         "Role",
         "Project Type",
@@ -593,7 +616,7 @@ function Profile({ peopleType }) {
                                 setview();
                               }}
                             >
-                              {Item?.Title}
+                              {Item?.Title=='Patents'?'Patents/IPR':Item?.Title}
                             </div>
                           );
                         })}
@@ -629,7 +652,7 @@ function Profile({ peopleType }) {
                   <div className="w-[98%] my-2 duration-200 shadow-md">
                     <div className="flex justify-between items-center my-2 shadow-lg py-2 rounded-t border">
                       <div className="text-base sm:text-lg font-semibold px-3 py-1">
-                        {Link[active]?.Title}
+                        {Link[active]?.Title=='Patents'?'Patents/IPR':Link[active]?.Title}
                       </div>
                       <div className="flex items-center justify-center mx-2">
                         <span
@@ -706,7 +729,7 @@ function Profile({ peopleType }) {
                           edit={edit}
                           tablehead={Link[active].thead}
                           faculty={data?.data[0]}
-                          data={data?.data[0][map[Link[active].Title]]}
+                          data={data?.data[0][map[Link[active].Title]]?data?.data[0][map[Link[active].Title]]:[]}
                           Editfeild={Editfeild}
                           HandleEdit={HandleEdit}
                           feild={Link[active].feild}
