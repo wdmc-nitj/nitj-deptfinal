@@ -1,12 +1,40 @@
-import React from 'react'
-import { departments } from '../../config/server';
+import React, { useState } from 'react'
+import { SERVER_URL, departments } from '../../config/server';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
-function PersonalDetails({ edit, data }) {
+function PersonalDetails({ edit, data, token }) {
     const tablehead = ['Name', 'Designation', 'Department', 'Qualification', 'Address', 'Phone', 'Email ID'];
     const feild = ['name', 'designation', 'department', 'education_qualification'];
+    const [education, setEducation] = useState({
+        'column':'',
+        'clg':'',
+        'degree':'',
+        'field':'',
+        'year':''
+
+    })
+    const dept = useLocation().pathname.split('/')[2];
     const address = ['address1', 'address2', 'city', 'pin', 'state']
-    const Phone = data['address']?data['address']['phone']:""
-    const Fax = data['address']?data['address']['fax']:""
+    const Phone = data['address'] ? data['address']['phone'] : ""
+    const Fax = data['address'] ? data['address']['fax'] : ""
+    const handleSubmit = async (e) => {
+
+        let newRow = {};
+        const formdata = new FormData(e.target);
+        for (let [key, value] of formdata.entries()) {
+            newRow = {
+                ...newRow,
+                [key]: value
+            }
+        }
+        try {
+            await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`, newRow);
+        } catch (error) {
+            //console.log(error);
+            alert('Some error occured please try again after sometime')
+        }
+    }
     return (
         <div className='overflow-x-auto'>
             {
@@ -17,16 +45,22 @@ function PersonalDetails({ edit, data }) {
                                 <div className="overflow-hidden sm:rounded-md">
                                     <div className="bg-white px-4 py-5 sm:p-6">
                                         <div className="grid grid-cols-6 gap-6">
+                                            <div>Education Qualification</div>
                                             {
-                                                feild?.map((item, i) => {
-                                                    return (
-                                                        <div key={i} className="col-span-6 sm:col-span-3">
-                                                            <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">{item}</label>
-                                                            <textarea type="text" name={item} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"></textarea>
-                                                        </div>
-                                                    )
-                                                })
+
+                                                // <div key={i} className="col-span-6 sm:col-span-3">
+                                                //     <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">{item}</label>
+                                                //     <input type="text" name={item} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"/>
+                                                // </div>
+
                                             }
+                                            <button className='' onClick={() => setEducation(prev => {
+                                                return [...prev,{'column':'',
+                                                'clg':'',
+                                                'degree':'',
+                                                'field':'',
+                                                'year':''}]
+                                            })}>Add</button>
                                         </div>
                                         <div className="grid grid-cols-6 gap-6 mt-4">
                                             {
@@ -63,39 +97,39 @@ function PersonalDetails({ edit, data }) {
                         </div>
                     </div>
                 </div> :
-                <div className='overflow-x-auto relative my-2 scrollbar min-w-[500px]'>
-                    <div className='flex max-w-full justify-between items-center text-sm sm:text-base p-2 sm:p-4 shadow-md'>
-                        <table>
-                            <tbody>
-                                {
-                                    feild.map((item, i) => {
-                                        return (
-                                            <tr key={i}>
-                                                <td className="w-48 align-top font-bold pr-4 pl-2 py-2 text-sm sm:text-base">{tablehead[i]}</td>
-                                                <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
-                                                <td className='align-top pr-4 pl-2 py-2 w-full text-sm sm:text-base'>
-                                                    {
-                                                        item === "education_qualification" ?
-                                                            <div>
-                                                                {
-                                                                    data[item].map((Item, j) => {
-                                                                        return (
-                                                                            Item['degree'] != null && <div key={j}>
-                                                                                <span className='font-semibold mx-1'>{Item['degree']}</span>
-                                                                                <span className='mx-1'>{Item['field']}</span>
-                                                                                <span>({Item['clg']})</span>
-                                                                            </div>
-                                                                        )
-                                                                    })
-                                                                }
-                                                            </div> : item === "department" ? departments[data[item]] : data[item]
-                                                    }
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                                {/* <tr>
+                    <div className='overflow-x-auto relative my-2 scrollbar min-w-[500px]'>
+                        <div className='flex max-w-full justify-between items-center text-sm sm:text-base p-2 sm:p-4 shadow-md'>
+                            <table>
+                                <tbody>
+                                    {
+                                        feild.map((item, i) => {
+                                            return (
+                                                <tr key={i}>
+                                                    <td className="w-48 align-top font-bold pr-4 pl-2 py-2 text-sm sm:text-base">{tablehead[i]}</td>
+                                                    <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
+                                                    <td className='align-top pr-4 pl-2 py-2 w-full text-sm sm:text-base'>
+                                                        {
+                                                            item === "education_qualification" ?
+                                                                <div>
+                                                                    {
+                                                                        data[item].map((Item, j) => {
+                                                                            return (
+                                                                                Item['degree'] != null && <div key={j}>
+                                                                                    <span className='font-semibold mx-1'>{Item['degree']}</span>
+                                                                                    <span className='mx-1'>{Item['field']}</span>
+                                                                                    <span>({Item['clg']})</span>
+                                                                                </div>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </div> : item === "department" ? departments[data[item]] : data[item]
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                    {/* <tr>
                                     <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Address</td>
                                     <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
                                     <td className='align-top pr-4 pl-2 py-2'>
@@ -106,15 +140,15 @@ function PersonalDetails({ edit, data }) {
                                         }
                                     </td>
                                 </tr> */}
-                                <tr>
-                                    <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Phone</td>
-                                    <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
-                                    <td className='align-top pr-4 pl-2 py-2'>{Phone}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    <tr>
+                                        <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Phone</td>
+                                        <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
+                                        <td className='align-top pr-4 pl-2 py-2'>{Phone}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
             }
         </div>
     )
