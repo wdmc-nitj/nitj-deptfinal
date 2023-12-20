@@ -6,8 +6,7 @@ import Loading from "../components/Loading";
 import useFetch from "../hooks/useFetch";
 import OpenPdf from "./OpenPdf";
 
-function LabSyllabus(){
-  const {data,loading} = useFetch(`/dept/${useParams()?.dept}/Syllabus`);
+function LabSyllabus({data , loading}){
   const [state,setState]= useState("");
   useEffect(()=>{
       setState(data[0]?.link);
@@ -15,7 +14,7 @@ function LabSyllabus(){
   },[data]);
   return (
       <div className='w-[98%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-1 xl:mx-3 my-[60px] pt-[54px] place-items-center'>
-          <Heading name="Syllabus" />
+          <Heading name="Lab Manual" />
           {!loading?<div className='shadow shadow-blue-400 md:m-4 pb-2'>
               <div className='flex items-center w-full py-3 font-medium text-lg px-4 shadow-md shadow-blue-200'>
                   <div className='flex w-fit items-center border border-gray-300 text-gray-900 text-sm p-2 rounded'>
@@ -23,14 +22,12 @@ function LabSyllabus(){
                       <select id="states" className="border-none outline-none"  onChange={(e)=>{
                           setState(e.target.value);
                       }}>
-                          {/* <option value="Select Programme">Select Programme</option> */}
                           {data?.map((e)=>{
                               return <option value={e?.link}>{e?.type}</option>
                           })}
                       </select>
                   </div>
               </div>
-
               <OpenPdf link={state} />
           </div>:<Loading/>}
           
@@ -83,7 +80,7 @@ function ImgDesp() {
         return <ImageCarousel data={image} />
       }
       )}
-     <LabSyllabus/>
+     <LabSyllabus loading={loading} data={data?.syllabus}/>
     </div>
   );
 }
