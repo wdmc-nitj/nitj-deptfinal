@@ -141,6 +141,11 @@ function PersonalDetails({ edit, data, token }) {
                                     </td>
                                 </tr> */}
                                     <tr>
+                                        <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Email</td>
+                                        <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
+                                        <td className='align-top pr-4 pl-2 py-2'>{data['email']}</td>
+                                    </tr>
+                                    <tr>
                                         <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Phone</td>
                                         <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
                                         <td className='align-top pr-4 pl-2 py-2'>{Phone}</td>
