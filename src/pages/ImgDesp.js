@@ -80,7 +80,7 @@ function ImgDesp() {
         return <ImageCarousel data={image} />
       }
       )}
-     <LabSyllabus loading={loading} data={data?.syllabus}/>
+     { data?.syllabus && <LabSyllabus loading={loading} data={data?.syllabus}/>}
     </div>
   );
 }

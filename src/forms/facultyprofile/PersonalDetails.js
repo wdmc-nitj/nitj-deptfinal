@@ -122,7 +122,7 @@ function PersonalDetails({ edit, data, token }) {
                                                                             )
                                                                         })
                                                                     }
-                                                                </div> : item === "department" ? departments[data[item]] : data[item]
+                                                                </div> : item === "department" ? departments[dept] : data[item]
                                                         }
                                                     </td>
                                                 </tr>
