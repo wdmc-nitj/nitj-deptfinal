@@ -15,6 +15,8 @@ const useFetch = (url) => {
           withCredentials: false,
         });
 
+        console.log(res);
+
         setData(res.data);
       } catch (error) {
         setError(error);

@@ -20,7 +20,7 @@ function ResearchLab() {
       <Heading name="Research Labs" />
       {!loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 sm:m-4 sm:p-2 place-items-center gap-4 antialiased text-gray-900">
-          {data && data.length > 0 ? (
+          {(data && data.length > 0) ? (
             data.map((item, i) => {
               return (
                 item.type === "Research Labs" && (
@@ -49,7 +49,7 @@ function ResearchLab() {
               );
             })
           ) : (
-            <h1>Data not Available</h1>
+            <h1 className='text-center'>Not Available</h1>
           )}
         </div>
       ) : (
