@@ -9,7 +9,9 @@ import OpenPdf from "./OpenPdf";
 function LabSyllabus({data}){
   const [state,setState]= useState("");
   useEffect(()=>{
-      setState(data[0]?.link);
+      if(data.length > 0){
+        setState(data[0]?.link);
+      }
       return ()=>{}
   },[data]);
   return (
@@ -28,7 +30,7 @@ function LabSyllabus({data}){
                       </select>
                   </div>
               </div>
-              <OpenPdf link={state} />
+              {state.length > 0 && <OpenPdf link={state} />}
           </div>
           
       </div>
