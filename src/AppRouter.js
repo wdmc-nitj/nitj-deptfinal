@@ -33,9 +33,13 @@ import ImgDesp from './pages/ImgDesp'
 import Navbar from './components/Navbar';
 
 import { useState } from 'react';
+import CenterMenu from './components/centerMenu';
+import CenterHomepage from './pages/CenterHomePage';
+import { MSME } from './components/MSME';
+import { CenterContactUs } from './components/centercontactUs';
 const AppRouter = () => {
-  
-  window.scrollTo(0,0);
+
+  window.scrollTo(0, 0);
   const [menu, setMenu] = useState(false);
   // const ProtectorRoute=({children})=>{
   //   const dept=useLocation().pathname.split('/')[2];
@@ -46,66 +50,112 @@ const AppRouter = () => {
   //       return <Navigate to={"/dept/errorpage"}/>
   //     }
   //   }
-  
-  
+
+
   return (
     <>
       <div className='max-w-[1700px] mx-auto'>
         <Router>
           <div className='sticky top-0 z-40 flex-none w-full mx-auto bg-white'>
             {/* <NewNavbar SetScrollupmenu={SetScrollupmenu} /> */}
-            <Navbar menu = {menu} setMenu={setMenu}/>
+            <Navbar menu={menu} setMenu={setMenu} />
           </div>
 
           <div className="w-full mx-auto max-w-8xl">
             <div className='lg:flex'>
               <aside className='inset-0 z-30 h-fit lg:h-auto flex-none fixed top-[4rem] lg:top-0 w-full lg:static lg:overflow-y-visible lg:pt-0 lg:w-[19rem] lg:block shadow lg:ml-2'>
-                <Menu menu = {menu} setMenu={setMenu} />
-              </aside> 
+                {/* <Menu menu = {menu} setMenu={setMenu} /> */}
+                <Routes>
+
+                <Route path='/dept/*' element={<Menu menu = {menu} setMenu={setMenu}/>} />
+                <Route path='/center/*' element={<CenterMenu menu = {menu} setMenu={setMenu}/>} />
+                </Routes>
+              </aside>
               <main className='flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible min-h-screen'>
                 <div className="w-full flex mt-0">
                   <Routes>
-                    <Route path='/dept/:dept/Home/' element={<Homepage />} />
-                    <Route path='/dept/:dept/Home/:id' element={<Homepage />} />
-                    <Route path='/dept/:dept/Placement' element={<AllPlacement />} />
-                    <Route path='/*' element={<Error />} />
-                    {/* About us */}
-                    <Route path='/dept/:dept/MessageofHOD' element={<HodMessage />} />
-                    <Route path='/dept/:dept/MissionandVision' element={<VisionandMission />} />
-                    <Route path='/dept/:dept/Infrastructure' element={<Infrastructure />} />
-                    <Route path='/dept/:dept/contactus' element={<ContactUs />} />
-                    <Route path='/dept/:dept/Achievement' element={<Achievements />} />
-                    {/* Academic */}
-                    <Route path='/dept/:dept/Syllabus' element={<Syllabus/>} />
-                    <Route path='/dept/:dept/Timetable' element={<Timetable/>} />
-                    <Route path='/dept/:dept/Acadcord' element={<AcadCordinator />} />
-                    <Route path='/dept/:dept/Programme' element={<Programme />} />
-                    <Route path='/dept/:dept/AcademicCalender' element={<AcademicCalender />} />
-                    {/* Person */}
-                    <Route path='/dept/:dept/Faculty' element={<Faculty />} />
-                    <Route path='/dept/:dept/Faculty/:id' element={<Profile peopleType="Faculty" />} />
-                    <Route path='/dept/:dept/Staff' element={<Staff />} />
-                    <Route path='/dept/:dept/Student' element={<Students />} />
-                    {/* <Route path='/dept/:dept/Alumni' element={<Alumni />} /> */}
-                    <Route path='/dept/:dept/PhdScholar' element={<PhdScholar />} />
-                    <Route path='/dept/:dept/PhdScholar/:id' element={<Profile peopleType="PhdScholar" />} />
-                    <Route path='/dept/:dept/login/:status' element={<FacultyLogin />} />
-                    <Route path='/dept/:dept/login/*' element={<FacultyLogin />} />
-                    <Route path='/dept/:dept/onClickForgotPass/*' element={<AfterForgotPass />} />
-                    <Route path='/dept/:dept/confirmation/:token/:status' element={<ChangePass />} />
-                    <Route path='/dept/:dept/confirmation/:token' element={<ChangePass />} />
+                    <Route path='/dept'>
+                      <Route path=':dept/Home/' element={<Homepage />} />
+                      <Route path=':dept/Home/:id' element={<Homepage />} />
+                      <Route path=':dept/Placement' element={<AllPlacement />} />
+                      <Route path='*' element={<Error />} />
+                      {/* About us */}
+                      <Route path=':dept/MessageofHOD' element={<HodMessage />} />
+                      <Route path=':dept/MissionandVision' element={<VisionandMission />} />
+                      <Route path=':dept/Infrastructure' element={<Infrastructure />} />
+                      <Route path=':dept/contactus' element={<ContactUs />} />
+                      <Route path=':dept/Achievement' element={<Achievements />} />
+                      {/* Academic */}
+                      <Route path=':dept/Syllabus' element={<Syllabus />} />
+                      <Route path=':dept/Timetable' element={<Timetable />} />
+                      <Route path=':dept/Acadcord' element={<AcadCordinator />} />
+                      <Route path=':dept/Programme' element={<Programme />} />
+                      <Route path=':dept/AcademicCalender' element={<AcademicCalender />} />
+                      {/* Person */}
+                      <Route path=':dept/Faculty' element={<Faculty />} />
+                      <Route path=':dept/Faculty/:id' element={<Profile peopleType="Faculty" />} />
+                      <Route path=':dept/Staff' element={<Staff />} />
+                      <Route path=':dept/Student' element={<Students />} />
+                      {/* <Route path=':dept/Alumni' element={<Alumni />} /> */}
+                      <Route path=':dept/PhdScholar' element={<PhdScholar />} />
+                      <Route path=':dept/PhdScholar/:id' element={<Profile peopleType="PhdScholar" />} />
+                      <Route path=':dept/login/:status' element={<FacultyLogin />} />
+                      <Route path=':dept/login/*' element={<FacultyLogin />} />
+                      {/* <Route path=':dept/onClickForgotPass/*' element={<AfterForgotPass />} /> */}
+                      <Route path=':dept/confirmation/:token/:status' element={<ChangePass />} />
+                      <Route path=':dept/confirmation/:token' element={<ChangePass />} />
 
 
-                    {/* ResearchArea */}
-                    <Route path='/dept/:dept/ResearchArea' element={<ResearchArea />} />
-                    <Route path='/dept/:dept/ResearchLab' element={<ResearchLab />} />
-                    <Route path='/dept/:dept/DepartmentLab' element={<DepartmentLab />} />
-                    <Route path='/dept/:dept/Publications' element={<Publications />} />
-                    <Route path='/dept/:dept/Projects' element={<Projects />} />
-                    <Route path='/dept/:dept/Consultancy' element={<Consultancy />} />
-                    <Route path='/dept/:dept/SocietyClubs' element={<Society_Clubs_Teams />} />
-                    <Route path='dept/:dept/ImgDesp/:itemId' element={<ImgDesp/>}/>
+                      {/* ResearchArea */}
+                      <Route path=':dept/ResearchArea' element={<ResearchArea />} />
+                      <Route path=':dept/ResearchLab' element={<ResearchLab />} />
+                      <Route path=':dept/DepartmentLab' element={<DepartmentLab />} />
+                      <Route path=':dept/Publications' element={<Publications />} />
+                      <Route path=':dept/Projects' element={<Projects />} />
+                      <Route path=':dept/Consultancy' element={<Consultancy />} />
+                      <Route path=':dept/SocietyClubs' element={<Society_Clubs_Teams />} />
+                      <Route path=':dept/ImgDesp/:itemId' element={<ImgDesp />} />
+                    </Route>
+                      <Route path=':dept/Home/' element={<Homepage />} />
+                      <Route path=':dept/Home/:id' element={<Homepage />} />
+                      <Route path=':dept/Placement' element={<AllPlacement />} />
+                      <Route path='*' element={<Error />} />
+                      {/* About us */}
+                      <Route path=':dept/MessageofHOD' element={<HodMessage />} />
+                      <Route path=':dept/MissionandVision' element={<VisionandMission />} />
+                      <Route path=':dept/Infrastructure' element={<Infrastructure />} />
+                      <Route path=':dept/contactus' element={<ContactUs />} />
+                      <Route path=':dept/Faculty' element={<Faculty />} />
+                      <Route path=':dept/Faculty/:id' element={<Profile peopleType="Faculty" />} />
+                      <Route path=':dept/Staff' element={<Staff />} />
+                      {/* <Route path=':dept/Alumni' element={<Alumni />} /> */}
+                      <Route path=':dept/PhdScholar' element={<PhdScholar />} />
+                      <Route path=':dept/PhdScholar/:id' element={<Profile peopleType="PhdScholar" />} />
+                      <Route path=':dept/login/:status' element={<FacultyLogin />} />
+                      <Route path=':dept/login/*' element={<FacultyLogin />} />
+                      {/* <Route path=':dept/onClickForgotPass/*' element={<AfterForgotPass />} /> */}
+                      <Route path=':dept/confirmation/:token/:status' element={<ChangePass />} />
+                      <Route path=':dept/confirmation/:token' element={<ChangePass />} />
 
+
+                      {/* ResearchArea */}
+                      <Route path=':dept/ResearchArea' element={<ResearchArea />} />
+                      <Route path=':dept/ResearchLab' element={<ResearchLab />} />
+                      <Route path=':dept/DepartmentLab' element={<DepartmentLab />} />
+                      <Route path=':dept/Publications' element={<Publications />} />
+                      <Route path=':dept/Projects' element={<Projects />} />
+                      <Route path=':dept/Consultancy' element={<Consultancy />} />
+                      <Route path=':dept/SocietyClubs' element={<Society_Clubs_Teams />} />
+                      <Route path=':dept/ImgDesp/:itemId' element={<ImgDesp />} />
+
+                    <Route path='/center'>
+                      <Route path=':center/Home/' element={<CenterHomepage />} />
+                      <Route path=':center/MSME/' element={<MSME />} />
+                      <Route path=':center/Faculty/' element={<Faculty />} />
+                      <Route path=':center/Staff/' element={<Staff />} />
+                      <Route path='*' element={<Error />} />
+                      <Route path=':center/contact' element={<CenterContactUs />} />
+                    </Route>
                   </Routes>
                 </div>
               </main>
