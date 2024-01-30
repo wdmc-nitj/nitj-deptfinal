@@ -16,5 +16,6 @@ const departments = {
     "hm": "Humanities and Management",
     "cy": "Chemistry",
     'cee':'Center for Energy and Environment','cai':'Center for Artificial Intelligence',
+    'sdc':'Skill Development Center'
 }
 module.exports = {SERVER_URL,departments}
