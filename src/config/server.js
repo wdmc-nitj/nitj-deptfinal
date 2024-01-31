@@ -10,7 +10,7 @@ const departments = {
     "ice": "Instrumentation and Control Engineering",
     "me": "Mechanical Engineering",
     "ipe": "Industrial and Production Engineering",
-    "ma": "Mathematics",
+    "ma": "Mathematics and Computing",
     "ph": "Physics",
     "tt": "Textile Technology",
     "hm": "Humanities and Management",
