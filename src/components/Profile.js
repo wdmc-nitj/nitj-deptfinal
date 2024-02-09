@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Otherprofilelink from "../forms/facultyprofile/Otherprofilelink";
 import ResearchProfile from "../forms/facultyprofile/ResearchProfile";
-// import downloadpdf from './Img/download.png'
+import downloadpdf from './Img/download.png'
 import Exceldownloadpdf from "./Img/Exceldownload.png";
 import axios from "axios";
 import { SERVER_URL } from "../config/server";
@@ -29,11 +29,11 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 function Profile({ peopleType }) {
   let navigate = useNavigate();
   const dept = useParams()?.dept;
-  var id = useLocation().pathname.split("/").at(-1);
-  var token = "";
+  const id = useLocation().pathname.split("/").at(-1);
+  let token = "";
 
   const handlePdfClicker = () => {
-    const profileData = data.data[0];
+    const profileData = data?.data[0];
 
     const styles = StyleSheet.create({
       page: {
@@ -119,6 +119,7 @@ function Profile({ peopleType }) {
               src={profileData.img}
               style={{ width: 100, height: 100, marginBottom: 10 }}
             />
+
             <Text style={styles.title}>{profileData.name}</Text>
             <Text style={styles.text}>
               Designation: {profileData.designation}
@@ -234,6 +235,8 @@ function Profile({ peopleType }) {
         </Page>
       </Document>
     );
+    // console.log("Image URL:", profileData.img);
+
 
     ReactDOM.render(
       <PDFViewer height={"100%"} width={"100%"}>
@@ -244,9 +247,9 @@ function Profile({ peopleType }) {
   };
 
   if (document.cookie) {
-    var initialArr = document.cookie.split(";");
+    const initialArr = document.cookie.split(";");
     if (initialArr.length) {
-      var values = initialArr.find((cookie) =>
+      const values = initialArr.find((cookie) =>
         cookie.trim().startsWith("nitjsession=")
       );
 
@@ -270,6 +273,7 @@ function Profile({ peopleType }) {
     }
   }, [data]);
 
+
   const map = {
     "Personal Details": "publications",
     "Profile Links": "personal_link",
@@ -282,7 +286,7 @@ function Profile({ peopleType }) {
     "Professional Affiliations": "affiliations",
     "PhD Supervised": "phd_supervised",
     "PG Dissertation Guided": "phd_dissertion",
-    Patents: "patent",
+    // Patents: "patent",
     "Admin. Responsiblities": "admin_responsibility",
     "Award and Honours": "awards",
   };
@@ -422,23 +426,23 @@ function Profile({ peopleType }) {
         "Co-Supervisor",
       ],
     },
-    {
-      Title: "Patents",
-      thead: [
-        "Name",
-        "Reg./Ref. No.",
-        "Date of Award/Filling",
-        "Organization",
-        "Status",
-      ],
-      feild: [
-        "Name",
-        "Reg./Ref. No.",
-        "Date of Award/Filling",
-        "Organization",
-        "Status",
-      ],
-    },
+    // {
+    //   Title: "Patents",
+    //   thead: [
+    //     "Name",
+    //     "Reg./Ref. No.",
+    //     "Date of Award/Filling",
+    //     "Organization",
+    //     "Status",
+    //   ],
+    //   feild: [
+    //     "Name",
+    //     "Reg./Ref. No.",
+    //     "Date of Award/Filling",
+    //     "Organization",
+    //     "Status",
+    //   ],
+    // },
     {
       Title: "Admin. Responsiblities",
       thead: ["Position Held", "Organization", "From", "To"],
@@ -578,7 +582,7 @@ function Profile({ peopleType }) {
                   >
                     {!loading && (
                       <div className="cursor-pointer scale-150 pr-4" onClick={handlePdfClicker}>
-                        <i class="fa-solid fa-file-pdf"></i>
+                        <i className="fa-solid fa-file-pdf"></i>
                       </div>
                     )}
                     <div className="flex w-full items-center justify-center">
