@@ -101,7 +101,7 @@ const AppRouter = () => {
                       <Route path=':dept/PhdScholar/:id' element={<Profile peopleType="PhdScholar" />} />
                       <Route path=':dept/login/:status' element={<FacultyLogin />} />
                       <Route path=':dept/login/*' element={<FacultyLogin />} />
-                      {/* <Route path=':dept/onClickForgotPass/*' element={<AfterForgotPass />} /> */}
+                      <Route path=':dept/onClickForgotPass/*' element={<AfterForgotPass />} />
                       <Route path=':dept/confirmation/:token/:status' element={<ChangePass />} />
                       <Route path=':dept/confirmation/:token' element={<ChangePass />} />
 
