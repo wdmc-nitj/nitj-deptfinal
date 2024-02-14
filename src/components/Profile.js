@@ -111,25 +111,25 @@ function Profile({ peopleType }) {
       },
     });
 
-    const MyDocument = () => (
+    const MyDocument = () => {
+      return (
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
             <Image
-              src={profileData.img}
+              src={profileData?.img}
               style={{ width: 100, height: 100, marginBottom: 10 }}
             />
 
-            <Text style={styles.title}>{profileData.name}</Text>
-            <Text style={styles.text}>
-              Designation: {profileData.designation}
-            </Text>
-            <Text style={styles.text}>
-              Department: {profileData.department.toString().toUpperCase()}
-            </Text>
+            <Text style={styles.title}>{profileData?.name}</Text>
+        { profileData.designation &&   <Text style={styles.text}>
+              Designation: {profileData?.designation}
+            </Text>}
+            {profileData.department && <Text style={styles.text}>
+              Department: {profileData?.department.toString().toUpperCase()}
+            </Text>}
             <Text style={styles.text}>Qualifications: </Text>
-            {profileData.education_qualification.map((qualification) => {
-              console.log(qualification);
+            {profileData.education_qualification && profileData.education_qualification.map((qualification) => {
               return (
                 qualification["degree"] != null && (
                   <Text style={styles.text}>
@@ -145,7 +145,7 @@ function Profile({ peopleType }) {
               );
             })}
           </View>
-          <Text style={styles.text}>Email: {profileData.email}</Text>
+          {profileData.email && <Text style={styles.text}>Email: {profileData?.email}</Text>}
 
           {/* Research Interests */}
           {profileData.research_profile && profileData.research_profile["Research Interests"] && (
@@ -234,7 +234,7 @@ function Profile({ peopleType }) {
           })}
         </Page>
       </Document>
-    );
+    )};
     // console.log("Image URL:", profileData.img);
 
 
