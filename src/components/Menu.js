@@ -50,7 +50,8 @@ function Menu({ menu, setMenu }) {
                     link: `/dept/${dept}/Syllabus`
                 }, {
                     l: 'TimeTable',
-                    link: `/dept/${dept}/Timetable`
+                    link: `https://xceed.nitj.ac.in/timetable`,
+                    newTab: true
                 }, {
                     l: 'Department Activities Calendar',
                     link: `/dept/${dept}/AcademicCalender`
