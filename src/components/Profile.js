@@ -674,8 +674,7 @@ function Profile({ peopleType }) {
                           />
                         </span>
                         {isLogin &&
-                          facultyEditable &&
-                          Link[active]?.Title !== "Personal Details" && (
+                          facultyEditable && (
                             <>
                               <span
                                 title="View as Table"
