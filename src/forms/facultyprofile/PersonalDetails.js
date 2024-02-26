@@ -15,14 +15,14 @@ function PersonalDetails({ edit, data, token }) {
     }
 
     const [education, setEducation] = useState(data?.education_qualification)
-    const [editAddress, setEditAddress] = useState(data.correspondence_address)
+    const [editAddress, setEditAddress] = useState(data.address)
     const [editImg, setEditImg] = useState(data.img)
     const dept = useLocation().pathname.split('/')[2];
     const address = ['address', 'city', 'pin', 'state']
     const handleSubmit = async (e) => {
 
         let data = {
-            correspondence_address: editAddress,
+            address: editAddress,
             img: editImg,
             education_qualification: education,
         }
