@@ -55,7 +55,7 @@ function PersonalDetails({ edit, data, token }) {
                                                                     </div>
                                                                 )
                                                             })}
-                                                            <div className='bg-[#0054A6] ml-2 text-white text-base duration-500 w-20 xl:w-24 py-2 px-3 text-center shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110' onClick={() => {
+                                                            <div className='bg-[#0054A6] flex justify-center items-center ml-2 text-white text-base duration-500 w-20 xl:w-24 py-2 px-3 text-center shadow-md border border-[#FFD66E]  rounded hover:-translate-y-1 hover:scale-110' onClick={() => {
                                                                 setEducation(prev => {
                                                                     return prev.filter((val, i) => i !== index)
                                                                 })
