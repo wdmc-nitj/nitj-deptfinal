@@ -45,19 +45,19 @@ function PersonalDetails({ edit, data, token }) {
                                             {
                                                 education.map((ed, index) => {
                                                     return (
-                                                        <div className='flex gap-2'>
-                                                            {Object.keys(qualificationMapping).map((feild) => {
+                                                        <div className='flex gap-2' key={index}>
+                                                            {Object.keys(qualificationMapping).map((feild,id) => {
                                                                 return (
-                                                                    <div key={index} className="col-span-6 sm:col-span-3">
+                                                                    <div key={id} className="col-span-6 sm:col-span-3">
                                                                         <label htmlFor={qualificationMapping[feild]} className="block uppercase text-sm font-medium px-1">{feild}</label>
                                                                         <input type="text" onChange={(e)=>{
                                                                             setEducation(prev => {
-                                                                                const obj = education.find((val,ind) => ind===index)
+                                                                                const obj = prev.find((val,ind) => ind===index)
                                                                                 obj[qualificationMapping[feild]] = e.target.value
                                                                                 prev[index] = obj
-                                                                                return prev
+                                                                                return [...prev]
                                                                             })
-                                                                        }} name={qualificationMapping[feild]} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" value={education[index][feild]} />
+                                                                        }} name={qualificationMapping[feild]} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" value={ed[qualificationMapping[feild]]} />
                                                                     </div>
                                                                 )
                                                             })}
