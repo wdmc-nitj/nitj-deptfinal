@@ -53,8 +53,6 @@ function ResearchProfile({ edit, data, faculty, token }) {
   };
 
   const handleSubmit = async (e) => {
-    console.log(researchIDs);
-    e.preventDefault();
     try {
       await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=research_profile`,
