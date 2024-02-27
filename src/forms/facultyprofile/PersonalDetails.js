@@ -18,9 +18,8 @@ function PersonalDetails({ edit, data, token }) {
     const [editAddress, setEditAddress] = useState(data.address)
     const [editImg, setEditImg] = useState(data.img)
     const dept = useLocation().pathname.split('/')[2];
-    const address = ['address', 'city', 'pin', 'state']
+    const address = ['address', 'city', 'pin', 'state', 'fax']
     const handleSubmit = async (e) => {
-
         let data = {
             address: editAddress,
             img: editImg,
@@ -51,7 +50,14 @@ function PersonalDetails({ edit, data, token }) {
                                                                 return (
                                                                     <div key={index} className="col-span-6 sm:col-span-3">
                                                                         <label htmlFor={qualificationMapping[feild]} className="block uppercase text-sm font-medium px-1">{feild}</label>
-                                                                        <input type="text" name={qualificationMapping[feild]} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" value={ed[feild]} />
+                                                                        <input type="text" onChange={(e)=>{
+                                                                            setEducation(prev => {
+                                                                                const obj = education.find((val,ind) => ind===index)
+                                                                                obj[qualificationMapping[feild]] = e.target.value
+                                                                                prev[index] = obj
+                                                                                return prev
+                                                                            })
+                                                                        }} name={qualificationMapping[feild]} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" value={education[feild]} />
                                                                     </div>
                                                                 )
                                                             })}
@@ -100,18 +106,10 @@ function PersonalDetails({ edit, data, token }) {
                                                 }} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" value={editAddress?.phone}></textarea>
                                             </div>
                                             <div className="col-span-6 sm:col-span-3">
-                                                <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">Fax</label>
-                                                <textarea type="text" name='fax' onChange={(e) => {
-                                                    setEditAddress(prev => {
-                                                        return { ...prev, fax: e.target.value }
-                                                    })
-                                                }} value={editAddress?.fax} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"></textarea>
-                                            </div>
-                                            <div className="col-span-6 sm:col-span-3">
                                                 <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">Image</label>
                                                 <input type="text" name='img' onChange={(e) => {
                                                     setEditImg(e.target.value)
-                                                }} value={editAddress?.fax} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"/>
+                                                }} value={editImg} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"/>
                                             </div>
                                         </div>
                                     </div>
