@@ -18,7 +18,7 @@ function ResearchProfile({ edit, data, faculty, token }) {
     data ? data["Brief Research Profile"] : ""
   );
   const [researchIDs, setResearchIDs] = useState(
-    data && data["Research ID"] ? data["Research ID"] : []
+    data && data["Research Id"] ? data["Research Id"] : []
   );
   // Below is for testing comment above one and uncomment below to test with placeholders
   // const [researchIDs, setResearchIDs] = useState([
@@ -53,15 +53,13 @@ function ResearchProfile({ edit, data, faculty, token }) {
   };
 
   const handleSubmit = async (e) => {
-    console.log(researchIDs);
-    e.preventDefault();
     try {
       await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=research_profile`,
         {
           "Research Interests": interest,
           "Brief Research Profile": researchLink,
-          "Research ID": researchIDs,
+          "Research Id": researchIDs,
         }
       );
     } catch (error) {

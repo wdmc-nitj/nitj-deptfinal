@@ -7,7 +7,7 @@ function PersonalDetails({ edit, data, token }) {
     const tablehead = ['Name', 'Designation', 'Department', 'Qualification', 'Address', 'Phone', 'Email ID'];
     const feild = ['name', 'designation', 'department', 'education_qualification'];
     const qualificationMapping = {
-        'column': 'column',
+        'Column': 'column',
         'College': 'clg',
         'Degree': 'degree',
         'field': 'field',
@@ -18,15 +18,15 @@ function PersonalDetails({ edit, data, token }) {
     const [editAddress, setEditAddress] = useState(data.address)
     const [editImg, setEditImg] = useState(data.img)
     const dept = useLocation().pathname.split('/')[2];
-    const address = ['address', 'city', 'pin', 'state', 'fax']
+    const address = ['address', 'city','phone', 'pin', 'state', 'fax']
     const handleSubmit = async (e) => {
-        let data = {
+        let newData = {
             address: editAddress,
             img: editImg,
             education_qualification: education,
         }
         try {
-            await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}/personalDetails`, data);
+            await axios.put(`${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}/personalDetails`, newData);
         } catch (error) {
             alert('Some error occured. Use Chrome browser to edit Details.')
         }
@@ -45,19 +45,19 @@ function PersonalDetails({ edit, data, token }) {
                                             {
                                                 education.map((ed, index) => {
                                                     return (
-                                                        <div className='flex gap-2'>
-                                                            {Object.keys(qualificationMapping).map((feild) => {
+                                                        <div className='flex gap-2' key={index}>
+                                                            {Object.keys(qualificationMapping).map((feild,id) => {
                                                                 return (
-                                                                    <div key={index} className="col-span-6 sm:col-span-3">
+                                                                    <div key={id} className="col-span-6 sm:col-span-3">
                                                                         <label htmlFor={qualificationMapping[feild]} className="block uppercase text-sm font-medium px-1">{feild}</label>
                                                                         <input type="text" onChange={(e)=>{
                                                                             setEducation(prev => {
-                                                                                const obj = education.find((val,ind) => ind===index)
+                                                                                const obj = prev.find((val,ind) => ind===index)
                                                                                 obj[qualificationMapping[feild]] = e.target.value
                                                                                 prev[index] = obj
-                                                                                return prev
+                                                                                return [...prev]
                                                                             })
-                                                                        }} name={qualificationMapping[feild]} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" value={education[feild]} />
+                                                                        }} name={qualificationMapping[feild]} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" value={ed[qualificationMapping[feild]]} />
                                                                     </div>
                                                                 )
                                                             })}
@@ -90,21 +90,13 @@ function PersonalDetails({ edit, data, token }) {
                                                                 setEditAddress(prev => {
                                                                     return { ...prev, [item]: e.target.value }
                                                                 })
-                                                            }} name={item} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"></textarea>
+                                                            }} name={item} value={editAddress[item]} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"></textarea>
                                                         </div>
                                                     )
                                                 })
                                             }
                                         </div>
                                         <div className='grid grid-cols-6 gap-6 mt-4'>
-                                            <div className="col-span-6 sm:col-span-3">
-                                                <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">Phone</label>
-                                                <textarea type="text" name='phone' onChange={(e) => {
-                                                    setEditAddress(prev => {
-                                                        return { ...prev, phone: e.target.value }
-                                                    })
-                                                }} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" value={editAddress?.phone}></textarea>
-                                            </div>
                                             <div className="col-span-6 sm:col-span-3">
                                                 <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">Image</label>
                                                 <input type="text" name='img' onChange={(e) => {

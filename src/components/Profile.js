@@ -708,7 +708,7 @@ function Profile({ peopleType }) {
                     </div>
                     <div className="p-2 mt-4">
                       {active === 0 && (
-                        <PersonalDetails edit={edit} data={data?.data[0]} />
+                        <PersonalDetails edit={edit} data={data?.data[0]} token={token} />
                       )}
                       {active === 1 && (
                         <Otherprofilelink
