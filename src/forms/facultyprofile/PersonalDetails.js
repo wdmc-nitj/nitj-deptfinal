@@ -27,7 +27,7 @@ function PersonalDetails({ edit, data, token }) {
     }, [])
     const handleSubmit = async (e) => {
         let newData = {
-            address: editAddress,
+            correspondence_address: editAddress,
             img: editImg,
             education_qualification: education,
         }
