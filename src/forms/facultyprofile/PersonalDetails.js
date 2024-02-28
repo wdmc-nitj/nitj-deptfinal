@@ -18,7 +18,7 @@ function PersonalDetails({ edit, data, token }) {
     const [editAddress, setEditAddress] = useState(data.address)
     const [editImg, setEditImg] = useState(data.img)
     const dept = useLocation().pathname.split('/')[2];
-    const address = ['address', 'city','phone', 'pin', 'state', 'fax']
+    const address = ['address', 'city','phone', 'state', 'pin', 'fax']
     const handleSubmit = async (e) => {
         let newData = {
             address: editAddress,
@@ -154,7 +154,7 @@ function PersonalDetails({ edit, data, token }) {
                                         <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
                                         <td className='align-top pr-4 pl-2 py-2'>
                                             {
-                                                address.map((item, i) => {
+                                                ['address', 'city','state', 'pin' ].map((item, i) => {
                                                     return <span className='mx-1' key={i}>{editAddress ? editAddress[item] : ""}</span>
                                                 })
                                             }
@@ -164,6 +164,11 @@ function PersonalDetails({ edit, data, token }) {
                                         <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Email</td>
                                         <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
                                         <td className='align-top pr-4 pl-2 py-2'>{data['email']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Fax</td>
+                                        <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
+                                        <td className='align-top pr-4 pl-2 py-2'>{editAddress?.fax}</td>
                                     </tr>
                                     <tr>
                                         <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Phone</td>
