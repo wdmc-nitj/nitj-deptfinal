@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SERVER_URL, departments } from '../../config/server';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -15,10 +15,16 @@ function PersonalDetails({ edit, data, token }) {
     }
 
     const [education, setEducation] = useState(data?.education_qualification)
-    const [editAddress, setEditAddress] = useState(data.address)
+    const [editAddress, setEditAddress] = useState(data.correspondence_address)
     const [editImg, setEditImg] = useState(data.img)
     const dept = useLocation().pathname.split('/')[2];
-    const address = ['address', 'city','phone', 'state', 'pin', 'fax']
+    const address = ['address', 'city', 'state', 'pin']
+    useEffect(() => {
+        const Phone = editAddress?.phone || data?.address?.phone
+        setEditAddress(prev => {
+            return { ...prev, phone: Phone }
+        })
+    }, [])
     const handleSubmit = async (e) => {
         let newData = {
             address: editAddress,
@@ -46,13 +52,13 @@ function PersonalDetails({ edit, data, token }) {
                                                 education.map((ed, index) => {
                                                     return (
                                                         <div className='flex gap-2' key={index}>
-                                                            {Object.keys(qualificationMapping).map((feild,id) => {
+                                                            {Object.keys(qualificationMapping).map((feild, id) => {
                                                                 return (
                                                                     <div key={id} className="col-span-6 sm:col-span-3">
                                                                         <label htmlFor={qualificationMapping[feild]} className="block uppercase text-sm font-medium px-1">{feild}</label>
-                                                                        <input type="text" onChange={(e)=>{
+                                                                        <input type="text" onChange={(e) => {
                                                                             setEducation(prev => {
-                                                                                const obj = prev.find((val,ind) => ind===index)
+                                                                                const obj = prev.find((val, ind) => ind === index)
                                                                                 obj[qualificationMapping[feild]] = e.target.value
                                                                                 prev[index] = obj
                                                                                 return [...prev]
@@ -98,10 +104,18 @@ function PersonalDetails({ edit, data, token }) {
                                         </div>
                                         <div className='grid grid-cols-6 gap-6 mt-4'>
                                             <div className="col-span-6 sm:col-span-3">
-                                                <label htmlhtmlFor="last-name" className="block uppercase text-sm font-medium px-1">Image</label>
+                                                <label htmlhtmlFor="img" className="block uppercase text-sm font-medium px-1">Image</label>
                                                 <input type="text" name='img' onChange={(e) => {
                                                     setEditImg(e.target.value)
-                                                }} value={editImg} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"/>
+                                                }} value={editImg} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" />
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label htmlhtmlFor="Phone" className="block uppercase text-sm font-medium px-1">Phone</label>
+                                                <input type="text" name='Phone' onChange={(e) => {
+                                                    setEditAddress(prev => {
+                                                        return { ...prev, phone: e.target.value }
+                                                    })
+                                                }} value={editAddress?.phone} className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm" />
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +168,7 @@ function PersonalDetails({ edit, data, token }) {
                                         <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
                                         <td className='align-top pr-4 pl-2 py-2'>
                                             {
-                                                ['address', 'city','state', 'pin' ].map((item, i) => {
+                                                ['address', 'city', 'state', 'pin'].map((item, i) => {
                                                     return <span className='mx-1' key={i}>{editAddress ? editAddress[item] : ""}</span>
                                                 })
                                             }
@@ -164,11 +178,6 @@ function PersonalDetails({ edit, data, token }) {
                                         <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Email</td>
                                         <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
                                         <td className='align-top pr-4 pl-2 py-2'>{data['email']}</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Fax</td>
-                                        <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
-                                        <td className='align-top pr-4 pl-2 py-2'>{editAddress?.fax}</td>
                                     </tr>
                                     <tr>
                                         <td className="w-48 align-top font-bold pr-4 pl-2 py-2">Phone</td>
