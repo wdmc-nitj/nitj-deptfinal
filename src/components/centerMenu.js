@@ -13,7 +13,7 @@ function CenterMenu({ menu, setMenu }) {
     }
     const Menu = [
         {
-            Title: 'About',
+            Title: 'Scheme',
             Logo: 'fa fa-info',
             List: [
                 {
@@ -26,7 +26,7 @@ function CenterMenu({ menu, setMenu }) {
                 }
             ],
         }, {
-            Title: 'People',
+            Title: 'Committee Members',
             Logo: 'fa fa-person',
             List: [
                 {
