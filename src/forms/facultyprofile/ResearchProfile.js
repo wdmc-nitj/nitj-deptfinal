@@ -3,12 +3,6 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { SERVER_URL } from "../../config/server";
 
-function getRandomColor() {
-  const colors = ["red", "blue", "green", "yellow"];
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  return colors[randomIndex];
-}
-
 function ResearchProfile({ edit, data, faculty, token }) {
   const dept = useLocation().pathname.split("/")[2];
   const [interest, setInterest] = useState(
@@ -18,19 +12,9 @@ function ResearchProfile({ edit, data, faculty, token }) {
     data ? data["Brief Research Profile"] : ""
   );
   const [researchIDs, setResearchIDs] = useState(
-    data && data["Research Id"] ? data["Research Id"] : []
+    data && data["Research ID"] ? data["Research ID"] : []
   );
-  // Below is for testing comment above one and uncomment below to test with placeholders
-  // const [researchIDs, setResearchIDs] = useState([
-  //   {
-  //     title: "VIDWAAN",
-  //     link: "https://nitj.ac.in",
-  //   },
-  //   {
-  //     title: "PUBLONS",
-  //     link: "https://nitj.ac.in",
-  //   },
-  // ]);
+  const [showErrorPopup, setShowErrorPopup] = useState(false); // State for error popup
 
   const handleCheckboxChange = (platform) => {
     const isSelected = researchIDs.some((id) => id.title === platform);
@@ -53,23 +37,25 @@ function ResearchProfile({ edit, data, faculty, token }) {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=research_profile`,
         {
           "Research Interests": interest,
           "Brief Research Profile": researchLink,
-          "Research Id": researchIDs,
+          "Research ID": researchIDs,
         }
       );
     } catch (error) {
       console.error("Error submitting data:", error);
+      setShowErrorPopup(true); // for popup
     }
   };
 
   return (
     <div className="overflow-x-auto">
-      {edit ? (
+      {!edit ? (
         <div className="m-4 flex justify-center items-center">
           <form className="w-full max-w-lg shadow p-3" onSubmit={handleSubmit}>
             <div className="flex flex-wrap -mx-3 mb-6">
@@ -205,7 +191,7 @@ function ResearchProfile({ edit, data, faculty, token }) {
                       {researchIDs.map((item, index) => (
                         <div
                           key={index}
-                          className={`rounded-full mx-2 py-1 px-3 text-white text-sm font-semibold bg-${getRandomColor()}-500`}
+                          className={`rounded-full mx-2 py-1 px-3 text-white text-sm font-semibold bg-blue-500`}
                           onClick={() =>
                             window.open(item.link ? item.link : "", "_blank")
                           }
@@ -219,6 +205,21 @@ function ResearchProfile({ edit, data, faculty, token }) {
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      )}
+      {showErrorPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
+          <div className="relative bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold mb-4">Error</h2>
+            <p>There was an issue with updating. Please try again later.</p>
+            <button
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              onClick={() => setShowErrorPopup(false)}
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
