@@ -21,6 +21,7 @@ import FacultyLogin from './pages/FacultyLogin';
 import ResearchArea from './pages/ResearchArea';
 import ResearchLab from './pages/ResearchLab';
 import DepartmentLab from './pages/DepartmentLab';
+import MSME from './pages/MSME';
 import Publications from './pages/Publications';
 import Projects from './pages/Projects';
 import Consultancy from './pages/Consultancy';
@@ -35,8 +36,8 @@ import Navbar from './components/Navbar';
 import { useState } from 'react';
 import CenterMenu from './components/centerMenu';
 import CenterHomepage from './pages/CenterHomePage';
-import { MSME } from './components/MSME';
-import { CenterContactUs } from './components/centercontactUs';
+// import { MSME } from './components/MSME';
+import  CenterContactUs  from './components/CenterContactUs';
 const AppRouter = () => {
 
   window.scrollTo(0, 0);
@@ -153,8 +154,8 @@ const AppRouter = () => {
                       <Route path=':center/MSME/' element={<MSME />} />
                       <Route path=':center/Faculty/' element={<Faculty />} />
                       <Route path=':center/Staff/' element={<Staff />} />
-                      <Route path='*' element={<Error />} />
                       <Route path=':center/contact' element={<CenterContactUs />} />
+                      <Route path='*' element={<Error />} />
                     </Route>
                   </Routes>
                 </div>
