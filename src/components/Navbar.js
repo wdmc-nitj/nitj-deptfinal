@@ -22,7 +22,7 @@ function Navbar({menu,setMenu}) {
                         <div className="ml-2 text-sm sm:text-xl leading-5 text-[#0054A6]  cursor-pointer font-semibold">
                             <div className='flex-col'>
             
-                            <a href="#"><span className='inline-block'>Department of</span> {departments[dept]}</a>
+                            <a href="#"><span className='inline-block'></span> {departments[dept]}</a>
                             <div className='text-xs sm:text-base font-normal'>DR B R AMBEDKAR NATIONAL INSTITUTE OF TECHNOLOGY JALANDHAR, PUNJAB (INDIA)</div>
                             </div>
                         </div>
