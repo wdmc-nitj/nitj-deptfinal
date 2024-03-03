@@ -8,7 +8,7 @@ function CenterMenu({ menu, setMenu }) {
     const Link = {
         'About': -1,
         'MSME': 0, 'PMKVY4.0': 0,
-        'Faculty': 1,  'Student': 1, 'Staff': 1,
+        'Faculty': 1,
         'Contact Us': 2
     };
     const Menu = [
@@ -22,8 +22,7 @@ function CenterMenu({ menu, setMenu }) {
                 }, 
                 {
                     l: 'PMKVY4.0',
-                    link: `https://www.pmkvyofficial.org/`,
-                    newTab: true
+                    link: `/center/${center}/PMKVY`,
                 }
             ],
         }, 
@@ -31,7 +30,7 @@ function CenterMenu({ menu, setMenu }) {
             Title: 'Committee Members',
             Logo: 'fa fa-user-group',
             List: [],
-            link: `/center/${center}/faculty`
+            link: `/center/${center}/centerfaculty`
         },
         {
             Title: 'Contact Us',
