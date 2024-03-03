@@ -5,6 +5,7 @@ import logo from './Img/logo.png'
 import { departments } from '../config/server';
 function Navbar({menu,setMenu}) {
     // let navigate = useNavigate();
+    const location = useLocation();
     const dept = useLocation().pathname.split('/')[2];
     const { data } = useFetch(`/dept/${dept}/Faculty`);
     // const [isLogin, setIsLogin] = useState(false);
@@ -13,6 +14,8 @@ function Navbar({menu,setMenu}) {
         window.scrollTo(0, 0);
         // setIsLogin(data?.validation?.status?.login);
     }, [data])
+
+    const isDepartmentRoute = location.pathname.includes('/dept/');
     return (
         <div>
             <nav className="scroll-smooth z-50 w-full bg-white lg:flex lg:items-center lg:justify-between lg:px-4 shadow">
@@ -22,7 +25,7 @@ function Navbar({menu,setMenu}) {
                         <div className="ml-2 text-sm sm:text-xl leading-5 text-[#0054A6]  cursor-pointer font-semibold">
                             <div className='flex-col'>
             
-                            <a href="#"><span className='inline-block'></span> {departments[dept]}</a>
+                            <a href="#"><span className='inline-block'>{isDepartmentRoute && 'Department of'}</span> {departments[dept]}</a>
                             <div className='text-xs sm:text-base font-normal'>DR B R AMBEDKAR NATIONAL INSTITUTE OF TECHNOLOGY JALANDHAR, PUNJAB (INDIA)</div>
                             </div>
                         </div>
