@@ -12,7 +12,7 @@ function ResearchProfile({ edit, data, faculty, token }) {
     data ? data["Brief Research Profile"] : ""
   );
   const [researchIDs, setResearchIDs] = useState(
-    data && data["Research ID"] ? data["Research ID"] : []
+    data && data["Research Id"] ? data["Research Id"] : []
   );
   const [showErrorPopup, setShowErrorPopup] = useState(false); // State for error popup
 
@@ -44,7 +44,7 @@ function ResearchProfile({ edit, data, faculty, token }) {
         {
           "Research Interests": interest,
           "Brief Research Profile": researchLink,
-          "Research ID": researchIDs,
+          "Research Id": researchIDs,
         }
       );
     } catch (error) {
