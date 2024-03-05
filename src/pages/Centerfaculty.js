@@ -11,8 +11,8 @@ function CenterFaculty() {
     const facultyData = [
         {
             ID: {
-                name: 'John Doe',
-                designation: 'Professor',
+                name: 'Subhash Chandra',
+                designation: 'Dean P&D',
                 email: 'john.doe@example.com',
                 img: 'url-to-image',
             },
@@ -20,8 +20,8 @@ function CenterFaculty() {
         },
         {
             ID: {
-                name: 'John Doe',
-                designation: 'Professor',
+                name: 'Anish Sachdeva',
+                designation: 'Dean Student & Welfare',
                 email: 'john.doe@example.com',
                 img: 'url-to-image',
             },
@@ -29,8 +29,8 @@ function CenterFaculty() {
         },
         {
             ID: {
-                name: 'John Doe',
-                designation: 'Professor',
+                name: 'Dr. H. M. Mittal',
+                designation: 'HOD',
                 email: 'john.doe@example.com',
                 img: 'url-to-image',
             },
@@ -38,8 +38,8 @@ function CenterFaculty() {
         },
         {
             ID: {
-                name: 'John Doe',
-                designation: 'Professor',
+                name: 'Praveen Malik',
+                designation: 'Associate Professor',
                 email: 'john.doe@example.com',
                 img: 'url-to-image',
             },
@@ -47,8 +47,8 @@ function CenterFaculty() {
         },
         {
             ID: {
-                name: 'John Doe',
-                designation: 'Professor',
+                name: 'Vijay Kumar',
+                designation: 'Associate Professor',
                 email: 'john.doe@example.com',
                 img: 'url-to-image',
             },
@@ -56,14 +56,22 @@ function CenterFaculty() {
         },
         {
             ID: {
-                name: 'John Doe',
-                designation: 'Professor',
+                name: 'Samay Veer Singh',
+                designation: 'Assistant Professor',
                 email: 'john.doe@example.com',
                 img: 'url-to-image',
             },
             order: 1, 
         },
-        // Add more faculty profiles as needed
+        {
+            ID: {
+                name: 'Mohit Kumar',
+                designation: 'Assistant Professor',
+                email: 'john.doe@example.com',
+                img: 'url-to-image',
+            },
+            order: 1, 
+        }
     ];
 
     // Sorting faculty data
@@ -72,7 +80,7 @@ function CenterFaculty() {
     return (
         <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto my-[60px] pt-[54px] place-items-center'>
             <Heading name='Faculty' />
-            <div className='grid grid-cols-1 xl:grid-cols-2 gap-4 w-full my-4 sm:px-2'>
+            {/* <div className='grid grid-cols-1 xl:grid-cols-2 gap-4 w-full my-4 sm:px-2'>
                 {facultyData.map((item, i) => (
                     <div
                         key={i}
@@ -105,11 +113,12 @@ function CenterFaculty() {
                                 {/* <div className='text-[15px] border-none pr-2  cursor-pointer hover:underline' onClick={() => navigate(`/center/${params.center}/${url.pathname.split('/').pop()}/${item.ID._id}`)}>
                                     View Profile
                                 </div> */}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
+                            {/* </div> */}
+                        {/* </div> */}
+                    {/* </div> */}
+                {/* ))} */}
+            {/* </div> */}
+            <iframe src='https://drive.google.com/file/d/1VHQGXfqAR3DFSyR2M8j6bO8ubKtHq8bI/preview' width={"100%"} height={500}></iframe>
         </div>
     );
 }
