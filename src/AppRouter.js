@@ -23,6 +23,7 @@ import ResearchLab from './pages/ResearchLab';
 import DepartmentLab from './pages/DepartmentLab';
 import Publications from './pages/Publications';
 import Projects from './pages/Projects';
+
 import Consultancy from './pages/Consultancy';
 import AfterForgotPass from './pages/AfterForgotPass';
 import ChangePass from './pages/ChangePass';
@@ -35,23 +36,14 @@ import Navbar from './components/Navbar';
 import { useState } from 'react';
 import CenterMenu from './components/centerMenu';
 import CenterHomepage from './pages/CenterHomePage';
-import { MSME } from './components/MSME';
-import { CenterContactUs } from './components/centercontactUs';
+import MSME from './pages/MSME';
+import PMKVY from './pages/PMKVY';
+import  CenterContactUs  from './components/CenterContactUs';
+import CenterFaculty from './pages/Centerfaculty';
 const AppRouter = () => {
 
   window.scrollTo(0, 0);
   const [menu, setMenu] = useState(false);
-  // const ProtectorRoute=({children})=>{
-  //   const dept=useLocation().pathname.split('/')[2];
-
-  //     if(dept in departments){
-  //       return children;
-  //     }else{
-  //       return <Navigate to={"/dept/errorpage"}/>
-  //     }
-  //   }
-
-
   return (
     <>
       <div className='max-w-[1700px] mx-auto'>
@@ -151,10 +143,11 @@ const AppRouter = () => {
                     <Route path='/center'>
                       <Route path=':center/Home/' element={<CenterHomepage />} />
                       <Route path=':center/MSME/' element={<MSME />} />
+                      <Route path=':center/PMKVY/' element={<PMKVY />} />
                       <Route path=':center/Faculty/' element={<Faculty />} />
-                      <Route path=':center/Staff/' element={<Staff />} />
-                      <Route path='*' element={<Error />} />
+                      <Route path=':center/centerFaculty/' element={<CenterFaculty />} />
                       <Route path=':center/contact' element={<CenterContactUs />} />
+                      <Route path='*' element={<Error />} />
                     </Route>
                   </Routes>
                 </div>
