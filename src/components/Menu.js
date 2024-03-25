@@ -108,13 +108,7 @@ function Menu({ menu, setMenu }) {
             Logo: 'fa fa-user-group',
             List: [],
             link: `/dept/${dept}/SocietyClubs`
-        },
-        // {
-        //     Title: 'Join Us',
-        //     Logo: 'fa fa-address-book',
-        //     List: [],
-        //     link: `/dept/${dept}/Home`
-        // },
+        }
     ]
 
     const [linkOpen, setLinkOpen] = useState(Link[link]);
@@ -122,11 +116,6 @@ function Menu({ menu, setMenu }) {
     return (
         <>
             <div className={"z-30 overflow-y-auto bg-white scrolling-touch max-w-full lg:max-w-xs lg:max-h-[calc(100vh-4rem)] lg:block lg:sticky lg:mr-0 scrollbar lg:top-[80px]"}>
-                {/* <span className="hidden items-center border-b border-gray-300 w-full px-2 mt-2 active:translate-y-[2px]" onClick={() => { setMenu(!menu) }}>
-                    <span className='w-8 lg:w-10 pb-1'><img src={logo} alt="logo" /></span>
-                    <span className="ml-2 font-bold py-2">{departments[dept]}</span>
-                </span> */}
-
                 <div className={"mx-auto lg:mx-0 lg:mr-1 lg:flex flex-col items-center w-[98%] overflow-y-auto my-3 py-1 " + (menu ? 'flex' : 'hidden')}>
                     <div className='w-full px-1'>
                         <span className={"flex items-center w-full h-10 px-3 mt-2 rounded cursor-pointer active:translate-y-[2px] shadow-sm border border-gray-200/75 " + (linkOpen === -1 ? 'border-sky-200' : '')} onClick={() => { navigate(`/dept/${dept}/Home`); setLinkOpen(-1); setMenu(!menu); }}>
