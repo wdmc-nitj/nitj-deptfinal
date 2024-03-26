@@ -37,19 +37,11 @@ import CenterMenu from './components/centerMenu';
 import CenterHomepage from './pages/CenterHomePage';
 import { MSME } from './components/MSME';
 import { CenterContactUs } from './components/centercontactUs';
+import Patents from './pages/Patents';
 const AppRouter = () => {
 
   window.scrollTo(0, 0);
   const [menu, setMenu] = useState(false);
-  // const ProtectorRoute=({children})=>{
-  //   const dept=useLocation().pathname.split('/')[2];
-
-  //     if(dept in departments){
-  //       return children;
-  //     }else{
-  //       return <Navigate to={"/dept/errorpage"}/>
-  //     }
-  //   }
 
 
   return (
@@ -78,7 +70,6 @@ const AppRouter = () => {
                       <Route path=':dept/Home/' element={<Homepage />} />
                       <Route path=':dept/Home/:id' element={<Homepage />} />
                       <Route path=':dept/Placement' element={<AllPlacement />} />
-                      <Route path='*' element={<Error />} />
                       {/* About us */}
                       <Route path=':dept/MessageofHOD' element={<HodMessage />} />
                       <Route path=':dept/MissionandVision' element={<VisionandMission />} />
@@ -115,7 +106,7 @@ const AppRouter = () => {
                       <Route path=':dept/Consultancy' element={<Consultancy />} />
                       <Route path=':dept/SocietyClubs' element={<Society_Clubs_Teams />} />
                       <Route path=':dept/ImgDesp/:itemId' element={<ImgDesp />} />
-                    </Route>
+                      <Route path='*' element={<Error />} />
                       <Route path=':dept/Home/' element={<Homepage />} />
                       <Route path=':dept/Home/:id' element={<Homepage />} />
                       <Route path=':dept/Placement' element={<AllPlacement />} />
@@ -141,6 +132,7 @@ const AppRouter = () => {
                       {/* ResearchArea */}
                       <Route path=':dept/ResearchArea' element={<ResearchArea />} />
                       <Route path=':dept/ResearchLab' element={<ResearchLab />} />
+                      <Route path=':dept/Patents' element={<Patents />} />
                       <Route path=':dept/DepartmentLab' element={<DepartmentLab />} />
                       <Route path=':dept/Publications' element={<Publications />} />
                       <Route path=':dept/Projects' element={<Projects />} />
@@ -148,6 +140,7 @@ const AppRouter = () => {
                       <Route path=':dept/SocietyClubs' element={<Society_Clubs_Teams />} />
                       <Route path=':dept/ImgDesp/:itemId' element={<ImgDesp />} />
 
+                    </Route>
                     <Route path='/center'>
                       <Route path=':center/Home/' element={<CenterHomepage />} />
                       <Route path=':center/MSME/' element={<MSME />} />
