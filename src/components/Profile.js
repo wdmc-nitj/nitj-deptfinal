@@ -286,7 +286,7 @@ function Profile({ peopleType }) {
     "Professional Affiliations": "affiliations",
     "PhD Supervised": "phd_supervised",
     "PG Dissertation Guided": "phd_dissertion",
-    // Patents: "patent",
+    "Patents": "patent",
     "Admin. Responsiblities": "admin_responsibility",
     "Award and Honours": "awards",
   };
@@ -426,23 +426,23 @@ function Profile({ peopleType }) {
         "Co-Supervisor",
       ],
     },
-    // {
-    //   Title: "Patents",
-    //   thead: [
-    //     "Name",
-    //     "Reg./Ref. No.",
-    //     "Date of Award/Filling",
-    //     "Organization",
-    //     "Status",
-    //   ],
-    //   feild: [
-    //     "Name",
-    //     "Reg./Ref. No.",
-    //     "Date of Award/Filling",
-    //     "Organization",
-    //     "Status",
-    //   ],
-    // },
+    {
+      Title: "Patents",
+      thead: [
+        "Name",
+        "Reg./Ref. No.",
+        "Date of Award/Filling",
+        "Organization",
+        "Status",
+      ],
+      feild: [
+        "Name",
+        "Reg./Ref. No.",
+        "Date of Award/Filling",
+        "Organization",
+        "Status",
+      ],
+    },
     {
       Title: "Admin. Responsiblities",
       thead: ["Position Held", "Organization", "From", "To"],

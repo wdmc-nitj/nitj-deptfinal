@@ -82,7 +82,7 @@ function ImgDesp() {
         return <ImageCarousel data={image} />
       }
       )}
-     { data?.syllabus && <LabSyllabus data={data?.syllabus}/>}
+     { data?.syllabus && data?.syllabus.length>0 && <LabSyllabus data={data?.syllabus}/>}
     </div>
   );
 }
