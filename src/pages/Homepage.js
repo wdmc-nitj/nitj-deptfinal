@@ -3,6 +3,7 @@ import Imagesroll from "../components/Imagesroll";
 import TopPlacement from "../components/TopPlacement";
 import React, { useEffect } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import ImageAnchor from "./ImageAnchor";
 
 function Homepage() {
   const params = useParams();
@@ -27,6 +28,7 @@ function Homepage() {
   return (
     <div className="flex items-center flex-col w-full h-full px-auto mt-0">
       <Imagesroll />
+      <ImageAnchor/>
       <Department />
       <TopPlacement />
     </div>
