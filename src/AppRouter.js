@@ -34,13 +34,15 @@ import ImgDesp from './pages/ImgDesp'
 import Navbar from './components/Navbar';
 
 import { useState } from 'react';
-import CenterMenu from './components/centerMenu';
-import CenterHomepage from './pages/CenterHomePage';
+import CenterMenu from './components/center/centerMenu';
+import CenterHomepage from './pages/center/CenterHomePage';
 import Patents from './pages/Patents';
-import MSME from './pages/MSME';
-import PMKVY from './pages/PMKVY';
-import  CenterContactUs  from './components/CenterContactUs';
-import CenterFaculty from './pages/Centerfaculty';
+import MSME from './pages/center/MSME';
+import PMKVY from './pages/center/PMKVY';
+import  CenterContactUs  from './components/center/CenterContactUs';
+import CenterFaculty from './pages/center/Centerfaculty';
+import CenterVisionAndMission from './components/center/centerVisionAndMission';
+import CenterAchievements from './components/center/centerAchivements';
 const AppRouter = () => {
 
   window.scrollTo(0, 0);
@@ -149,6 +151,8 @@ const AppRouter = () => {
                       <Route path=':center/MSME/' element={<MSME />} />
                       <Route path=':center/PMKVY/' element={<PMKVY />} />
                       <Route path=':center/Faculty/' element={<Faculty />} />
+                      <Route path=':center/Achievement' element={<CenterAchievements />} />
+                      <Route path=':center/MissionandVision' element={<CenterVisionAndMission />} />
                       <Route path=':center/centerFaculty/' element={<CenterFaculty />} />
                       <Route path=':center/contact' element={<CenterContactUs />} />
                       <Route path='*' element={<Error />} />

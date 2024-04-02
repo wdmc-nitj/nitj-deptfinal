@@ -1,8 +1,7 @@
 import React from 'react'
 import defaultImg from '../components/Img/default_avatar.jpg'
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Heading from '../components/Heading';
-import { data } from 'autoprefixer';
 
 function People({ Title, Data }) {
     const url = useLocation();
@@ -40,8 +39,11 @@ function People({ Title, Data }) {
                                         <div className="text-[22.5px] cursor-text">{item?.name}</div>
                                         <div className="font-semibold text-[rgba(0,0,0,0.7)] tracking-wide cursor-text">{postion?postion:item['designation']}</div>
                                         <div className="font-medium text-[rgba(0,0,0,0.7)] text-blue-500 tracking-wide cursor-text"><span className='text-blue-700'>{item?.email ? 'Email:-' : ''}</span> {item?.email}</div>
-                                        {Title === "Faculty" ? (
-                                            <div className="text-[15px] border-none pr-2  cursor-pointer hover:underline" onClick={() => navigate(page === "Faculty" ? { pathname: `/dept/${dept}/${url.pathname.split('/').pop()}/${item._id}`, state: i } : { pathname: `/dept/${dept}/${url.pathname.split('/').pop()}`, state: i })}>View Profile</div>
+                                        {(Title === "Faculty" && !item?.guest?.isGuest) ? (
+                                            <div className="text-[15px] border-none pr-2  cursor-pointer hover:underline" onClick={() =>{
+                                                navigate(page === "Faculty" ? { pathname: `/dept/${dept}/${url.pathname.split('/').pop()}/${item._id}`, state: i } : { pathname: `/dept/${dept}/${url.pathname.split('/').pop()}`, state: i })
+                                                
+                                            }}>View Profile</div>
                                         ) : null}
 
                                     </div>

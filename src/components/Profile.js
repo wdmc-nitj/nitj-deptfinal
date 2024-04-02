@@ -289,6 +289,8 @@ function Profile({ peopleType }) {
     "Patents": "patent",
     "Admin. Responsiblities": "admin_responsibility",
     "Award and Honours": "awards",
+    "Consultancy":"consultancy",
+    "Research Collaboration": "research_collaboration"
   };
 
   const Link = [
@@ -303,18 +305,18 @@ function Profile({ peopleType }) {
     },
     {
       Title: "Journal Publications",
-      thead: ["Year", "Name", "Author + Title", "Link"],
-      feild: ["Year", "Name", "Aurthor + Title", "Link"],
+      thead: ["Year","Author + Title", "Name of Journal", , "Link"],
+      feild:["Year","Aurthor + Title", "Name", , "Link"],
     },
     {
       Title: "Conference Publications",
-      thead: ["Year", "Conference", "Publication", "Link"],
-      feild: ["Year", "Publisher", "Title", "Link"],
+      thead: ["Year", "Publication", "Conference", "Link"],
+      feild: ["Year", "Title", "Publisher",  "Link"],
     },
     {
       Title: "Book/Chapter Publications",
-      thead: ["Type", "Title", "Publisher", "Authors", "ISBN/ISSN", "Year"],
-      feild: ["Type", "Title", "Publisher", "Authors", "ISBN/ISSN", "Year"],
+      thead: ["Type",  "Authors", "Title", "Publisher","ISBN/ISSN", "Year"],
+      feild: ["Type", "Authors", "Title", "Publisher",  "ISBN/ISSN", "Year"],
     },
     {
       Title: "Research Projects",
@@ -342,10 +344,15 @@ function Profile({ peopleType }) {
       ],
     },
     {
-      Title: "Conference",
+      Title: "Research Collaboration",
+      thead: ["Name of Professor", "University", "Link"],
+      feild: ["professor", "university", "Link"],
+    },
+    {
+      Title: "Consultancy",
       thead: [
         "Role",
-        "Project Type",
+        "Consultancy Type",
         "Title",
         "Funding Agency",
         "From",
@@ -356,7 +363,7 @@ function Profile({ peopleType }) {
       ],
       feild: [
         "Role",
-        "Project Type",
+        "Consultancy Type",
         "Title",
         "Funding Agency",
         "From",
@@ -452,7 +459,7 @@ function Profile({ peopleType }) {
       Title: "Award and Honours",
       thead: ["Title", "Activity", "Given by", "Year"],
       feild: ["Title", "Activity", "Given by", "Year"],
-    },
+    }
   ];
 
   const [active, setActive] = useState(0);

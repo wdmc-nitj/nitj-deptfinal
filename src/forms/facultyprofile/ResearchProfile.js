@@ -95,7 +95,7 @@ function ResearchProfile({ edit, data, faculty, token }) {
                   className="block uppercase tracking-wide text-sm font-bold mb-2"
                   htmlFor="grid-password"
                 >
-                  Profile Link
+                  Brief Research Profile
                 </label>
                 <textarea
                   className="appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-50 shadow-inner"

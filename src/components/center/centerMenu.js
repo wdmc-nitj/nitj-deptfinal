@@ -6,12 +6,27 @@ function CenterMenu({ menu, setMenu }) {
     const center = useLocation().pathname.split('/')[2];
     const link = useLocation().pathname.split('/')[3];
     const Link = {
-        'About': -1,
-        'MSME': 0, 'PMKVY4.0': 0,
-        'Faculty': 1,
-        'Contact Us': 2
+        'Home': -1,
+        'About': 0,
+        'MSME': 1, 'PMKVY4.0': 1,
+        'Faculty': 2,
+        'Contact Us': 3
     };
     const Menu = [
+        {
+            Title: 'About',
+            Logo: 'fa fa-info',
+            List: [
+                {
+                    l: 'Vision and Mission',
+                    link: `/center/${center}/MissionandVision`
+                }, 
+                {
+                    l: 'Achievement',
+                    link: `/center/${center}/Achievement`,
+                }
+            ],
+        }, 
         {
             Title: 'Scheme',
             Logo: 'fa fa-info',
@@ -49,7 +64,7 @@ function CenterMenu({ menu, setMenu }) {
                     <div className='w-full px-1'>
                         <span className={"flex items-center w-full h-10 px-3 mt-2 rounded cursor-pointer active:translate-y-[2px] shadow-sm border border-gray-200/75 " + (linkOpen === -1 ? 'border-sky-200' : '')} onClick={() => { navigate(`/center/${center}/Home`); setLinkOpen(-1); setMenu(!menu); }}>
                             <i className="pl-1 pt-[2px] w-6 h-6 stroke-current fa fa-home"></i>
-                            <span className="ml-1 font-medium">About</span>
+                            <span className="ml-1 font-medium">Home</span>
                         </span>
                     </div>
                     {Menu.map((item, i) => (
