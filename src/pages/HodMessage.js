@@ -63,7 +63,7 @@ function HodMessage() {
               <div className="bg-accent bg-teal-600 w-full lg:w-[111px] h-[1px] lg:h-[5px]"></div>
             </div>
             <p className="text-gray-800 text-sm sm:text-base lg:leading-[30px] text-justify">
-              <Markdown>{data?.message}</Markdown>
+              {data?.message}
               <br /> <br />
               <span className="text-base sm:text-lg font-semibold">
                 {data?.name}
