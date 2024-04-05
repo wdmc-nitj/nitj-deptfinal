@@ -1,7 +1,6 @@
 import React from "react";
 import { useLocation, useParams } from "react-router-dom";
-import defaultImg from "../components/Img/default_avatar.jpg";
-import Heading from "../components/Heading";
+import Heading from "../../components/Heading";
 import { useNavigate } from "react-router-dom";
 function CenterFaculty() {
   const navigate = useNavigate();
@@ -9,33 +8,6 @@ function CenterFaculty() {
   const url = useLocation();
   // Hardcoded faculty data
   const facultyData = [
-    {
-      ID: {
-        name: "Subhash Chandra",
-        designation: "Dean P&D",
-        email: "john.doe@example.com",
-        img: "url-to-image",
-      },
-      order: 1,
-    },
-    {
-      ID: {
-        name: "Anish Sachdeva",
-        designation: "Dean Student & Welfare",
-        email: "john.doe@example.com",
-        img: "url-to-image",
-      },
-      order: 1,
-    },
-    {
-      ID: {
-        name: "Dr. H. M. Mittal",
-        designation: "HOD",
-        email: "john.doe@example.com",
-        img: "url-to-image",
-      },
-      order: 1,
-    },
     {
       ID: {
         name: "Praveen Malik",
@@ -96,7 +68,7 @@ function CenterFaculty() {
                   />
                 ) : (
                   <img
-                    src={defaultImg}
+                    src={""}
                     className="w-full h-full object-fill object-center rounded-full shadow-xl border flex-grow-0 flex-shrink-0 opacity-70"
                     alt="..."
                   />
