@@ -1,4 +1,4 @@
-import CenterImageScroll from "../components/CenterImageScroll";
+import CenterImageScroll from "../../components/center/CenterImageScroll";
 import React from "react";
 
 function CenterHomepage() {
