@@ -1,5 +1,5 @@
 import React from 'react';
-import Heading from './Heading';
+import Heading from '../Heading';
 
 const CenterContactUs = () => {
   const instagramUrl = 'https://www.instagram.com/nitjofficial/';
@@ -22,7 +22,7 @@ const CenterContactUs = () => {
             </div>
             <div className='lg:w-1/2 px-6 mt-4 lg:mt-0'>
               <h2 className='title-font font-semibold text-gray-900 tracking-widest text-xs'>Office Email</h2>
-              <span className='text-indigo-500 leading-relaxed'>hec@nitj.ac.in</span>
+              <span className='text-indigo-500 leading-relaxed'>hsdc@nitj.ac.in</span>
               <h2 className='title-font font-semibold text-gray-900 tracking-widest text-xs mt-4'>Phone</h2>
               <p className='leading-relaxed'>+91-181-2690301, 2690302, 2690453, 2690603</p>
             </div>
