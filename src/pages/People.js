@@ -21,9 +21,9 @@ function People({ Title, Data }) {
             <div className='grid grid-cols-1 xl:grid-cols-2 gap-4 w-full my-4 sm:px-2'>
                 {
                     Data ? Data.map((item, i) => {
-                        let postion = null;
+                        let position = null;
                         if(Title === 'Faculty'){
-                            postion = item['postion'];
+                            position = item['position'];
                             item = item['ID'];
                         }
                         return (
@@ -37,7 +37,7 @@ function People({ Title, Data }) {
                                     </div>
                                     <div className="flex flex-col flex-grow leading-8 md:mr-2 xl:mr-5 text-center sm:text-start md:justify-start mt-8 md:mt-0 sm:ml-9 md:mb-0" >
                                         <div className="text-[22.5px] cursor-text">{item?.name}</div>
-                                        <div className="font-semibold text-[rgba(0,0,0,0.7)] tracking-wide cursor-text">{postion?postion:item['designation']}</div>
+                                        <div className="font-semibold text-[rgba(0,0,0,0.7)] tracking-wide cursor-text">{position?position:item['designation']}</div>
                                         <div className="font-medium text-[rgba(0,0,0,0.7)] text-blue-500 tracking-wide cursor-text"><span className='text-blue-700'>{item?.email ? 'Email:-' : ''}</span> {item?.email}</div>
                                         {(Title === "Faculty" && !item?.guest?.isGuest) ? (
                                             <div className="text-[15px] border-none pr-2  cursor-pointer hover:underline" onClick={() =>{
