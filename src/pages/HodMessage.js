@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import default_avatar from "../components/Img/default_avatar.jpg";
 import Loading from "../components/Loading";
-import Markdown from "react-markdown";
 
 function HodMessage() {
   const url = useLocation();
