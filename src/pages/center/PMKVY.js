@@ -4,16 +4,26 @@ import BaseTable from '../BaseTable';
 
 const table = {
   Title: "Journal Publications",
-  thead: ["S.No","Deparment", "Course Name", , "Duration","No. of Students","Link"],
-  feild:["S.No","Deparment", "Course Name", , "Duration","No. of Students","Link"],
+  thead: ["S.No","Department", "Course Name", , "Duration","No. of Students","Link"],
+  feild:["S.No","Department", "Course Name", , "Duration","No. of Students","Link"],
 }
 
 const data = [
   {
-    type: 'MSME',
-    title: 'Web Development Course',
-    image: 'image1.jpg',
-    _id: '1',
+    'S.No': '1',
+    'Department': 'IT',
+    'Course Name': 'Associate Data Entry Operater',
+    'Duration': '6 July 2023 - 20 October 2023',
+    'No. of Students': '11',
+    'Link': '',
+  },
+  {
+    'S.No': '1',
+    'Department': 'CSE',
+    'Course Name': 'Web Developer Course',
+    'Duration': '20 October 2023 - 12 January 2024',
+    'No. of Students': '20',
+    'Link': '',
   }
 ];
 

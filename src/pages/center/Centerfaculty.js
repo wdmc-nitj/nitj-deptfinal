@@ -12,7 +12,7 @@ function CenterFaculty() {
       ID: {
         name: "Praveen Malik",
         designation: "Associate Professor",
-        email: "john.doe@example.com",
+        email: " malikp@nitj.ac.in",
         img: "url-to-image",
       },
       order: 1,
@@ -21,7 +21,7 @@ function CenterFaculty() {
       ID: {
         name: "Vijay Kumar",
         designation: "Associate Professor",
-        email: "john.doe@example.com",
+        email: "vijayk@nitj.ac.in",
         img: "url-to-image",
       },
       order: 1,
@@ -30,7 +30,7 @@ function CenterFaculty() {
       ID: {
         name: "Samay Veer Singh",
         designation: "Assistant Professor",
-        email: "john.doe@example.com",
+        email: "samays@nitj.ac.in",
         img: "url-to-image",
       },
       order: 1,
@@ -39,7 +39,7 @@ function CenterFaculty() {
       ID: {
         name: "Mohit Kumar",
         designation: "Assistant Professor",
-        email: "john.doe@example.com",
+        email: "kumarmohit@nitj.ac.in",
         img: "url-to-image",
       },
       order: 1,
