@@ -4,8 +4,8 @@ import BaseTable from '../BaseTable';
 
 const table = {
   Title: "Journal Publications",
-  thead: ["S.No","Department", "Course Name", , "Duration","No. of Students","Link"],
-  feild:["S.No","Department", "Course Name", , "Duration","No. of Students","Link"],
+  thead: ["S.No","Department", "Course Name" , "Duration","No. of Students","Link"],
+  feild:["S.No","Department", "Course Name" , "Duration","No. of Students","Link"],
 }
 
 const data = [
