@@ -4,23 +4,25 @@ import BaseTable from '../BaseTable';
 
 const table = {
   Title: "Journal Publications",
-  thead: ["S.No","Department", "Course Name" , "Duration","No. of Students","Link"],
-  feild:["S.No","Department", "Course Name" , "Duration","No. of Students","Link"],
+  thead: ["S.No","Department", "Course Name" , "Course Coordinator" , "Duration","No. of Students","Link"],
+  feild:["S.No","Department", "Course Name" , "Course Coordinator" ,"Duration","No. of Students","Link"],
 }
 
 const data = [
   {
     'S.No': '1',
-    'Department': 'IT',
+    'Department': 'Information Technology',
     'Course Name': 'Associate Data Entry Operater',
+    'Course Coordinator': 'Dr. Naveen Kumar Gupta',
     'Duration': '6 July 2023 - 20 October 2023',
     'No. of Students': '11',
     'Link': '',
   },
   {
-    'S.No': '1',
-    'Department': 'CSE',
-    'Course Name': 'Web Developer Course',
+    'S.No': '2',
+    'Department': 'Computer Science and Engineering',
+    'Course Name': 'Web Developer',
+    'Course Coordinator': 'Dr. Shefali Arora',
     'Duration': '20 October 2023 - 12 January 2024',
     'No. of Students': '20',
     'Link': '',
