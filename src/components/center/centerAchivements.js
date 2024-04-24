@@ -11,11 +11,11 @@ function CenterAchievements() {
   const data = [
     {
         title: "Number of Courses",
-        count: 2
+        count: 10
     },
     {
         title: "Number of Students Enrolled",
-        count: 10
+        count: 250
     },
 
   ]
