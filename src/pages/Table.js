@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 function Table({ tablehead, data }) {
 
     const [row, setrow] = useState(8); //row per page
     const totalrow = data.length;
     const totalPage = Math.ceil(totalrow / row);
-    const [page, setPage] = useState(1)
-    return (
+    const [page, setPage] = useState(1);
 
+    return (
         <div className='overflow-auto w-full shadow-md'>
             <div className="min-w-[500px] md:min-w-[800px] flex flex-col border-t border-gray-200 bg-white rounded-lg overflow-auto mx-auto">
                 <div className='flex w-full items-center justify-around'>
@@ -27,43 +27,32 @@ function Table({ tablehead, data }) {
                     <table className="min-w-[500px] md:min-w-[800px] text-sm text-left text-gray-800 scroll-auto border rounded-md">
                         <thead className="text-gray-700 uppercase bg-gray-100 shadow-md">
                             <tr>
-                                {
-                                    tablehead.map((item, i) => {
-                                        return (
-                                            <th key={i} scope="col" className="px-6 py-3 border">
-                                                {item}
-                                            </th>
-                                        )
-                                    })
-                                }
+                                <th scope="col" className="px-6 py-3 border"></th>
+                                {tablehead.map((item, i) => (
+                                    <th key={i} scope="col" className="px-6 py-3 border">
+                                        {item}
+                                    </th>
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                data.map((Item, i) => {
-
-                                    return (
-                                        (i >= row * (page - 1) && i < row * (page)) && <tr className="border-b">
-                                            {
-                                                tablehead.map((item, j) => {
-                                                    return (
-                                                        <td key={{ i, j }} className="align-top px-6 py-4 text-gray-900 border-r">
-                                                            {item==="Link"?
-                                                            <a target="_blank" href={Item[item]}><i className="fa-solid fa-link"></i></a>
-                                                            :<span>{Item[item]}</span>}
-                                                        </td>
-                                                    )
-                                                })
-                                            }
-                                        </tr>
-                                    )
-                                })
-                            }
+                            {data.map((Item, i) => (
+                                (i >= row * (page - 1) && i < row * (page)) && (
+                                    <tr key={i} className="border-b">
+                                        <td className="align-top px-6 py-4 text-gray-900 border-r">{i + 1}</td>
+                                        {tablehead.map((item, j) => (
+                                            <td key={j} className="align-top px-6 py-4 text-gray-900 border-r">
+                                                {item === "Link" ?
+                                                    <a target="_blank" href={Item[item]}><i className="fa-solid fa-link"></i></a>
+                                                    : <span>{Item[item]}</span>}
+                                            </td>
+                                        ))}
+                                    </tr>
+                                )
+                            ))}
                         </tbody>
                     </table>
-
                 </div>
-
                 <div className="w-full my-2 px-2 flex flex-1 items-center justify-around">
                     <div>
                         <p className="text-sm">
@@ -81,7 +70,6 @@ function Table({ tablehead, data }) {
                             <button onClick={() => setPage(page > 1 ? page - 1 : 1)} className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 active:scale-95">
                                 <i className="fa-solid fa-arrow-left"></i>
                             </button>
-
                             <span className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">{page}</span>
                             <span className="relative z-10 inline-flex items-center bg-indigo-300 px-4 py-2 text-sm font-semibold text-white">...</span>
                             <span className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">{totalPage}</span>
@@ -93,7 +81,7 @@ function Table({ tablehead, data }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Table
+export default Table;

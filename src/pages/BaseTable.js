@@ -158,6 +158,7 @@ function BaseTable({
             <table className="min-w-[800px] w-full text-sm text-left text-gray-800 scroll-auto">
               <thead className="text-gray-700 uppercase bg-gray-100 sm:shadow">
                 <tr>
+                <th scope="col" className="px-6 py-3 border"></th>
                   {tablehead.map((item, i) => {
                     return (
                       <th
@@ -189,6 +190,7 @@ function BaseTable({
                       i >= row * (page - 1) &&
                       i < row * page && (
                         <tr key={i} className="border-b">
+                          <td className="align-top px-6 py-4 text-gray-900 border-r">{i + 1}</td>
                           {feild.map((item, j) => {
                             return (
                               <td
