@@ -23,8 +23,11 @@ function People({ Title, Data }) {
                     Data ? Data.map((item, i) => {
                         let position = null;
                         if(Title === 'Faculty'){
-                            position = item['position'];
+                            position = item['postion'];
                             item = item['ID'];
+                            if(!position){
+                                position = item['position']
+                            }
                         }
                         return (
                             <div key={i} className="flex flex-col flex-grow content-center h-full justify-center mt-0 text-inherit shadow hover:shadow-lg hover:shadow-blue-500 shadow-blue-400 rounded-lg my-4 cursor-pointer">
