@@ -14,6 +14,7 @@ const CenterContactUs = () => {
     <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto my-[60px] pt-[54px] place-items-center'>
       <Heading name='Contact Us' />
       <div className='flex-1 shadow p-8 rounded-md'>
+      <h1 className='text-2xl w-11/12 mx-16'> Head : Dr. Praveen Malik </h1>
         <div className=' w-11/12 mx-auto'>
           <div className='w-full bg-white relative flex flex-wrap py-6 rounded'>
             <div className='lg:w-1/2 px-6 '>
@@ -22,9 +23,9 @@ const CenterContactUs = () => {
             </div>
             <div className='lg:w-1/2 px-6 mt-4 lg:mt-0'>
               <h2 className='title-font font-semibold text-gray-900 tracking-widest text-xs'>Office Email</h2>
-              <span className='text-indigo-500 leading-relaxed'>hsdc@nitj.ac.in</span>
+              <span className='text-indigo-500 leading-relaxed'>malikp@nitj.ac.in</span>
               <h2 className='title-font font-semibold text-gray-900 tracking-widest text-xs mt-4'>Phone</h2>
-              <p className='leading-relaxed'>+91-181-2690301, 2690302, 2690453, 2690603</p>
+              <p className='leading-relaxed'>+91-9888382021</p>
             </div>
 
             <div className='mt-2'>

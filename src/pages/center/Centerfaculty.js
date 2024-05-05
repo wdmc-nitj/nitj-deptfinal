@@ -2,20 +2,24 @@ import React from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Heading from "../../components/Heading";
 import { useNavigate } from "react-router-dom";
+
 function CenterFaculty() {
   const navigate = useNavigate();
   const params = useParams();
   const url = useLocation();
+
   // Hardcoded faculty data
   const facultyData = [
     {
       ID: {
         name: "Praveen Malik",
         designation: "Associate Professor",
-        email: " malikp@nitj.ac.in",
+        email: "malikp@nitj.ac.in",
         img: "url-to-image",
+        _id: "1" // Add _id for linking to the profile
       },
       order: 1,
+      profileLink: "https://departments.nitj.ac.in/dept/ph/Faculty/6430445c38bff038a7806c79" // Add profile link for Praveen Malik
     },
     {
       ID: {
@@ -23,8 +27,10 @@ function CenterFaculty() {
         designation: "Associate Professor",
         email: "vijayk@nitj.ac.in",
         img: "url-to-image",
+        _id: "2" // Add _id for linking to the profile
       },
-      order: 1,
+      order: 2,
+      profileLink: "https://departments.nitj.ac.in/dept/it/Faculty/6430447438bff038a7808e5b" // Add profile link for Vijay Kumar
     },
     {
       ID: {
@@ -32,8 +38,10 @@ function CenterFaculty() {
         designation: "Assistant Professor",
         email: "samays@nitj.ac.in",
         img: "url-to-image",
+        _id: "3" // Add _id for linking to the profile
       },
-      order: 1,
+      order: 3,
+      profileLink: "https://departments.nitj.ac.in/dept/cse/Faculty/6430446b38bff038a78085b7" // Add profile link for Samay Veer Singh
     },
     {
       ID: {
@@ -41,8 +49,10 @@ function CenterFaculty() {
         designation: "Assistant Professor",
         email: "kumarmohit@nitj.ac.in",
         img: "url-to-image",
+        _id: "4" // Add _id for linking to the profile
       },
-      order: 1,
+      order: 4,
+      profileLink: "https://departments.nitj.ac.in/dept/it/Faculty/6430446e38bff038a7808a66" // Add profile link for Mohit Kumar
     },
   ];
 
@@ -75,35 +85,31 @@ function CenterFaculty() {
                 )}
               </div>
               <div className="flex flex-col flex-grow leading-8 md:mr-2 xl:mr-5 text-center sm:text-start md:justify-start mt-8 md:mt-0 sm:ml-9 md:mb-0">
-                <div className="text-[22.5px] cursor-text">{item.ID.name}</div>
-                <div className="font-semibold text-[rgba(0,0,0,0.7)] tracking-wide cursor-text">
+                <div className="text-[22.5px] cursor-pointer">{item.ID.name}</div>
+                <div className="font-semibold text-[rgba(0,0,0,0.7)] tracking-wide cursor-pointer">
                   {item.postion ? item.postion : item.ID.designation}
                 </div>
-                <div className="font-medium text-[rgba(0,0,0,0.7)] text-blue-500 tracking-wide cursor-text">
+                <div className="font-medium text-[rgba(0,0,0,0.7)] text-blue-500 tracking-wide cursor-pointer">
                   <span className="text-blue-700">
                     {item.ID.email ? "Email:-" : ""}
                   </span>{" "}
                   {item.ID.email}
                 </div>
-                <div
+                <a
+                  href={item.profileLink} // Use the profile link for each faculty member
+               
+                  rel="noopener noreferrer"
                   className="text-[15px] border-none pr-2  cursor-pointer hover:underline"
-                  onClick={() =>
-                    navigate(
-                      `/center/${params.center}/${url.pathname
-                        .split("/")
-                        .pop()}/${item.ID._id}`
-                    )
-                  }
                 >
                   View Profile
-                </div>
+                </a>
               </div>
             </div>
           </div>
         ))}
       </div>
-      {/* <iframe src='https://drive.google.com/file/d/1VHQGXfqAR3DFSyR2M8j6bO8ubKtHq8bI/preview' width={"100%"} height={500}></iframe> */}
     </div>
   );
 }
+
 export default CenterFaculty;
