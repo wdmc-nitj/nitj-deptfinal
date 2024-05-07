@@ -23,14 +23,14 @@ function DepartmentLab() {
                 {
                     data ? data.map((item, i) => {
                         return (
-                            item.type === "Department Labs" && <div key={i} className='w-full my-4 sm:mx-4 p-2'>
+                            item.type === "Department Labs" && <div key={i} className='w-full my-4 sm:mx-4 p-2' onClick={() => handleImageClick(item)}>
                                 <div className="w-full h-60 sm:h-72 border-2 object-cover object-center relative rounded-lg shadow-md bg-grey overflow-hidden group" >
                                 <img
                                     src={item?.img}
                                     alt="Departement Labs"
                                     className="w-full h-full object-cover object-center rounded-lg group-hover:scale-110 shadow-md duration-500"
                                 />
-                                {item?.title && <div className="absolute cursor-pointer z-10 p-2 inset-0 flex items-center justify-center text-xl font-bold text-white bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 duration-300 transition" onClick={() => handleImageClick(item)}>
+                                {item?.title && <div className="absolute cursor-pointer z-10 p-2 inset-0 flex items-center justify-center text-xl font-bold text-white bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 duration-300 transition" >
                                     {item.title}
                                 </div>}
                                 </div>
