@@ -24,7 +24,7 @@ function ResearchLab() {
             data.map((item, i) => {
               return (
                 item.type === "Research Labs" && (
-                  <div key={i} className='w-full my-4 sm:mx-4 p-2'>
+                  <div key={i} className='w-full my-4 sm:mx-4 p-2' onClick={() => handleImageClick(item)}>
                     <div className="w-full h-60 sm:h-72 border-2 object-cover object-center relative rounded-lg shadow-md bg-grey overflow-hidden group"  onClick={() => handleImageClick(item)}>
                       <img
                         src={item?.img}

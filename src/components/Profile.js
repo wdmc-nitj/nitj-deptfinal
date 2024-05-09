@@ -444,7 +444,7 @@ function Profile({ peopleType }) {
       ],
       feild: [
         "Name",
-        "Reg./Ref. No.",
+        "Reg/Ref Number",
         "Date of Award/Filling",
         "Organization",
         "Status",

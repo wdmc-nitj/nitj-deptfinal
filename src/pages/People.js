@@ -26,7 +26,7 @@ function People({ Title, Data }) {
                             position = item['postion'];
                             item = item['ID'];
                             if(!position){
-                                position = item['position']
+                                position = item['designation']
                             }
                         }
                         return (
