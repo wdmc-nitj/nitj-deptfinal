@@ -8,7 +8,7 @@ import Loading from '../components/Loading'
 function Consultancy() {
     const tablehead = ['Role', "Consultancy Type", "Title", "Funding Agency", "From","To","Amount","Status","Co-investigator"]
     const dept= useParams()?.dept;
-    const {data,loading} = useFetch(`/dept/${dept}/Faculty`);
+    const {data,loading} = useFetch(`/dept/${dept}/Consultancy`);
 
     let consultancies = []
     data.map((ele) => {
