@@ -141,7 +141,7 @@ const AppRouter = () => {
                       <Route path=':dept/DepartmentLab' element={<DepartmentLab />} />
                       <Route path=':dept/Publications' element={<Publications />} />
                       <Route path=':dept/Projects' element={<Projects />} />
-                      <Route path=':dept/Consultancy' element={<Consultancy />} />
+                      <Route path=':dept/Consultancy' element={<deptConsultancy />} />
                       <Route path=':dept/SocietyClubs' element={<Society_Clubs_Teams />} />
                       <Route path=':dept/ImgDesp/:itemId' element={<ImgDesp />} />
 
