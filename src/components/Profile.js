@@ -148,12 +148,17 @@ function Profile({ peopleType }) {
           {profileData.email && <Text style={styles.text}>Email: {profileData?.email}</Text>}
 
           {/* Research Interests */}
-          {profileData.research_profile && profileData.research_profile["Research Interests"] && (
+          {profileData.research_profile && profileData.research_profile["Research Interests"] && profileData.research_profile["Research Interests"].length>0 && (
             <View>
               <Text style={styles.title}>Research Interests</Text>
-              <Text style={styles.text}>
-                {profileData?.research_profile["Research Interests"]}
-              </Text>
+              {profileData?.research_profile["Research Interests"].map(researchInterest=>{
+                return (
+                  <Text style={styles.text}>
+                  {researchInterest}
+                </Text>
+                )
+              })}
+             
             </View>
           )}
 
@@ -169,10 +174,16 @@ function Profile({ peopleType }) {
             </Text>
           )}
 
-          {profileData["personal_link"] && profileData.personal_link["Personal Link"] && (
+          {profileData["personal_link"] && profileData.personal_link["Personal Link"]&& profileData.personal_link["Personal Link"].length>0 && (
             <Text style={styles.text}>
               Personal Link:{" "}
-              <L src={profileData.personal_link["Personal Link"]}>Link</L>
+              {
+                profileData.personal_link["Personal Link"].map((personaLink)=>{
+                  return (
+                    <L src={personaLink['link']}>{personaLink['title']}</L>
+                  )
+                })
+              }
             </Text>
           )}
 
@@ -206,7 +217,6 @@ function Profile({ peopleType }) {
                       return (
                         <View style={styles.tableRow}>
                           {tables.feild.map((field) => {
-                            console.log(data[field]);
                             return (
                               <Text
                                 style={{
