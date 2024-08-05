@@ -16,7 +16,7 @@ function CenterVisionAndMission() {
         </div>
       </div>
       <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto mt-[60px] pt-[54px] place-items-center'>
-        <Heading name='Missions' />
+        <Heading name='Mission' />
         <div className='w-full'>
         1.	Through strong industry participation, skills can be raised to worldwide norms, and the appropriate structures for standards, curriculum, and quality assurance can be created.<br></br>
         2.	Generate funds and take on the role of a "market maker," especially in the industries with weak or nonexistent market processes.<br></br>

@@ -8,31 +8,17 @@ function CenterHomepage() {
             <CenterImageScroll />
             {/* <Center /> */}
             <div className="px-10 py-20 border-2 rounded font-serif">
-                A MSME Sponsored Entrepreneurship and Skill Development Training Programme (E-
-                SDP) on “Installation and Commissioning of Solar Plant for Net-Zero Energy Buildings”
-
-                was organized in the Department of Electrical Engineering from 7
-
-                th to 11th December,
-                2023. The Inaugural ceremony was addressed by the Chief Guest, Prof. Binod Kumar
-                Kanaujia, Director, NITJ, and the Guest of Honour, Mr. Y. C. S. Rao, General Manager,
-                Power Grid Corporation of India Limited (PGCIL), Kartarpur. Prof. Ajay Bansal, Registrar,
-                Prof. Dilbag Singh, ICE Department, Mr. Sneh Joshi, PGCIL, Prof. S. K. Pahuja, Head of
-                the Department, Dr. K. C. Sharma, Dr. Hari Murugan, Dr. Mahesh Kumar, Course
-                coordinators, and faculty members of the Electrical Department were presented in the
-                inaugural ceremony.
-                The ESDP was highly successful, in terms of quality of lectures delivered and hand on
-                sessions followed by industrial visit at PGCIL Kartarpur Station. The program benefited
-                26 participants from various institutes and organizations across the state. The ESDP
-                sessions was addressed by the various eminent speakers from PGCIL, NIT Hamirpur and
-                host institute, who discussed the critical aspects of installation and commissioning of solar
-                plant for net-zero energy buildings. The lecture sessions provided a comprehensive
-                understanding of harnessing solar power to achieve energy neutrality. The hands-on
-                sessions emphasized practical knowledge for designing solar PV plants. Additionally, the
-                industrial visit at PGCIL Kartarpur Station highlighted the importance of grid integration
-                for solar PV plants. Finally, the ESDP was concluded with a valedictory function along
-                with the distribution of course material and collecting valuable feedback from the
-                participants.
+            In today&#39;s rapidly changing world, the demand of skilled and adaptable workforce is more
+            significant than ever before. To address this need and bridge the gap between the skills possessed
+            by job seekers and the requirements of the job market, the establishment of Skill Development
+            Centre (SDC) has become a crucial endeavor. The lack of relevant skills among job seekers
+            often leads to unemployment or underemployment, hindering economic growth and productivity.
+            Recognizing these challenges, governments, private organizations, and educational institutions
+            worldwide have realized the importance of investing in skill development initiatives.
+            SDC will provide comprehensive and industry-relevant training programs that equip individuals
+            with the skills necessary to thrive in the job market. It aims to empower India&#39;s youth, offering
+            necessary skills and training to enhance their chances of getting jobs in various sectors or
+            become self-employed.
             </div>
 
         </div>

@@ -38,6 +38,10 @@ function CenterMenu({ menu, setMenu }) {
                 {
                     l: 'PMKVY4.0',
                     link: `/center/${center}/PMKVY`,
+                },
+                {
+                    l: 'Championship',
+                    link: `/center/${center}/Championship`,
                 }
             ],
         }, 

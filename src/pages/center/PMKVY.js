@@ -4,8 +4,8 @@ import BaseTable from '../BaseTable';
 
 const table = {
   Title: "Journal Publications",
-  thead: ["Department", "Course Name" , "Course Coordinator" , "Duration","No. of Students","Link"],
-  feild:["Department", "Course Name" , "Course Coordinator" ,"Duration","No. of Students","Link"],
+  thead: ["Department", "Course Name" , "Course Coordinator" , "Duration","No. of Participants Enrolled","No. of Successfully Completed","Link"],
+  feild:["Department", "Course Name" , "Course Coordinator" ,"Duration","No. of Participants Enrolled","No. of Successfully Completed","Link"],
 }
 
 const data = [
@@ -15,7 +15,8 @@ const data = [
     'Course Name': 'Associate Data Entry Operater',
     'Course Coordinator': 'Dr. Naveen Kumar Gupta',
     'Duration': '6 July 2023 - 20 October 2023',
-    'No. of Students': '11',
+    'No. of Participants Enrolled': '11',
+    'No. of Successfully Completed': '3',
     'Link': '',
   },
   {
@@ -24,7 +25,8 @@ const data = [
     'Course Name': 'Web Developer',
     'Course Coordinator': 'Dr. Shefali Arora',
     'Duration': '20 October 2023 - 12 January 2024',
-    'No. of Students': '20',
+    'No. of Participants Enrolled': '20',
+    'No. of Successfully Completed': '4',
     'Link': '',
   }
 ];
