@@ -15,7 +15,7 @@ function CenterFaculty() {
         name: "Praveen Malik",
         designation: "Associate Professor",
         email: "malikp@nitj.ac.in",
-        img: "url-to-image",
+        img: "https://v1.nitj.ac.in/images/faculty/16102323143.jpg",
         _id: "1" // Add _id for linking to the profile
       },
       order: 1,
@@ -26,7 +26,7 @@ function CenterFaculty() {
         name: "Vijay Kumar",
         designation: "Associate Professor",
         email: "vijayk@nitj.ac.in",
-        img: "url-to-image",
+        img: "https://v1.nitj.ac.in/images/faculty/23011234105.jpg",
         _id: "2" // Add _id for linking to the profile
       },
       order: 2,
@@ -34,10 +34,10 @@ function CenterFaculty() {
     },
     {
       ID: {
-        name: "Samay Veer Singh",
+        name: "Samayveer Singh",
         designation: "Assistant Professor",
         email: "samays@nitj.ac.in",
-        img: "url-to-image",
+        img: "https://v1.nitj.ac.in/images/faculty/18110680762.jpg",
         _id: "3" // Add _id for linking to the profile
       },
       order: 3,
@@ -48,7 +48,7 @@ function CenterFaculty() {
         name: "Mohit Kumar",
         designation: "Assistant Professor",
         email: "kumarmohit@nitj.ac.in",
-        img: "url-to-image",
+        img: "https://v1.nitj.ac.in/images/faculty/20011441385.jpg",
         _id: "4" // Add _id for linking to the profile
       },
       order: 4,
