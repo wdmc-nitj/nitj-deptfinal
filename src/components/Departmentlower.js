@@ -9,7 +9,7 @@ const Departmentlower = (props) => {
   return (
     <div className='flex flex-col md:flex-row lg:flex-col xl:flex-row w-[98%] justify-around items-center px-2 md:px-4 place-items-center mx-auto'>
       {/* Club */}
-      <Card  />
+      {/* <Card  /> */}
       {/* HOD */}
 
       <div className="relative w-full md:w-/2 py-4 px-4 sm:px-7 mx-2 border bg-white shadow-lg rounded-lg mt-16 mb-6">
