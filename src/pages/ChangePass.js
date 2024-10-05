@@ -6,7 +6,7 @@ import { SERVER_URL } from '../config/server';
 function ChangePass() {
   let url = useLocation();
   // const status = url.pathname.split("/")[5];
-  const { data, loading } = useFetch(url.pathname);
+  const { data, loading } = useFetch(url.pathname.substring(url.pathname.indexOf('/')));
   const dept = url.pathname.split("/")[2];
   const token = url.pathname.split("/")[4];
 
