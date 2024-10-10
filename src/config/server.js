@@ -18,6 +18,6 @@ const departments = {
   cy: "Chemistry",
   cee: "Center for Energy and Environment",
   cai: "Center for Artificial Intelligence",
-  sdc: "Skill Development Center",
+  sdc: "Skill Development Centre",
 };
 module.exports = { SERVER_URL, departments };
