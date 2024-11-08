@@ -41,12 +41,12 @@ function VisionandMission() {
           {!loading ? renderPoints(data?.mission) : <Loading />}
         </div>
       </div>
-      <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto mt-[60px] pt-[54px] place-items-center'>
+      {/* <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto mt-[60px] pt-[54px] place-items-center'>
         <Heading name='Quality Policy' />
         <div className='w-full'>
           {!loading ? renderPoints(data?.QualityStatements) : <Loading />}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
