@@ -4,7 +4,7 @@ import useFetch from '../hooks/useFetch';
 import { useLocation } from 'react-router-dom';
 import Loading from '../components/Loading';
 
-function PhdScholar() {
+function PhDScholar() {
     const url = useLocation();
     const { data, loading } = useFetch(url.pathname);
     const extractYearFromEmail = (email) => {
@@ -27,4 +27,4 @@ function PhdScholar() {
     );
 }
 
-export default PhdScholar;
+export default PhDScholar;
