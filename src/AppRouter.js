@@ -15,7 +15,7 @@ import Programme from './pages/Programme';
 import Faculty from './pages/Faculty';
 import Staff from './pages/Staff';
 import Students from './pages/Students';
-import PhdScholar from './pages/PhdScholar';
+import PhDScholar from './pages/PhDScholar';
 import Profile from './components/Profile';
 import FacultyLogin from './pages/FacultyLogin';
 import ResearchArea from './pages/ResearchArea';
@@ -93,8 +93,8 @@ const AppRouter = () => {
                       <Route path=':dept/Staff' element={<Staff />} />
                       <Route path=':dept/Student' element={<Students />} />
                       {/* <Route path=':dept/Alumni' element={<Alumni />} /> */}
-                      <Route path=':dept/PhdScholar' element={<PhdScholar />} />
-                      <Route path=':dept/PhdScholar/:id' element={<Profile peopleType="PhdScholar" />} />
+                      <Route path=':dept/PhDScholar' element={<PhDScholar />} />
+                      <Route path=':dept/PhDScholar/:id' element={<Profile peopleType="PhDScholar" />} />
                       <Route path=':dept/login/:status' element={<FacultyLogin />} />
                       <Route path=':dept/login/*' element={<FacultyLogin />} />
                       <Route path=':dept/onClickForgotPass/*' element={<AfterForgotPass />} />
@@ -125,8 +125,8 @@ const AppRouter = () => {
                       <Route path=':dept/Faculty/:id' element={<Profile peopleType="Faculty" />} />
                       <Route path=':dept/Staff' element={<Staff />} />
                       {/* <Route path=':dept/Alumni' element={<Alumni />} /> */}
-                      <Route path=':dept/PhdScholar' element={<PhdScholar />} />
-                      <Route path=':dept/PhdScholar/:id' element={<Profile peopleType="PhdScholar" />} />
+                      <Route path=':dept/PhDScholar' element={<PhDScholar />} />
+                      <Route path=':dept/PhDScholar/:id' element={<Profile peopleType="PhDScholar" />} />
                       <Route path=':dept/login/:status' element={<FacultyLogin />} />
                       <Route path=':dept/login/*' element={<FacultyLogin />} />
                       {/* <Route path=':dept/onClickForgotPass/*' element={<AfterForgotPass />} /> */}
