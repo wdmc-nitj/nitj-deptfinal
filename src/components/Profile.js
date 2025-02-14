@@ -165,27 +165,27 @@ function Profile({ peopleType }) {
           {/* Other Profile Links */}
           <Text style={styles.title}>Other Profile Links</Text>
 
-            {profileData["personal_link"] && profileData["personal_link"]["Google Scholar Link"] && (
-              <Text style={styles.text}>
-                Google Scholar Link:{" "}
-                <L src={profileData["personal_link"]["Google Scholar Link"]}>
-                  Link
-                </L>
-              </Text>
-            )}
+          {profileData["personal_link"] && profileData["personal_link"]["Google Scholar Link"] && (
+            <Text style={styles.text}>
+              Google Scholar Link:{" "}
+              <L src={profileData["personal_link"]["Google Scholar Link"]}>
+                Link
+              </L>
+            </Text>
+          )}
 
-              {profileData["personal_link"] &&
-                profileData.personal_link["Personal Link"] &&
-                profileData.personal_link["Personal Link"].length > 0 && (
-                  <>
-                    <Text style={styles.text}>Personal Links:</Text>
-                    {profileData.personal_link["Personal Link"].map((personaLink, index) => (
-                      <Text key={index} style={styles.text}>
-                        <L src={personaLink["link"]}>{personaLink["title"]}</L>
-                      </Text>
-                    ))}
-                  </>
-              )}
+          {profileData["personal_link"] && profileData.personal_link["Personal Link"]&& profileData.personal_link["Personal Link"].length>0 && (
+            <Text style={styles.text}>
+              Personal Link:{" "}
+              {
+                profileData.personal_link["Personal Link"].map((personaLink)=>{
+                  return (
+                    <L src={personaLink['link']}>{personaLink['title']}</L>
+                  )
+                })
+              }
+            </Text>
+          )}
 
           {/* Starting of Tables */}
 
