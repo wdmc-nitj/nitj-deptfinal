@@ -9,7 +9,7 @@ function Menu({ menu, setMenu }) {
         'Home': -1,
         'MissionandVision': 0, 'messageofHOD': 0, 'Achievement': 0, 'Infrastructure': 0, 'contactus': 0,
         'Programme': 1, 'Acadcord': 1, 'Syllabus': 1, 'Timetable': 1, 'AcademicCalender': 1,
-        'Faculty': 2, 'PhDScholar': 2, 'Student': 2, 'Alumni': 2, 'Staff': 2,
+        'Faculty': 2, 'PhdScholar': 2, 'Student': 2, 'Alumni': 2, 'Staff': 2,
         'ResearchArea': 3, 'DepartmentLab': 3, 'Publications': 3, 'Projects': 3, 'Consultancy': 3, 'ResearchLab': 3,
         'SocietyClubs': 4
     }
@@ -66,7 +66,7 @@ function Menu({ menu, setMenu }) {
                     link: `/dept/${dept}/Faculty`
                 }, {
                     l: 'PhD Scholars',
-                    link: `/dept/${dept}/PhDScholar`
+                    link: `/dept/${dept}/PhdScholar`
                 }, {
                     l: 'Students',
                     link: `/dept/${dept}/Student`
