@@ -12,6 +12,7 @@ import PersonalDetails from "../forms/facultyprofile/PersonalDetails";
 import default_avatar from "./Img/default_avatar.jpg";
 import exportFromJSON from "export-from-json";
 import Loading from "./Loading";
+import { Text, Linking } from "react-native";
 import {
   Page,
   Text,
@@ -163,28 +164,36 @@ function Profile({ peopleType }) {
           )}
 
           {/* Other Profile Links */}
+          
+
           <Text style={styles.title}>Other Profile Links</Text>
 
-          {profileData["personal_link"] && profileData["personal_link"]["Google Scholar Link"] && (
-            <Text style={styles.text}>
-              Google Scholar Link:{" "}
-              <L src={profileData["personal_link"]["Google Scholar Link"]}>
-                Link
-              </L>
+          {/* Google Scholar Link */}
+          {profileData["personal_link"]?.["Google Scholar Link"] && (
+            <Text
+              style={[styles.text, { color: "blue" }]} // Blue to indicate it's a link
+              onPress={() =>
+                Linking.openURL(profileData["personal_link"]["Google Scholar Link"])
+              }
+            >
+              Google Scholar Link
             </Text>
           )}
 
-          {profileData["personal_link"] && profileData.personal_link["Personal Link"]&& profileData.personal_link["Personal Link"].length>0 && (
-            <Text style={styles.text}>
-              Personal Link:{" "}
-              {
-                profileData.personal_link["Personal Link"].map((personaLink)=>{
-                  return (
-                    <L src={personaLink['link']}>{personaLink['title']}</L>
-                  )
-                })
-              }
-            </Text>
+          {/* Personal Links */}
+          {profileData["personal_link"]?.["Personal Link"]?.length > 0 && (
+            <>
+              <Text style={styles.text}>Personal Links:</Text>
+              {profileData.personal_link["Personal Link"].map((personaLink, index) => (
+                <Text
+                  key={index}
+                  style={[styles.text, { color: "blue" }]}
+                  onPress={() => Linking.openURL(personaLink["link"])}
+                >
+                  {personaLink["title"]}
+                </Text>
+              ))}
+            </>
           )}
 
           {/* Starting of Tables */}
