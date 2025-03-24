@@ -26,7 +26,7 @@ function TopPlacement() {
         <div id='scrollcontrol' className='relative'>
           <div className='cards flex snap-x overflow-x-auto scrollhide delay-200 scroll-smooth'>
             <Placement />
-          </div>
+          
           <button className='absolute top-[45%] left-0 w-8 h-8 flex flex-0 items-center justify-center object-cover border-2 font-extrabold rounded-full active:translate-y-[2px] rotate-180' onClick={scrollPrevPage}>
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='fill-slate-600 '><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg>
           </button>
@@ -39,6 +39,7 @@ function TopPlacement() {
           View More
         </button>
         </Link>
+        </div>
       </div>
     </>
   )
