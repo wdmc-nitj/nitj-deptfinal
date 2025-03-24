@@ -23,10 +23,11 @@ function TopPlacement() {
     <>
       <div className='w-[96%] rounded-[9px] border border-[rgba(0,105,140,0.2)] p-2 mx-auto my-[60px] pt-[54px] place-items-center'>
         <Heading name="Current Top Placements" />
-        <div id='scrollcontrol' className='relative'>
-          <div className='cards flex snap-x overflow-x-auto scrollhide delay-200 scroll-smooth'>
+        <div id='scrollcontrol' className='relative w-full overflow-hidden'>
+          <div className='cards flex snap-x overflow-x-auto scrollhide delay-200 scroll-smooth w-full space-x-4'>
             <Placement />
-            <button className='absolute top-[45%] left-0 w-8 h-8 flex flex-0 items-center justify-center object-cover border-2 font-extrabold rounded-full active:translate-y-[2px] rotate-180' onClick={scrollPrevPage}>
+          </div>
+          <button className='absolute top-[45%] left-0 w-8 h-8 flex flex-0 items-center justify-center object-cover border-2 font-extrabold rounded-full active:translate-y-[2px] rotate-180' onClick={scrollPrevPage}>
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='fill-slate-600 '><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg>
           </button>
           <button className='absolute top-[45%] -right-1 w-8 h-8 flex flex-0 items-center justify-center object-cover border-2 font-extrabold rounded-full active:translate-y-[2px]' onClick={scrollNextPage}>
@@ -38,7 +39,6 @@ function TopPlacement() {
           View More
         </button>
         </Link>
-        </div>
       </div>
     </>
   )
