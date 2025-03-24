@@ -26,14 +26,13 @@ function TopPlacement() {
         <div id='scrollcontrol' className='relative'>
           <div className='cards flex snap-x overflow-x-auto scrollhide delay-200 scroll-smooth'>
             <Placement />
-          
+          </div>
           <button className='absolute top-[45%] left-0 w-8 h-8 flex flex-0 items-center justify-center object-cover border-2 font-extrabold rounded-full active:translate-y-[2px] rotate-180' onClick={scrollPrevPage}>
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='fill-slate-600 '><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg>
           </button>
           <button className='absolute top-[45%] -right-1 w-8 h-8 flex flex-0 items-center justify-center object-cover border-2 font-extrabold rounded-full active:translate-y-[2px]' onClick={scrollNextPage}>
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='fill-slate-600'><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg>
           </button>
-          </div>
         </div>
         <Link to={`/dept/${dept}/Placement`}>
         <button className="flex hover:shadow-lg hover:-translate-y-1 hover:shadow-yellow-500/50 bg-transparent my-2 text-blue-700 font-medium border hover:border-blue-900 border-blue-400 duration-500 py-2 px-3 rounded mx-auto tracking-wide active:translate-y-[2px]" onClick={() => {navigate(`/dept/${dept}/Placement`);}}>
