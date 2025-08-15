@@ -8,6 +8,7 @@ function Otherprofilelink({ edit, data, token }) {
   const [newTitle, setNewTitle] = useState(
     data["personal_link"] &&
       Array.isArray(data["personal_link"]["Personal Link"]) &&
+      typeof data["personal_link"]["Personal Link"][0] === "object" &&
       data["personal_link"]["Personal Link"][0]?.title
       ? data["personal_link"]["Personal Link"][0].title
       : ""
@@ -15,6 +16,7 @@ function Otherprofilelink({ edit, data, token }) {
   const [newLink, setNewLink] = useState(
     data["personal_link"] &&
       Array.isArray(data["personal_link"]["Personal Link"]) &&
+      typeof data["personal_link"]["Personal Link"][0] === "object" &&
       data["personal_link"]["Personal Link"][0]?.link
       ? data["personal_link"]["Personal Link"][0].link
       : ""
@@ -117,6 +119,7 @@ function Otherprofilelink({ edit, data, token }) {
           <div className="flex max-w-full justify-between items-center p-4 shadow-md">
             <table className="text-sm sm:text-base">
               {Array.isArray(data["personal_link"]?.["Personal Link"]) &&
+                typeof data["personal_link"]["Personal Link"][0] === "object" &&
                 data["personal_link"]["Personal Link"][0]?.title &&
                 data["personal_link"]["Personal Link"][0]?.link && (
                   <tr>
