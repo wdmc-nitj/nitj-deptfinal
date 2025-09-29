@@ -4,7 +4,7 @@ import useFetch from '../hooks/useFetch';
 const Departmentupper = (props) => {
     const dept = useLocation().pathname.split('/')[2];
     const {data} = useFetch(`/dept/${dept}/messageOfHOD`);
-    const departmentName = props.name?.toLowerCase() === 'ma' ? 'mc' : props.name;
+    const departmentName = props.name?.toLowerCase() === 'ma' ? 'MC' : props.name.toUpperCase();
     // const departmentName = props.name === 'ma' ? 'mc' : props.name;
 
     return (
