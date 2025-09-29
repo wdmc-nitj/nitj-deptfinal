@@ -4,7 +4,8 @@ import useFetch from '../hooks/useFetch';
 const Departmentupper = (props) => {
     const dept = useLocation().pathname.split('/')[2];
     const {data} = useFetch(`/dept/${dept}/messageOfHOD`);
-    
+    const departmentName = props.name === 'ma' ? 'mc' : props.name;
+
     return (
 
         <div className='flex flex-col md:flex-row w-[98%] justify-around items-center p-2 md:p-4 pb-0 place-items-center mx-auto'>
@@ -20,10 +21,10 @@ const Departmentupper = (props) => {
 
 
                 <div className="px-2 pt-5 h-[300px] sm:h-[340px]">
-                    <h1 className='text-[#0054A6] text-center text-lg lg:text-xl font-semibold leading-tight tracking-wide mb-3'>
+                    {/* <h1 className='text-[#0054A6] text-center text-lg lg:text-xl font-semibold leading-tight tracking-wide mb-3'>
   Department of {props.name === 'ma' ? 'mc' : props.name}
-</h1>
-                    {/* <h1 className='text-[#0054A6] text-center text-lg lg:text-xl font-semibold leading-tight tracking-wide mb-3'>Department of {props.name}</h1> */}
+</h1> */}
+                    <h1 className='text-[#0054A6] text-center text-lg lg:text-xl font-semibold leading-tight tracking-wide mb-3'>Department of {props.name}</h1>
                     <p className="mb-3 text-sm sm:text-base text-justify px-3 overflow-y-auto scrollbar h-[200px] sm:h-[240px]">{props.introduction}</p>
                     {/* <div className='block m-4 p-2'>
                         <button className=' float-right text-green-700 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
