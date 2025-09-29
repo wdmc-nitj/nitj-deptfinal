@@ -15,7 +15,7 @@ const Departmentupper = (props) => {
             <img className="object-fill w-full h-full" src={props.departmentimage} alt="..." />
 
                 <div className="absolute inset-0 flex items-center justify-center text-white text-lg font-bold bg-black bg-opacity-25 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {props.name} building.
+                    {departmentName} building.
                 </div>
             </div>
 
@@ -24,7 +24,7 @@ const Departmentupper = (props) => {
                     {/* <h1 className='text-[#0054A6] text-center text-lg lg:text-xl font-semibold leading-tight tracking-wide mb-3'>
   Department of {props.name === 'ma' ? 'mc' : props.name}
 </h1> */}
-                    <h1 className='text-[#0054A6] text-center text-lg lg:text-xl font-semibold leading-tight tracking-wide mb-3'>Department of {props.name}</h1>
+                    <h1 className='text-[#0054A6] text-center text-lg lg:text-xl font-semibold leading-tight tracking-wide mb-3'>Department of {departmentName} </h1>
                     <p className="mb-3 text-sm sm:text-base text-justify px-3 overflow-y-auto scrollbar h-[200px] sm:h-[240px]">{props.introduction}</p>
                     {/* <div className='block m-4 p-2'>
                         <button className=' float-right text-green-700 hover:font-semibold hover:text-blue-700 '>Read More  &rarr;</button>
