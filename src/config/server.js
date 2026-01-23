@@ -17,6 +17,7 @@ const departments = {
   hm: "Humanities and Management",
   cy: "Chemistry",
   cee: "Center for Energy and Environment",
+  cw: "Central Workshop",
   cai: "Center for Artificial Intelligence",
   sdc: "Skill Development Centre",
 };
