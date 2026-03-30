@@ -12,18 +12,18 @@ function CenterFaculty() {
   const facultyData = [
     {
       ID: {
-        name: "Praveen Malik",
-        designation: "Associate Professor",
-        email: "malikp@nitj.ac.in",
-        img: "https://v1.nitj.ac.in/images/faculty/16102323143.jpg",
+        name: "Dr. Sharvan Kumar Pahuja",
+        designation: "Professor",
+        email: "pahujas@nitj.ac.in",
+        img: "https://v1.nitj.ac.in/images/faculty/18022167136.png",
         _id: "1" // Add _id for linking to the profile
       },
       order: 1,
-      profileLink: "https://departments.nitj.ac.in/dept/ph/Faculty/6430445c38bff038a7806c79" // Add profile link for Praveen Malik
+      profileLink: "https://departments.nitj.ac.in/dept/ice/Faculty/6430445938bff038a7806513" // Add profile link for Praveen Malik
     },
     {
       ID: {
-        name: "Vijay Kumar",
+        name: "Dr. Vijay Kumar",
         designation: "Associate Professor",
         email: "vijayk@nitj.ac.in",
         img: "https://v1.nitj.ac.in/images/faculty/23011234105.jpg",
@@ -34,7 +34,7 @@ function CenterFaculty() {
     },
     {
       ID: {
-        name: "Samayveer Singh",
+        name: "Dr. Samayveer Singh",
         designation: "Assistant Professor",
         email: "samays@nitj.ac.in",
         img: "https://v1.nitj.ac.in/images/faculty/18110680762.jpg",
@@ -45,7 +45,7 @@ function CenterFaculty() {
     },
     {
       ID: {
-        name: "Mohit Kumar",
+        name: "Dr. Mohit Kumar",
         designation: "Assistant Professor",
         email: "kumarmohit@nitj.ac.in",
         img: "https://v1.nitj.ac.in/images/faculty/20011441385.jpg",
