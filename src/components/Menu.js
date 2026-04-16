@@ -97,7 +97,7 @@ function Menu({ menu, setMenu }) {
                     link: `/dept/${dept}/Projects`
                 }, {
                     l: 'Consultancy',
-                    link: `/dept/${dept}/deptConsultancy`
+                    link: `/dept/${dept}/Consultancy`
                 }, {
                     l: 'Research Labs',
                     link: `/dept/${dept}/ResearchLab`
