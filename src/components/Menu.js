@@ -72,7 +72,7 @@ function Menu({ menu, setMenu }) {
                     link: `/dept/${dept}/Student`
                 }, {
                     l: 'Alumni',
-                    link: `https://nitj.ac.in/alumni/alumni.html`,
+                    link: `https://www.nitjaa.com/`,
                     newTab:true
                 }, {
                     l: 'Staff',
