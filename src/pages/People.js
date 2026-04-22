@@ -44,7 +44,7 @@ function People({ Title, Data }) {
                                         <div className="font-medium text-[rgba(0,0,0,0.7)] text-blue-500 tracking-wide cursor-text"><span className='text-blue-700'>{item?.email ? 'Email:-' : ''}</span> {item?.email}</div>
                                         {(Title === "Faculty" && !item?.guest?.isGuest) ? (
                                             <div className="text-[15px] border-none pr-2  cursor-pointer hover:underline" onClick={() =>{
-                                                navigate(page === "Faculty" ? { pathname: `/dept/${dept}/${url.pathname.split('/').pop()}/${item._id}`, state: i } : { pathname: `/dept/${dept}/${url.pathname.split('/').pop()}`, state: i })
+                                                navigate(page === "Faculty" ? { pathname: `/dept/${dept}/${page}/${item._id}`, state: i } : { pathname: `/dept/${dept}/${page}`, state: i })
                                                 
                                             }}>View Profile</div>
                                         ) : null}

@@ -5,10 +5,22 @@ import { SERVER_URL } from "../../config/server";
 
 function Otherprofilelink({ edit, data, token }) {
   const dept = useLocation().pathname.split("/")[2];
-  const [link, setLink] = useState(
-    data["personal_link"] ? data["personal_link"]["Personal Link"] : ""
+  const [newTitle, setNewTitle] = useState(
+    data["personal_link"] &&
+      Array.isArray(data["personal_link"]["Personal Link"]) &&
+      typeof data["personal_link"]["Personal Link"][0] === "object" &&
+      data["personal_link"]["Personal Link"][0]?.title
+      ? data["personal_link"]["Personal Link"][0].title
+      : ""
   );
-  console.log(link);
+  const [newLink, setNewLink] = useState(
+    data["personal_link"] &&
+      Array.isArray(data["personal_link"]["Personal Link"]) &&
+      typeof data["personal_link"]["Personal Link"][0] === "object" &&
+      data["personal_link"]["Personal Link"][0]?.link
+      ? data["personal_link"]["Personal Link"][0].link
+      : ""
+  );
   const [googlelink, setGooglelink] = useState(
     data["personal_link"] ? data["personal_link"]["Google Scholar Link"] : ""
   );
@@ -16,10 +28,11 @@ function Otherprofilelink({ edit, data, token }) {
     let newRow = {};
     const formdata = new FormData(e.target);
     for (let [key, value] of formdata.entries()) {
-      newRow = {
-        ...newRow,
-        [key]: value,
-      };
+      if (key === "Personal Link") {
+        newRow[key] = JSON.parse(value);
+      } else {
+        newRow[key] = value;
+      }
     }
     try {
       await axios.put(
@@ -46,14 +59,35 @@ function Otherprofilelink({ edit, data, token }) {
                 >
                   Personal Link
                 </label>
-                <textarea
-                  type="text"
+                <div className="w-full px-3">
+                  <label className="block uppercase tracking-wide text-sm font-bold mb-2">
+                    Personal Link Title
+                  </label>
+                  <textarea
+                    type="text"
+                    className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"
+                    onChange={(e) => setNewTitle(e.target.value)}
+                    value={newTitle}
+                    placeholder="Title"
+                  />
+                </div>
+                <div className="w-full px-3">
+                  <label className="block uppercase tracking-wide text-sm font-bold mb-2">
+                    Personal Link URL
+                  </label>
+                  <textarea
+                    type="text"
+                    className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"
+                    onChange={(e) => setNewLink(e.target.value)}
+                    value={newLink}
+                    placeholder="Link"
+                  />
+                </div>
+                <input
+                  type="hidden"
                   name="Personal Link"
-                  className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"
-                  onChange={(e) => setLink(e.target.value)}
-                  value={link}
-                  placeholder="Title"
-                ></textarea>
+                  value={JSON.stringify([{ title: newTitle, link: newLink }])}
+                />
               </div>
               <div className="w-full px-3">
                 <label
@@ -84,29 +118,30 @@ function Otherprofilelink({ edit, data, token }) {
         <div className="overflow-x-auto relative my-2 scrollbar min-w-[570px]">
           <div className="flex max-w-full justify-between items-center p-4 shadow-md">
             <table className="text-sm sm:text-base">
-              {link && link.length > 0 && (
-                <tr>
-                  <td className="font-bold pr-4 pl-2 py-2">Personal Link</td>
-                  <td className="text-sm font-bold pr-4 pl-2 py-2">:</td>
-                  <td>
-                    <div className="text-orange-400 hover:underline">
-                      {link.map((linkItem, index) => (
-                        <React.Fragment key={index}>
-                          <span
-                            onClick={() => {
-                              window.open(linkItem.link, "_blank");
-                            }}
-                          >
-                            {linkItem.title}
-                          </span>
-
-                          {index !== link.length - 1 && <span>, </span>}
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  </td>
-                </tr>
-              )}
+              {Array.isArray(data["personal_link"]?.["Personal Link"]) &&
+                typeof data["personal_link"]["Personal Link"][0] === "object" &&
+                data["personal_link"]["Personal Link"][0]?.title &&
+                data["personal_link"]["Personal Link"][0]?.link && (
+                  <tr>
+                    <td className="font-bold pr-4 pl-2 py-2">Personal Link</td>
+                    <td className="text-sm font-bold pr-4 pl-2 py-2">:</td>
+                    <td>
+                      <div className="text-orange-400 hover:underline">
+                        <span
+                          onClick={() => {
+                            window.open(
+                              data["personal_link"]["Personal Link"][0].link,
+                              "_blank"
+                            );
+                          }}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {data["personal_link"]["Personal Link"][0].title}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                )}
 
               {googlelink && (
                 <tr>
