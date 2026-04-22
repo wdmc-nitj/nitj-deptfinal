@@ -20,5 +20,6 @@ const departments = {
   cw: "Central Workshop",
   cai: "Center for Artificial Intelligence",
   sdc: "Skill Development Centre",
+  itep: "Integrated Teacher Education Programme (ITEP)",
 };
 module.exports = { SERVER_URL, departments };
