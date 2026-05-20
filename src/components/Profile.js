@@ -216,7 +216,7 @@ function Profile({ peopleType }) {
                     {profileData[map[tables.Title]].map((data) => {
                       return (
                         <View style={styles.tableRow}>
-                          {tables.field.map((field) => {
+                          {tables.feild.map((field) => {
                             return (
                               <Text
                                 style={{
@@ -316,17 +316,17 @@ function Profile({ peopleType }) {
     {
       Title: "Journal Publications",
       thead: ["Year","Author + Title", "Name of Journal", , "Link"],
-      field:["Year","Aurthor + Title", "Name", , "Link"],
+      feild:["Year","Aurthor + Title", "Name", , "Link"],
     },
     {
       Title: "Conference Publications",
       thead: ["Year", "Publication", "Conference", "Link"],
-      field: ["Year", "Title", "Publisher",  "Link"],
+      feild: ["Year", "Title", "Publisher",  "Link"],
     },
     {
       Title: "Book/Chapter Publications",
       thead: ["Type",  "Authors", "Title", "Publisher","ISBN/ISSN", "Year"],
-      field: ["Type", "Authors", "Title", "Publisher",  "ISBN/ISSN", "Year"],
+      feild: ["Type", "Authors", "Title", "Publisher",  "ISBN/ISSN", "Year"],
     },
     {
       Title: "Research Projects",
@@ -341,7 +341,7 @@ function Profile({ peopleType }) {
         "Status",
         "Co-Investigator",
       ],
-      field: [
+      feild: [
         "Role",
         "Project Type",
         "Title",
@@ -356,7 +356,7 @@ function Profile({ peopleType }) {
     {
       Title: "Research Collaboration",
       thead: ["Name of Professor", "University", "Link"],
-      field: ["professor", "university", "Link"],
+      feild: ["professor", "university", "Link"],
     },
     {
       Title: "Consultancy",
@@ -371,7 +371,7 @@ function Profile({ peopleType }) {
         "Status",
         "Co-Investigator",
       ],
-      field: [
+      feild: [
         "Role",
         "Consultancy Type",
         "Title",
@@ -394,7 +394,7 @@ function Profile({ peopleType }) {
         "To",
         "Designation",
       ],
-      field: [
+      feild: [
         "Category",
         "Type",
         "Title",
@@ -407,7 +407,7 @@ function Profile({ peopleType }) {
     {
       Title: "Professional Affiliations",
       thead: ["Designation", "Organisation"],
-      field: ["Designation", "Organisation"],
+      feild: ["Designation", "Organisation"],
     },
     {
       Title: "PhD Supervised",
@@ -418,7 +418,7 @@ function Profile({ peopleType }) {
         "Year",
         "Co-Supervisor",
       ],
-      field: [
+      feild: [
         "Scholar Name",
         "Research Topic",
         "Status",
@@ -435,7 +435,7 @@ function Profile({ peopleType }) {
         "Year",
         "Co-Supervisor",
       ],
-      field: [
+      feild: [
         "Student Name",
         "Dissertation Title",
         "Status",
@@ -452,7 +452,7 @@ function Profile({ peopleType }) {
         "Organization",
         "Status",
       ],
-      field: [
+      feild: [
         "Name",
         "Reg/Ref Number",
         "Date of Award/Filling",
@@ -463,12 +463,12 @@ function Profile({ peopleType }) {
     {
       Title: "Admin. Responsiblities",
       thead: ["Position Held", "Organization", "From", "To"],
-      field: ["Position Held", "Organization", "From", "To"],
+      feild: ["Position Held", "Organization", "From", "To"],
     },
     {
       Title: "Award and Honours",
       thead: ["Title", "Activity", "Given by", "Year"],
-      field: ["Title", "Activity", "Given by", "Year"],
+      feild: ["Title", "Activity", "Given by", "Year"],
     }
   ];
 
@@ -476,23 +476,23 @@ function Profile({ peopleType }) {
   const [edit, setEdit] = useState(false);
   const [update, setUpdate] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
-  const [Editfield, setEditfield] = useState(-1);
+  const [Editfeild, setEditfeild] = useState(-1);
   const setedit = () => {
     setEdit(true);
-    SetEditfield(-1);
+    SetEditfeild(-1);
   };
   const setview = () => {
     setEdit(false);
-    SetEditfield(-1);
+    SetEditfeild(-1);
   };
   // Handle the Edit functions in the table
-  const SetEditfield = (i) => {
-    setEditfield(i);
+  const SetEditfeild = (i) => {
+    setEditfeild(i);
   };
   const HandleEdit = (i) => {
     setUpdate(true);
     setedit();
-    SetEditfield(i);
+    SetEditfeild(i);
   };
 
   const setActiveHelper = (index) => {
@@ -750,9 +750,9 @@ function Profile({ peopleType }) {
                           tablehead={Link[active].thead}
                           faculty={data?.data[0]}
                           data={data?.data[0][map[Link[active].Title]]?data?.data[0][map[Link[active].Title]]:[]}
-                          Editfield={Editfield}
+                          Editfeild={Editfeild}
                           HandleEdit={HandleEdit}
-                          field={Link[active].field}
+                          feild={Link[active].feild}
                           isLogin={facultyEditable}
                           title={map[Link[active].Title]}
                           token={token}
