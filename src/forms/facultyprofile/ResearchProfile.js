@@ -1,248 +1,213 @@
 import axios from "axios";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { SERVER_URL } from "../../config/server";
 
-function getRandomColor() {
-  const colors = ["red", "blue", "green", "purple", "pink", "orange"];
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  return colors[randomIndex];
-}
+const colorClasses = {
+  VIDWAAN: "bg-red-500",
+  PUBLONS: "bg-blue-500",
+};
 
-function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
+function ResearchProfile({ edit, data, faculty, token }) {
   const dept = useLocation().pathname.split("/")[2];
-  const [interest, setInterest] = useState("");
-  const [researchLink, setResearchLink] = useState("");
-  const [researchIDs, setResearchIDs] = useState([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const initialDataRef = useRef(null);
 
-  // Initialize data only once when component mounts or when data changes significantly
-  useEffect(() => {
-    if (data && JSON.stringify(initialDataRef.current) !== JSON.stringify(data)) {
-      initialDataRef.current = data;
-      setInterest(data["Research Interests"] || "");
-      setResearchLink(data["Brief Research Profile"] || "");
-      setResearchIDs(data["Research Id"] || []);
-      console.log("Loaded research IDs:", data["Research Id"]);
-    }
-  }, [data]);
+  const [interest, setInterest] = useState(
+    data ? data["Research Interests"] : ""
+  );
 
+  const [researchLink, setResearchLink] = useState(
+    data ? data["Brief Research Profile"] : ""
+  );
+
+  const [researchIDs, setResearchIDs] = useState(
+    data && data["Research Id"] ? data["Research Id"] : []
+  );
+
+  // HANDLE CHECKBOX
   const handleCheckboxChange = (platform) => {
     const isSelected = researchIDs.some((id) => id.title === platform);
-    let updatedResearchIDs;
-    
+
     if (isSelected) {
-      // Remove the platform
-      updatedResearchIDs = researchIDs.filter((id) => id.title !== platform);
-      console.log(`Removed ${platform}, remaining:`, updatedResearchIDs);
+      setResearchIDs(
+        researchIDs.filter((id) => id.title !== platform)
+      );
     } else {
-      // Add the platform
-      updatedResearchIDs = [...researchIDs, { title: platform, link: "" }];
-      console.log(`Added ${platform}, new list:`, updatedResearchIDs);
+      setResearchIDs([
+        ...researchIDs,
+        {
+          title: platform,
+          link: "",
+        },
+      ]);
     }
-    
-    setResearchIDs(updatedResearchIDs);
   };
 
+  // HANDLE LINK CHANGE
   const handleLinkChange = (title, link) => {
     setResearchIDs(
       researchIDs.map((id) => {
         if (id.title === title) {
-          return { ...id, link: link };
+          return {
+            ...id,
+            link: link,
+          };
         }
+
         return id;
       })
     );
   };
 
+  // HANDLE SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    console.log("Submit button clicked");
-    console.log("Current researchIDs before submit:", researchIDs);
-    
-    if (isSubmitting) {
-      alert("⏳ Please wait, saving in progress...");
-      return;
-    }
-
-    // Validate required fields
-    if (!interest || interest.trim() === "") {
-      alert("⚠️ Please enter Research Interests");
-      return;
-    }
-
-    if (!researchLink || researchLink.trim() === "") {
-      alert("⚠️ Please enter Brief Research Profile");
-      return;
-    }
-
-    setIsSubmitting(true);
 
     try {
-      const payload = {
-        "Research Interests": interest,
-        "Brief Research Profile": researchLink,
-        "Research Id": researchIDs,
-      };
-
-      console.log("Submitting payload:", JSON.stringify(payload, null, 2));
-
       const response = await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=research_profile`,
-        payload
+        {
+          "Research Interests": interest,
+          "Brief Research Profile": researchLink,
+          "Research Id": researchIDs,
+        }
       );
 
-      console.log("Response status:", response.status);
-      console.log("Response data:", response.data);
-      
-      alert("✅ Research profile updated successfully!");
-      
-      // Update the initial data reference to match current state
-      initialDataRef.current = {
-        "Research Interests": interest,
-        "Brief Research Profile": researchLink,
-        "Research Id": researchIDs,
-      };
-      
-      // Call onUpdate callback if provided
-      if (onUpdate) {
-        onUpdate();
-      }
+      console.log("Update Success:", response.data);
 
+      alert("Research Profile Updated Successfully ✅");
     } catch (error) {
       console.error("Error submitting data:", error);
-      
-      if (error.response) {
-        console.error("Error response data:", error.response.data);
-        console.error("Error response status:", error.response.status);
-        
-        const status = error.response.status;
-        const message = error.response.data?.message || error.response.data;
-        
-        if (status === 401) {
-          alert("🔒 Unauthorized! Please login again.");
-        } else if (status === 404) {
-          alert("❌ Server endpoint not found.");
-        } else if (status === 500) {
-          alert("🔥 Server error! Please try again later.");
-        } else {
-          alert(`❌ Error (${status}): ${message || "Something went wrong"}`);
-        }
-      } else if (error.request) {
-        console.error("No response received:", error.request);
-        alert("🌐 Network error! Please check your internet connection.");
-      } else {
-        console.error("Error message:", error.message);
-        alert("❌ Some error occurred while updating research profile.");
-      }
-    } finally {
-      setIsSubmitting(false);
+
+      alert("Failed to Update Research Profile ❌");
     }
   };
-
-  // Available research platforms
-  const researchPlatforms = ["VIDWAAN", "PUBLONS", "ORCID", "Scopus", "ResearchGate"];
 
   return (
     <div className="overflow-x-auto">
       {edit ? (
         <div className="m-4 flex justify-center items-center">
-          <form className="w-full max-w-lg shadow p-3" onSubmit={handleSubmit}>
+          <form
+            className="w-full max-w-lg shadow p-3"
+            onSubmit={handleSubmit}
+          >
             <div className="flex flex-wrap -mx-3 mb-6">
+              
+              {/* RESEARCH INTERESTS */}
               <div className="w-full px-3">
-                <label
-                  className="block uppercase tracking-wide text-sm font-bold mb-2"
-                  htmlFor="research-interests"
-                >
+                <label className="block uppercase tracking-wide text-sm font-bold mb-2">
                   Research Interests
                 </label>
+
                 <textarea
-                  className="appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 mb-3 shadow-inner leading-tight focus:outline-none focus:border-gray-50"
-                  id="research-interests"
+                  className="appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 mb-3 shadow-inner leading-tight focus:outline-none"
+                  name="Research Interests"
                   onChange={(e) => setInterest(e.target.value)}
-                  value={interest || ""}
-                  placeholder="Enter your research interests (e.g., Machine Learning, Computer Vision, etc.)"
-                  rows="3"
+                  value={interest}
+                  placeholder="Research Interests"
                 />
               </div>
-              
+
+              {/* RESEARCH PROFILE */}
               <div className="w-full px-3">
-                <label
-                  className="block uppercase tracking-wide text-sm font-bold mb-2"
-                  htmlFor="research-profile"
-                >
+                <label className="block uppercase tracking-wide text-sm font-bold mb-2">
                   Brief Research Profile
                 </label>
+
                 <textarea
-                  className="appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-50 shadow-inner"
-                  id="research-profile"
+                  className="appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none shadow-inner"
+                  name="Brief Research Profile"
                   onChange={(e) => setResearchLink(e.target.value)}
-                  value={researchLink || ""}
-                  placeholder="Enter a brief description of your research profile"
-                  rows="4"
+                  value={researchLink}
+                  placeholder="Brief Research Profile"
                 />
               </div>
-              
+
+              {/* RESEARCH IDS */}
               <div className="w-full px-3">
-                <label
-                  className="block uppercase tracking-wide text-sm font-bold mb-2"
-                  htmlFor="research-ids"
-                >
+                <label className="block uppercase tracking-wide text-sm font-bold mb-2">
                   Research IDs
                 </label>
-                
-                {researchPlatforms.map((platform) => (
-                  <div key={platform} className="flex items-center mb-3">
-                    <label className="inline-flex items-center mr-3">
-                      <input
-                        type="checkbox"
-                        className="form-checkbox h-5 w-5 text-indigo-600"
-                        checked={researchIDs.some((id) => id.title === platform)}
-                        onChange={() => handleCheckboxChange(platform)}
-                      />
-                      <span className="ml-2 font-medium">{platform}</span>
-                    </label>
+
+                {/* VIDWAAN */}
+                <div className="flex items-center gap-3 mb-3">
+                  <label className="inline-flex items-center">
                     <input
-                      className="appearance-none block flex-1 bg-gray-200 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:border-gray-50 shadow-inner"
-                      type="text"
-                      placeholder={`Enter ${platform} profile URL`}
-                      value={
-                        researchIDs.find((id) => id.title === platform)?.link || ""
+                      type="checkbox"
+                      className="form-checkbox h-5 w-5 text-indigo-600"
+                      checked={researchIDs.some(
+                        (id) => id.title === "VIDWAAN"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("VIDWAAN")
                       }
-                      onChange={(e) => handleLinkChange(platform, e.target.value)}
-                      disabled={!researchIDs.some((id) => id.title === platform)}
                     />
-                  </div>
-                ))}
-                
-                {/* Debug info - shows current researchIDs state */}
-                <div className="mt-4 p-2 bg-gray-100 rounded text-xs">
-                  <details>
-                    <summary className="cursor-pointer font-bold">Debug: Current Research IDs ({researchIDs.length})</summary>
-                    <pre className="mt-2 overflow-auto">
-                      {JSON.stringify(researchIDs, null, 2)}
-                    </pre>
-                  </details>
+
+                    <span className="ml-2">VIDWAAN</span>
+                  </label>
+
+                  <input
+                    className="appearance-none block w-1/2 bg-gray-200 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none shadow-inner"
+                    type="text"
+                    placeholder="VIDWAAN Link"
+                    value={
+                      researchIDs.find(
+                        (id) => id.title === "VIDWAAN"
+                      )?.link || ""
+                    }
+                    onChange={(e) =>
+                      handleLinkChange(
+                        "VIDWAAN",
+                        e.target.value
+                      )
+                    }
+                  />
                 </div>
-                
-                {researchIDs.length === 0 && (
-                  <p className="text-gray-500 text-sm mt-2">
-                    Select at least one research platform and provide your profile link
-                  </p>
-                )}
+
+                {/* PUBLONS */}
+                <div className="flex items-center gap-3 mb-3">
+                  <label className="inline-flex items-center">
+                    <input
+                      type="checkbox"
+                      className="form-checkbox h-5 w-5 text-indigo-600"
+                      checked={researchIDs.some(
+                        (id) => id.title === "PUBLONS"
+                      )}
+                      onChange={() =>
+                        handleCheckboxChange("PUBLONS")
+                      }
+                    />
+
+                    <span className="ml-2">PUBLONS</span>
+                  </label>
+
+                  <input
+                    className="appearance-none block w-1/2 bg-gray-200 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none shadow-inner"
+                    type="text"
+                    placeholder="PUBLONS Link"
+                    value={
+                      researchIDs.find(
+                        (id) => id.title === "PUBLONS"
+                      )?.link || ""
+                    }
+                    onChange={(e) =>
+                      handleLinkChange(
+                        "PUBLONS",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
               </div>
             </div>
-            
-            <div className="flex px-3 w-full justify-end gap-2">
+
+            {/* SUBMIT BUTTON */}
+            <div className="flex px-3 w-full justify-end">
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 active:translate-y-[2px] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 active:translate-y-[2px] hover:shadow-xl"
               >
                 <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md">
-                  {isSubmitting ? "⏳ Saving..." : "Submit"}
+                  Submit
                 </span>
               </button>
             </div>
@@ -253,58 +218,72 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
           <div className="flex max-w-full justify-between items-center p-4 shadow-md">
             <table className="text-sm sm:text-base">
               <tbody>
+
+                {/* RESEARCH INTERESTS */}
                 <tr>
                   <td className="w-48 align-top font-bold pr-4 pl-2 py-2">
                     Research Interests
                   </td>
-                  <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
+
+                  <td className="align-top font-bold pr-4 pl-2 py-2">
+                    :
+                  </td>
+
                   <td className="align-top pr-4 pl-2 py-2">
-                    {interest || "-"}
+                    {interest}
                   </td>
                 </tr>
+
+                {/* RESEARCH PROFILE */}
                 <tr>
                   <td className="w-48 align-top font-bold pr-4 pl-2 py-2">
                     Brief Research Profile
                   </td>
-                  <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
+
+                  <td className="align-top text-sm font-bold pr-4 pl-2 py-2">
+                    :
+                  </td>
+
                   <td className="align-top pr-4 pl-2 py-2">
-                    {researchLink || "-"}
+                    {researchLink}
                   </td>
                 </tr>
+
+                {/* RESEARCH IDS */}
                 <tr>
                   <td className="w-48 align-top font-bold pr-4 pl-2 py-2">
                     Research IDs
                   </td>
-                  <td className="align-top font-bold pr-4 pl-2 py-2">:</td>
+
+                  <td className="align-top text-sm font-bold pr-4 pl-2 py-2">
+                    :
+                  </td>
+
                   <td className="align-top pr-4 pl-2 py-2">
-                    <div className="flex flex-wrap gap-2">
-                      {researchIDs && researchIDs.length > 0 ? (
-                        researchIDs.map((item, index) => (
-                          <div
-                            key={index}
-                            className={`rounded-full py-1 px-3 text-white text-sm font-semibold cursor-pointer hover:opacity-80 transition-opacity`}
-                            style={{
-                              backgroundColor: getRandomColor(),
-                              cursor: item.link ? "pointer" : "default",
-                              opacity: item.link ? 1 : 0.6
-                            }}
-                            onClick={() => {
-                              if (item.link) {
-                                window.open(item.link, "_blank");
-                              } else {
-                                alert(`No link provided for ${item.title}`);
-                              }
-                            }}
-                          >
-                            {item.title}
-                          </div>
-                        ))
-                      ) : (
-                        <span className="text-gray-500">No research IDs added</span>
-                      )}
+                    <div className="flex flex-wrap">
+                      {researchIDs.map((item, index) => (
+                        <div
+                          key={index}
+                          className={`rounded-full mx-2 my-1 py-1 px-3 text-white text-sm font-semibold cursor-pointer ${
+                            colorClasses[item.title] ||
+                            "bg-green-500"
+                          }`}
+                          onClick={() => {
+                            if (item.link) {
+                              window.open(
+                                item.link,
+                                "_blank"
+                              );
+                            }
+                          }}
+                        >
+                          {item.title}
+                        </div>
+                      ))}
                     </div>
                   </td>
                 </tr>
+
               </tbody>
             </table>
           </div>
