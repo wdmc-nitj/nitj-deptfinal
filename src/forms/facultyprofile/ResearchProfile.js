@@ -1,10 +1,10 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { SERVER_URL } from "../../config/server";
 
 function getRandomColor() {
-  const colors = ["red", "blue", "green", "yellow", "purple", "pink"];
+  const colors = ["red", "blue", "green", "purple", "pink", "orange"];
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
@@ -15,13 +15,18 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
   const [researchLink, setResearchLink] = useState("");
   const [researchIDs, setResearchIDs] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const initialDataRef = useRef(null);
 
-  // Initialize data when component mounts or data changes
+  // Initialize data only once when component mounts or when data changes significantly
   useEffect(() => {
-    if (data) {
+    // Only update if data has actually changed
+    if (data && JSON.stringify(initialDataRef.current) !== JSON.stringify(data)) {
+      initialDataRef.current = data;
       setInterest(data["Research Interests"] || "");
       setResearchLink(data["Brief Research Profile"] || "");
       setResearchIDs(data["Research Id"] || []);
+      setIsDataLoaded(true);
     }
   }, [data]);
 
@@ -46,7 +51,7 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // IMPORTANT: Prevents page refresh
+    e.preventDefault();
     
     if (isSubmitting) {
       alert("⏳ Please wait, saving in progress...");
@@ -73,22 +78,33 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
         "Research Id": researchIDs,
       };
 
-      console.log("Submitting payload:", payload); // Debug log
+      console.log("Submitting payload:", payload);
 
       const response = await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=research_profile`,
         payload
       );
 
+      console.log("Response:", response.data);
+      
       alert("✅ Research profile updated successfully!");
       
+      // Update the initial data reference to match current state
+      initialDataRef.current = {
+        "Research Interests": interest,
+        "Brief Research Profile": researchLink,
+        "Research Id": researchIDs,
+      };
+      
+      // Call onUpdate callback if provided
       if (onUpdate) {
         onUpdate();
       }
       
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
+      // Optional: Don't reload, just keep editing
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 500);
 
     } catch (error) {
       console.error("Error submitting data:", error);
