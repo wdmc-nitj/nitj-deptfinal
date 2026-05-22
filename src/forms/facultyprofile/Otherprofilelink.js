@@ -1,92 +1,35 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { SERVER_URL } from "../../config/server";
 
-function Otherprofilelink({ edit, data, token, onUpdate }) {
+function Otherprofilelink({ edit, data, token }) {
   const dept = useLocation().pathname.split("/")[2];
-  const [personalLink, setPersonalLink] = useState("");
-  const [googleLink, setGoogleLink] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Initialize data when component mounts or data changes
-  useEffect(() => {
-    if (data && data.personal_link) {
-      // Check if personal_link is an object or string
-      if (typeof data.personal_link === 'object') {
-        setPersonalLink(data.personal_link["Personal Link"] || "");
-      } else {
-        setPersonalLink(data.personal_link || "");
-      }
-      setGoogleLink(data.personal_link?.["Google Scholar Link"] || "");
-    } else if (data) {
-      setPersonalLink("");
-      setGoogleLink("");
-    }
-  }, [data]);
-
+  const [link, setLink] = useState(
+    data["personal_link"] ? data["personal_link"]["Personal Link"] : ""
+  );
+  console.log(link);
+  const [googlelink, setGooglelink] = useState(
+    data["personal_link"] ? data["personal_link"]["Google Scholar Link"] : ""
+  );
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (isSubmitting) {
-      alert("⏳ Please wait, saving in progress...");
-      return;
+    let newRow = {};
+    const formdata = new FormData(e.target);
+    for (let [key, value] of formdata.entries()) {
+      newRow = {
+        ...newRow,
+        [key]: value,
+      };
     }
-
-    // Validate at least one link is provided
-    if (!personalLink && !googleLink) {
-      alert("⚠️ Please provide at least one link (Personal or Google Scholar)");
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    // Prepare data in the correct format
-    const newRow = {
-      "Personal Link": personalLink,
-      "Google Scholar Link": googleLink
-    };
-
     try {
       await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`,
         newRow
       );
-
-      alert("✅ Links updated successfully!");
-      
-      if (onUpdate) {
-        onUpdate();
-      }
-      
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
-
     } catch (error) {
-      console.error("Error updating links:", error);
-      
-      if (error.response) {
-        const status = error.response.status;
-        if (status === 401) {
-          alert("🔒 Unauthorized! Please login again.");
-        } else if (status === 404) {
-          alert("❌ Server endpoint not found.");
-        } else if (status === 500) {
-          alert("🔥 Server error! Please try again later.");
-        } else {
-          alert(`❌ Error: ${error.response.data?.message || "Something went wrong"}`);
-        }
-      } else if (error.request) {
-        alert("🌐 Network error! Please check your internet connection.");
-      } else {
-        alert("❌ Some error occurred while updating links.");
-      }
-    } finally {
-      setIsSubmitting(false);
+      //console.log(error);
     }
   };
-
   return (
     <div className="overflow-x-auto">
       {edit ? (
@@ -99,54 +42,39 @@ function Otherprofilelink({ edit, data, token, onUpdate }) {
               <div className="w-full px-3">
                 <label
                   className="block uppercase tracking-wide text-sm font-bold mb-2"
-                  htmlFor="personal-link"
+                  htmlhtmlFor="grid-password"
                 >
                   Personal Link
                 </label>
                 <textarea
-                  id="personal-link"
+                  type="text"
                   name="Personal Link"
                   className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"
-                  onChange={(e) => setPersonalLink(e.target.value)}
-                  value={personalLink}
-                  placeholder="Enter your personal website/portfolio URL"
-                  rows="2"
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Example: https://yourportfolio.com
-                </p>
+                  onChange={(e) => setLink(e.target.value)}
+                  value={link}
+                  placeholder="Title"
+                ></textarea>
               </div>
-              
-              <div className="w-full px-3 mt-4">
+              <div className="w-full px-3">
                 <label
                   className="block uppercase tracking-wide text-sm font-bold mb-2"
-                  htmlFor="google-scholar"
+                  htmlhtmlFor="grid-password"
                 >
                   Google Scholar Link
                 </label>
                 <textarea
-                  id="google-scholar"
+                  type="text"
                   name="Google Scholar Link"
                   className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"
-                  onChange={(e) => setGoogleLink(e.target.value)}
-                  value={googleLink}
-                  placeholder="Enter your Google Scholar profile URL"
-                  rows="2"
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Example: https://scholar.google.com/citations?user=xxxxx
-                </p>
+                  onChange={(e) => setGooglelink(e.target.value)}
+                  value={googlelink}
+                ></textarea>
               </div>
             </div>
-            
-            <div className="flex px-3 w-full justify-end gap-2">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 active:translate-y-[2px] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
-              >
+            <div className="flex px-3 w-full justify-end">
+              <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 active:translate-y-[2px] hover:shadow-xl">
                 <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md">
-                  {isSubmitting ? "⏳ Saving..." : "Submit"}
+                  Submit
                 </span>
               </button>
             </div>
@@ -156,60 +84,48 @@ function Otherprofilelink({ edit, data, token, onUpdate }) {
         <div className="overflow-x-auto relative my-2 scrollbar min-w-[570px]">
           <div className="flex max-w-full justify-between items-center p-4 shadow-md">
             <table className="text-sm sm:text-base">
-              <tbody>
-                {personalLink && personalLink.length > 0 && (
-                  <tr>
-                    <td className="font-bold pr-4 pl-2 py-2 align-top">
-                      Personal Link
-                    </td>
-                    <td className="text-sm font-bold pr-4 pl-2 py-2 align-top">
-                      :
-                    </td>
-                    <td className="align-top">
-                      <div
-                        onClick={() => {
-                          window.open(personalLink, "_blank");
-                        }}
-                        className="text-orange-400 hover:underline cursor-pointer"
-                      >
-                        {personalLink.length > 50 
-                          ? personalLink.substring(0, 50) + "..." 
-                          : personalLink}
-                      </div>
-                    </td>
-                  </tr>
-                )}
+              {link && link.length > 0 && (
+                <tr>
+                  <td className="font-bold pr-4 pl-2 py-2">Personal Link</td>
+                  <td className="text-sm font-bold pr-4 pl-2 py-2">:</td>
+                  <td>
+                    <div className="text-orange-400 hover:underline">
+                      {link.map((linkItem, index) => (
+                        <React.Fragment key={index}>
+                          <span
+                            onClick={() => {
+                              window.open(linkItem.link, "_blank");
+                            }}
+                          >
+                            {linkItem.title}
+                          </span>
 
-                {googleLink && googleLink.length > 0 && (
-                  <tr>
-                    <td className="font-bold pr-4 pl-2 py-2 align-top">
-                      Google Scholar Link
-                    </td>
-                    <td className="text-sm font-bold pr-4 pl-2 py-2 align-top">
-                      :
-                    </td>
-                    <td className="align-top">
-                      <div
-                        onClick={() => {
-                          window.open(googleLink, "_blank");
-                        }}
-                        className="text-orange-400 hover:underline cursor-pointer"
-                      >
-                        {data?.name || "Google Scholar Profile"}
-                      </div>
-                    </td>
-                  </tr>
-                )}
+                          {index !== link.length - 1 && <span>, </span>}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              )}
 
-                {(!personalLink || personalLink.length === 0) && 
-                 (!googleLink || googleLink.length === 0) && (
-                  <tr>
-                    <td className="font-bold pr-4 pl-2 py-2 text-gray-500">
-                      No links available
-                    </td>
-                  </tr>
-                )}
-              </tbody>
+              {googlelink && (
+                <tr>
+                  <td className="font-bold pr-4 pl-2 py-2">
+                    Google Scholar Link
+                  </td>
+                  <td className="text-sm font-bold pr-4 pl-2 py-2">:</td>
+                  <td>
+                    <div
+                      onClick={() => {
+                        window.open(googlelink, "_blank");
+                      }}
+                      className="text-orange-400 hover:underline"
+                    >
+                      {data["name"]}
+                    </div>
+                  </td>
+                </tr>
+              )}
             </table>
           </div>
         </div>
