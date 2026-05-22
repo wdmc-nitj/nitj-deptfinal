@@ -24,6 +24,15 @@ function BaseTable({
   const totalPage = Math.ceil(totalrow / row);
   const [page, setPage] = useState(1);
 
+  // Sort data for display
+  const sortedData = [...data]?.sort((b, c) => {
+    if (asec) {
+      return (b.Year || 0) - (c.Year || 0);
+    } else {
+      return (c.Year || 0) - (b.Year || 0);
+    }
+  });
+
   useEffect(() => {
     // Initialize form data based on edit mode
     if (Editfeild >= 0 && data[Editfeild]) {
@@ -40,13 +49,11 @@ function BaseTable({
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Prevent double submission
     if (isSubmitting) {
       alert("⏳ Please wait, saving in progress...");
       return;
     }
 
-    // Validation: Check if all fields are filled
     const missingFields = feild.filter(field => !changedata[field] || changedata[field].trim() === "");
     
     if (missingFields.length > 0) {
@@ -59,10 +66,8 @@ function BaseTable({
     let updatedData = [...data];
 
     if (Editfeild < 0) {
-      // Add new entry
       updatedData.push(changedata);
     } else {
-      // Edit existing entry
       updatedData[Editfeild] = changedata;
     }
 
@@ -72,14 +77,8 @@ function BaseTable({
         updatedData
       );
 
-      // Success alert
-      if (Editfeild < 0) {
-        alert("✅ Entry added successfully!");
-      } else {
-        alert("✅ Entry updated successfully!");
-      }
+      alert(Editfeild < 0 ? "✅ Entry added successfully!" : "✅ Entry updated successfully!");
       
-      // Reload after a short delay so user can see the success message
       setTimeout(() => {
         window.location.reload();
       }, 500);
@@ -87,9 +86,7 @@ function BaseTable({
     } catch (error) {
       console.log(error);
       
-      // Detailed error messages
       if (error.response) {
-        // Server responded with error
         const status = error.response.status;
         const message = error.response.data?.message || error.response.data;
         
@@ -103,10 +100,8 @@ function BaseTable({
           alert(`❌ Error (${status}): ${message || "Something went wrong"}`);
         }
       } else if (error.request) {
-        // Request was made but no response
         alert("🌐 Network error! Please check your internet connection.");
       } else {
-        // Other errors
         alert(`❌ ${error.message || "An unexpected error occurred"}`);
       }
     } finally {
@@ -114,24 +109,40 @@ function BaseTable({
     }
   };
 
-  const handleDelete = async (index) => {
-    // Get item details for better confirmation message
-    const itemToDelete = data[index];
-    const itemIdentifier = itemToDelete?.Name || itemToDelete?.Title || `entry ${index + 1}`;
+  const handleDelete = async (itemToDelete) => {
+    // Find the actual index in the original data array
+    const originalIndex = data.findIndex(item => {
+      // Try to match by unique identifier or content
+      if (item._id && itemToDelete._id) {
+        return item._id === itemToDelete._id;
+      }
+      // Fallback to comparing all fields (less reliable but works)
+      return JSON.stringify(item) === JSON.stringify(itemToDelete);
+    });
     
-    if (!window.confirm(`⚠️ Are you sure you want to delete "${itemIdentifier}"?\n\nThis action cannot be undone!`)) {
+    if (originalIndex === -1) {
+      alert("❌ Could not find the item to delete");
+      return;
+    }
+
+    const itemIdentifier = itemToDelete?.Name || 
+                          itemToDelete?.Title || 
+                          itemToDelete?.["AUTHOR + TITLE"] || 
+                          itemToDelete?.[feild[0]] ||
+                          `entry`;
+    
+    if (!window.confirm(`⚠️ Are you sure you want to delete "${itemIdentifier.substring(0, 100)}"?\n\nThis action cannot be undone!`)) {
       return;
     }
     
-    const newRow = data.filter((val, ind) => ind !== index);
+    const newRow = data.filter((val, ind) => ind !== originalIndex);
     try {
       await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=${title}`,
         newRow
       );
       
-      // Success alert for delete
-      alert(`🗑️ "${itemIdentifier}" has been deleted successfully!`);
+      alert(`🗑️ Entry has been deleted successfully!`);
       
       setTimeout(() => {
         window.location.reload();
@@ -140,7 +151,6 @@ function BaseTable({
     } catch (error) {
       console.log(error);
       
-      // Detailed error for delete
       if (error.response) {
         alert(`❌ Failed to delete: ${error.response.data?.message || "Server error"}`);
       } else if (error.request) {
@@ -271,63 +281,60 @@ function BaseTable({
                 </tr>
               </thead>
               <tbody>
-                {[...data]
-                  ?.sort((b, c) => {
-                    if (asec) {
-                      return (b.Year || 0) - (c.Year || 0);
-                    } else {
-                      return (c.Year || 0) - (b.Year || 0);
-                    }
-                  })
-                  ?.map((Item, i) => {
-                    if (i >= row * (page - 1) && i < row * page) {
-                      return (
-                        <tr key={i} className="border-b hover:bg-gray-50">
-                          <td className="align-top px-6 py-4 text-gray-900 border-r">{i + 1}</td>
-                          {feild.map((item, j) => (
-                            <td
-                              key={`${i}-${j}`}
-                              className="align-top px-6 py-4 text-gray-900 border-r"
+                {sortedData?.map((Item, displayIndex) => {
+                  if (displayIndex >= row * (page - 1) && displayIndex < row * page) {
+                    // Find the actual index in original data
+                    const actualIndex = data.findIndex(originalItem => 
+                      JSON.stringify(originalItem) === JSON.stringify(Item)
+                    );
+                    
+                    return (
+                      <tr key={actualIndex} className="border-b hover:bg-gray-50">
+                        <td className="align-top px-6 py-4 text-gray-900 border-r">{displayIndex + 1}</td>
+                        {feild.map((item, j) => (
+                          <td
+                            key={`${actualIndex}-${j}`}
+                            className="align-top px-6 py-4 text-gray-900 border-r"
+                          >
+                            {item === "Link" ? (
+                              <a 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                href={Item[item]}
+                                className="text-blue-600 hover:text-blue-800"
+                              >
+                                <i className="fa-solid fa-link"></i> View Link
+                              </a>
+                            ) : (
+                              <span className="break-words whitespace-pre-wrap">
+                                {Item[item] || "-"}
+                              </span>
+                            )}
+                          </td>
+                        ))}
+                        {data.length > 0 && isLogin && (
+                          <td className="text-blue-700 font-bold px-6 py-4">
+                            <button
+                              className="active:scale-[0.98] cursor-pointer text-blue-600 hover:text-blue-800 mr-3"
+                              onClick={() => {
+                                HandleEdit(actualIndex); // Pass actual index
+                              }}
                             >
-                              {item === "Link" ? (
-                                <a 
-                                  target="_blank" 
-                                  rel="noopener noreferrer" 
-                                  href={Item[item]}
-                                  className="text-blue-600 hover:text-blue-800"
-                                >
-                                  <i className="fa-solid fa-link"></i> View Link
-                                </a>
-                              ) : (
-                                <span className="break-words whitespace-pre-wrap">
-                                  {Item[item] || "-"}
-                                </span>
-                              )}
-                             </td>
-                          ))}
-                          {data.length > 0 && isLogin && (
-                            <td className="text-blue-700 font-bold px-6 py-4">
-                              <button
-                                className="active:scale-[0.98] cursor-pointer text-blue-600 hover:text-blue-800 mr-3"
-                                onClick={() => {
-                                  HandleEdit(i);
-                                }}
-                              >
-                                <i className="fa-solid fa-edit"></i> Edit
-                              </button>
-                              <button
-                                className="active:scale-[0.98] cursor-pointer text-red-600 hover:text-red-800"
-                                onClick={() => handleDelete(i)}
-                              >
-                                <i className="fa-solid fa-trash"></i> Delete
-                              </button>
-                             </td>
-                          )}
-                        </tr>
-                      );
-                    }
-                    return null;
-                  })}
+                              <i className="fa-solid fa-edit"></i> Edit
+                            </button>
+                            <button
+                              className="active:scale-[0.98] cursor-pointer text-red-600 hover:text-red-800"
+                              onClick={() => handleDelete(Item)} // Pass the object
+                            >
+                              <i className="fa-solid fa-trash"></i> Delete
+                            </button>
+                          </td>
+                        )}
+                      </tr>
+                    );
+                  }
+                  return null;
+                })}
               </tbody>
             </table>
             {data?.length === 0 && (
