@@ -3,10 +3,23 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { SERVER_URL } from "../../config/server";
 
+// COLOR CLASSES
 const colorClasses = {
   VIDWAAN: "bg-red-500",
   PUBLONS: "bg-blue-500",
+  ORCID: "bg-green-600",
+  Scopus: "bg-orange-500",
+  ResearchGate: "bg-cyan-600",
 };
+
+// RESEARCH PLATFORMS
+const researchPlatforms = [
+  "VIDWAAN",
+  "PUBLONS",
+  "ORCID",
+  "Scopus",
+  "ResearchGate",
+];
 
 function ResearchProfile({ edit, data, faculty, token }) {
   const dept = useLocation().pathname.split("/")[2];
@@ -25,11 +38,15 @@ function ResearchProfile({ edit, data, faculty, token }) {
 
   // HANDLE CHECKBOX
   const handleCheckboxChange = (platform) => {
-    const isSelected = researchIDs.some((id) => id.title === platform);
+    const isSelected = researchIDs.some(
+      (id) => id.title === platform
+    );
 
     if (isSelected) {
       setResearchIDs(
-        researchIDs.filter((id) => id.title !== platform)
+        researchIDs.filter(
+          (id) => id.title !== platform
+        )
       );
     } else {
       setResearchIDs([
@@ -72,13 +89,23 @@ function ResearchProfile({ edit, data, faculty, token }) {
         }
       );
 
-      console.log("Update Success:", response.data);
+      console.log(
+        "Research Profile Updated:",
+        response.data
+      );
 
-      alert("Research Profile Updated Successfully ✅");
+      alert(
+        "Research Profile Updated Successfully ✅"
+      );
     } catch (error) {
-      console.error("Error submitting data:", error);
+      console.error(
+        "Error submitting data:",
+        error
+      );
 
-      alert("Failed to Update Research Profile ❌");
+      alert(
+        "Failed to Update Research Profile ❌"
+      );
     }
   };
 
@@ -91,7 +118,7 @@ function ResearchProfile({ edit, data, faculty, token }) {
             onSubmit={handleSubmit}
           >
             <div className="flex flex-wrap -mx-3 mb-6">
-              
+
               {/* RESEARCH INTERESTS */}
               <div className="w-full px-3">
                 <label className="block uppercase tracking-wide text-sm font-bold mb-2">
@@ -101,13 +128,15 @@ function ResearchProfile({ edit, data, faculty, token }) {
                 <textarea
                   className="appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 mb-3 shadow-inner leading-tight focus:outline-none"
                   name="Research Interests"
-                  onChange={(e) => setInterest(e.target.value)}
+                  onChange={(e) =>
+                    setInterest(e.target.value)
+                  }
                   value={interest}
                   placeholder="Research Interests"
                 />
               </div>
 
-              {/* RESEARCH PROFILE */}
+              {/* BRIEF RESEARCH PROFILE */}
               <div className="w-full px-3">
                 <label className="block uppercase tracking-wide text-sm font-bold mb-2">
                   Brief Research Profile
@@ -116,7 +145,9 @@ function ResearchProfile({ edit, data, faculty, token }) {
                 <textarea
                   className="appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none shadow-inner"
                   name="Brief Research Profile"
-                  onChange={(e) => setResearchLink(e.target.value)}
+                  onChange={(e) =>
+                    setResearchLink(e.target.value)
+                  }
                   value={researchLink}
                   placeholder="Brief Research Profile"
                 />
@@ -128,75 +159,50 @@ function ResearchProfile({ edit, data, faculty, token }) {
                   Research IDs
                 </label>
 
-                {/* VIDWAAN */}
-                <div className="flex items-center gap-3 mb-3">
-                  <label className="inline-flex items-center">
+                {researchPlatforms.map((platform) => (
+                  <div
+                    key={platform}
+                    className="flex items-center gap-3 mb-3"
+                  >
+                    <label className="inline-flex items-center min-w-[150px]">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox h-5 w-5 text-indigo-600"
+                        checked={researchIDs.some(
+                          (id) =>
+                            id.title === platform
+                        )}
+                        onChange={() =>
+                          handleCheckboxChange(
+                            platform
+                          )
+                        }
+                      />
+
+                      <span className="ml-2">
+                        {platform}
+                      </span>
+                    </label>
+
                     <input
-                      type="checkbox"
-                      className="form-checkbox h-5 w-5 text-indigo-600"
-                      checked={researchIDs.some(
-                        (id) => id.title === "VIDWAAN"
-                      )}
-                      onChange={() =>
-                        handleCheckboxChange("VIDWAAN")
+                      className="appearance-none block flex-1 bg-gray-200 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none shadow-inner"
+                      type="text"
+                      placeholder={`${platform} Link`}
+                      value={
+                        researchIDs.find(
+                          (id) =>
+                            id.title === platform
+                        )?.link || ""
+                      }
+                      onChange={(e) =>
+                        handleLinkChange(
+                          platform,
+                          e.target.value
+                        )
                       }
                     />
-
-                    <span className="ml-2">VIDWAAN</span>
-                  </label>
-
-                  <input
-                    className="appearance-none block w-1/2 bg-gray-200 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none shadow-inner"
-                    type="text"
-                    placeholder="VIDWAAN Link"
-                    value={
-                      researchIDs.find(
-                        (id) => id.title === "VIDWAAN"
-                      )?.link || ""
-                    }
-                    onChange={(e) =>
-                      handleLinkChange(
-                        "VIDWAAN",
-                        e.target.value
-                      )
-                    }
-                  />
-                </div>
-
-                {/* PUBLONS */}
-                <div className="flex items-center gap-3 mb-3">
-                  <label className="inline-flex items-center">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox h-5 w-5 text-indigo-600"
-                      checked={researchIDs.some(
-                        (id) => id.title === "PUBLONS"
-                      )}
-                      onChange={() =>
-                        handleCheckboxChange("PUBLONS")
-                      }
-                    />
-
-                    <span className="ml-2">PUBLONS</span>
-                  </label>
-
-                  <input
-                    className="appearance-none block w-1/2 bg-gray-200 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none shadow-inner"
-                    type="text"
-                    placeholder="PUBLONS Link"
-                    value={
-                      researchIDs.find(
-                        (id) => id.title === "PUBLONS"
-                      )?.link || ""
-                    }
-                    onChange={(e) =>
-                      handleLinkChange(
-                        "PUBLONS",
-                        e.target.value
-                      )
-                    }
-                  />
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -234,13 +240,13 @@ function ResearchProfile({ edit, data, faculty, token }) {
                   </td>
                 </tr>
 
-                {/* RESEARCH PROFILE */}
+                {/* BRIEF PROFILE */}
                 <tr>
                   <td className="w-48 align-top font-bold pr-4 pl-2 py-2">
                     Brief Research Profile
                   </td>
 
-                  <td className="align-top text-sm font-bold pr-4 pl-2 py-2">
+                  <td className="align-top font-bold pr-4 pl-2 py-2">
                     :
                   </td>
 
@@ -255,31 +261,34 @@ function ResearchProfile({ edit, data, faculty, token }) {
                     Research IDs
                   </td>
 
-                  <td className="align-top text-sm font-bold pr-4 pl-2 py-2">
+                  <td className="align-top font-bold pr-4 pl-2 py-2">
                     :
                   </td>
 
                   <td className="align-top pr-4 pl-2 py-2">
                     <div className="flex flex-wrap">
-                      {researchIDs.map((item, index) => (
-                        <div
-                          key={index}
-                          className={`rounded-full mx-2 my-1 py-1 px-3 text-white text-sm font-semibold cursor-pointer ${
-                            colorClasses[item.title] ||
-                            "bg-green-500"
-                          }`}
-                          onClick={() => {
-                            if (item.link) {
-                              window.open(
-                                item.link,
-                                "_blank"
-                              );
-                            }
-                          }}
-                        >
-                          {item.title}
-                        </div>
-                      ))}
+                      {researchIDs.map(
+                        (item, index) => (
+                          <div
+                            key={index}
+                            className={`rounded-full mx-2 my-1 py-1 px-3 text-white text-sm font-semibold cursor-pointer ${
+                              colorClasses[
+                                item.title
+                              ] || "bg-gray-500"
+                            }`}
+                            onClick={() => {
+                              if (item.link) {
+                                window.open(
+                                  item.link,
+                                  "_blank"
+                                );
+                              }
+                            }}
+                          >
+                            {item.title}
+                          </div>
+                        )
+                      )}
                     </div>
                   </td>
                 </tr>
