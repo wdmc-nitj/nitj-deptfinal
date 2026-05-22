@@ -15,28 +15,34 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
   const [researchLink, setResearchLink] = useState("");
   const [researchIDs, setResearchIDs] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
   const initialDataRef = useRef(null);
 
   // Initialize data only once when component mounts or when data changes significantly
   useEffect(() => {
-    // Only update if data has actually changed
     if (data && JSON.stringify(initialDataRef.current) !== JSON.stringify(data)) {
       initialDataRef.current = data;
       setInterest(data["Research Interests"] || "");
       setResearchLink(data["Brief Research Profile"] || "");
       setResearchIDs(data["Research Id"] || []);
-      setIsDataLoaded(true);
+      console.log("Loaded research IDs:", data["Research Id"]);
     }
   }, [data]);
 
   const handleCheckboxChange = (platform) => {
     const isSelected = researchIDs.some((id) => id.title === platform);
+    let updatedResearchIDs;
+    
     if (isSelected) {
-      setResearchIDs(researchIDs.filter((id) => id.title !== platform));
+      // Remove the platform
+      updatedResearchIDs = researchIDs.filter((id) => id.title !== platform);
+      console.log(`Removed ${platform}, remaining:`, updatedResearchIDs);
     } else {
-      setResearchIDs([...researchIDs, { title: platform, link: "" }]);
+      // Add the platform
+      updatedResearchIDs = [...researchIDs, { title: platform, link: "" }];
+      console.log(`Added ${platform}, new list:`, updatedResearchIDs);
     }
+    
+    setResearchIDs(updatedResearchIDs);
   };
 
   const handleLinkChange = (title, link) => {
@@ -52,6 +58,9 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    console.log("Submit button clicked");
+    console.log("Current researchIDs before submit:", researchIDs);
     
     if (isSubmitting) {
       alert("⏳ Please wait, saving in progress...");
@@ -78,14 +87,15 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
         "Research Id": researchIDs,
       };
 
-      console.log("Submitting payload:", payload);
+      console.log("Submitting payload:", JSON.stringify(payload, null, 2));
 
       const response = await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=research_profile`,
         payload
       );
 
-      console.log("Response:", response.data);
+      console.log("Response status:", response.status);
+      console.log("Response data:", response.data);
       
       alert("✅ Research profile updated successfully!");
       
@@ -100,16 +110,14 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
       if (onUpdate) {
         onUpdate();
       }
-      
-      // Optional: Don't reload, just keep editing
-      // setTimeout(() => {
-      //   window.location.reload();
-      // }, 500);
 
     } catch (error) {
       console.error("Error submitting data:", error);
       
       if (error.response) {
+        console.error("Error response data:", error.response.data);
+        console.error("Error response status:", error.response.status);
+        
         const status = error.response.status;
         const message = error.response.data?.message || error.response.data;
         
@@ -123,8 +131,10 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
           alert(`❌ Error (${status}): ${message || "Something went wrong"}`);
         }
       } else if (error.request) {
+        console.error("No response received:", error.request);
         alert("🌐 Network error! Please check your internet connection.");
       } else {
+        console.error("Error message:", error.message);
         alert("❌ Some error occurred while updating research profile.");
       }
     } finally {
@@ -206,6 +216,16 @@ function ResearchProfile({ edit, data, faculty, token, onUpdate }) {
                     />
                   </div>
                 ))}
+                
+                {/* Debug info - shows current researchIDs state */}
+                <div className="mt-4 p-2 bg-gray-100 rounded text-xs">
+                  <details>
+                    <summary className="cursor-pointer font-bold">Debug: Current Research IDs ({researchIDs.length})</summary>
+                    <pre className="mt-2 overflow-auto">
+                      {JSON.stringify(researchIDs, null, 2)}
+                    </pre>
+                  </details>
+                </div>
                 
                 {researchIDs.length === 0 && (
                   <p className="text-gray-500 text-sm mt-2">
