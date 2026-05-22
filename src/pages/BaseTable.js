@@ -37,26 +37,69 @@ function BaseTable({
   }, [Editfeild, data]);
   //console.log(title);
 
+  // const handleSubmit = async (e) => {
+  //   let newRow = {};
+  //   const formdata = new FormData(e.target);
+  //   for (let [key, value] of formdata.entries()) {
+  //     newRow = {
+  //       ...newRow,
+  //       [key]: value,
+  //     };
+  //   }
+  //   if (Editfeild < 0) data.push(newRow);
+  //   else data[Editfeild] = newRow;
+  //   try {
+  //     await axios.put(
+  //       `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=${title}`,
+  //       data
+  //     );
+  //   } catch (error) {
+  //     //console.log(error);
+  //   }
+  // };
+
+
   const handleSubmit = async (e) => {
-    let newRow = {};
-    const formdata = new FormData(e.target);
-    for (let [key, value] of formdata.entries()) {
-      newRow = {
-        ...newRow,
-        [key]: value,
-      };
-    }
-    if (Editfeild < 0) data.push(newRow);
-    else data[Editfeild] = newRow;
-    try {
-      await axios.put(
-        `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=${title}`,
-        data
-      );
-    } catch (error) {
-      //console.log(error);
-    }
-  };
+  e.preventDefault(); // IMPORTANT
+
+  let newRow = {};
+
+  const formdata = new FormData(e.target);
+
+  for (let [key, value] of formdata.entries()) {
+    newRow = {
+      ...newRow,
+      [key]: value,
+    };
+  }
+
+  let updatedData = [...data];
+
+  if (Editfeild < 0) {
+    updatedData.push(newRow);
+  } else {
+    updatedData[Editfeild] = newRow;
+  }
+
+  try {
+    const response = await axios.put(
+      `${SERVER_URL}/dept/${dept}/Faculty/${faculty._id}/${token}?q=${title}`,
+      updatedData
+    );
+
+    alert("Data saved successfully");
+
+    window.location.reload();
+
+  } catch (error) {
+    console.log(error);
+
+    alert(
+      error?.response?.data || "Some error occurred while saving"
+    );
+  }
+};
+
 
   const handleDelete = async (index) => {
     const newRow = data.filter((val, ind) => ind !== index);
