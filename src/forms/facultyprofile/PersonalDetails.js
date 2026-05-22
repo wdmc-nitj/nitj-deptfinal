@@ -404,7 +404,7 @@ function PersonalDetails({ edit, data, token, onUpdate }) {
                     {editAddress?.phone || "-"}
                   </td>
                 </tr>
-                {editImg && (
+                {/* {editImg && (
                   <tr>
                     <td className="w-48 align-top font-bold pr-4 pl-2 py-2">
                       Image
@@ -414,7 +414,7 @@ function PersonalDetails({ edit, data, token, onUpdate }) {
                       <img src={editImg} alt="Profile" className="w-32 h-32 object-cover rounded" />
                     </td>
                   </tr>
-                )}
+                )} */}
               </tbody>
             </table>
           </div>
