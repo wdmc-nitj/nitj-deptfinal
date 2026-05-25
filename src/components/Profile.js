@@ -32,282 +32,229 @@ function Profile({ peopleType }) {
   const id = useLocation().pathname.split("/").at(-1);
   let token = "";
 
-const handlePdfClicker = () => {
-  const profileData = data?.data[0];
+  const handlePdfClicker = () => {
+    const profileData = data?.data[0];
 
-  const styles = StyleSheet.create({
-    page: {
-      padding: 30,
-      fontFamily: "Helvetica",
-      backgroundColor: "#f5f5f5",
-    },
+    const styles = StyleSheet.create({
+      page: {
+        fontFamily: "Helvetica",
+        padding: 30,
+      },
+      section: {
+        marginBottom: 10,
+      },
+      title: {
+        fontSize: 16,
+        fontWeight: "bold",
+        marginBottom: 5,
+        paddingBottom: 5,
+        paddingTop: 5,
+      },
+      text: {
+        fontSize: 12,
+        marginBottom: 3,
+      },
+      table: {
+        display: "flex",
+        flexDirection: "column",
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "#000",
+        marginBottom: 10,
+        width: "100%",
+      },
+      tableCell: {
+        padding: 5,
+        flexGrow: 1,
+        flexShrink: 1,
+        borderRightWidth: 1,
+        borderRightColor: "#000",
+        textAlign: "left",
+        wordWrap: "wrap",
+        fontSize: 10,
+        pageBreakInside: "avoid",
+      },
+      tableHeader: {
+        padding: 5,
+        fontWeight: "bold",
+        flexGrow: 1,
+        flexShrink: 1,
+        borderRightWidth: 1,
+        borderRightColor: "#000",
+        textAlign: "center",
+        fontSize: 16,
+      },
+      tableRow: {
+        flexDirection: "row",
+        borderBottomWidth: 1,
+        borderBottomColor: "#000",
+        flexWrap: "wrap",
+        pageBreakInside: "avoid",
+      },
+      tableCol: {
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "#000",
+        padding: 5,
+        textAlign: "center",
+      },
+      heading: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginBottom: 10,
+        textAlign: "center",
+      },
+      subheading: {
+        fontSize: 16,
+        fontWeight: "bold",
+        marginBottom: 5,
+      },
+    });
 
-    profileContainer: {
-      backgroundColor: "#ffffff",
-      padding: 20,
-      borderRadius: 10,
-      marginBottom: 20,
-      border: "1px solid #d1d5db",
-    },
-
-    headerRow: {
-      flexDirection: "row",
-      alignItems: "center",
-      marginBottom: 20,
-    },
-
-    image: {
-      width: 110,
-      height: 110,
-      borderRadius: 8,
-      marginRight: 20,
-      objectFit: "cover",
-    },
-
-    profileInfo: {
-      flex: 1,
-    },
-
-    name: {
-      fontSize: 24,
-      fontWeight: "bold",
-      color: "#1e3a8a",
-      marginBottom: 8,
-    },
-
-    designation: {
-      fontSize: 14,
-      marginBottom: 5,
-      color: "#374151",
-    },
-
-    sectionTitle: {
-      backgroundColor: "#dbeafe",
-      color: "#1e3a8a",
-      padding: 8,
-      fontSize: 16,
-      fontWeight: "bold",
-      marginTop: 15,
-      marginBottom: 10,
-      borderRadius: 4,
-    },
-
-    text: {
-      fontSize: 11,
-      marginBottom: 5,
-      lineHeight: 1.5,
-      color: "#111827",
-    },
-
-    table: {
-      width: "100%",
-      borderStyle: "solid",
-      borderWidth: 1,
-      borderColor: "#cbd5e1",
-      marginBottom: 20,
-      backgroundColor: "#ffffff",
-    },
-
-    tableRow: {
-      flexDirection: "row",
-    },
-
-    tableHeader: {
-      backgroundColor: "#e5e7eb",
-      fontWeight: "bold",
-      fontSize: 11,
-      padding: 6,
-      borderRightWidth: 1,
-      borderBottomWidth: 1,
-      borderColor: "#cbd5e1",
-      flex: 1,
-      textAlign: "center",
-    },
-
-    tableCell: {
-      fontSize: 10,
-      padding: 6,
-      borderRightWidth: 1,
-      borderBottomWidth: 1,
-      borderColor: "#e5e7eb",
-      flex: 1,
-    },
-
-    link: {
-      color: "#2563eb",
-      textDecoration: "underline",
-      fontSize: 11,
-    },
-  });
-
-  const MyDocument = () => (
-    <Document>
-      <Page size="A4" style={styles.page} wrap>
-
-        {/* Profile Section */}
-        <View style={styles.profileContainer}>
-
-          <View style={styles.headerRow}>
-
+    const MyDocument = () => {
+      return (
+      <Document>
+        <Page size="A4" style={styles.page}>
+          <View style={styles.section}>
             <Image
-              src={
-                profileData?.img
-                  ? profileData.img
-                  : "https://via.placeholder.com/110"
-              }
-              style={styles.image}
+              src={profileData?.img}
+              style={{ width: 100, height: 100, marginBottom: 10 }}
             />
 
-            <View style={styles.profileInfo}>
-              <Text style={styles.name}>
-                {profileData?.name || "Faculty Name"}
-              </Text>
-
-              {profileData?.designation && (
-                <Text style={styles.designation}>
-                  Designation: {profileData.designation}
-                </Text>
-              )}
-
-              {profileData?.department && (
-                <Text style={styles.designation}>
-                  Department: {profileData.department.toUpperCase()}
-                </Text>
-              )}
-
-              {profileData?.email && (
-                <Text style={styles.designation}>
-                  Email: {profileData.email}
-                </Text>
-              )}
-            </View>
-
-          </View>
-
-          {/* Qualification */}
-          <Text style={styles.sectionTitle}>
-            Education Qualification
-          </Text>
-
-          {profileData?.education_qualification?.map((q, i) => (
-            <Text key={i} style={styles.text}>
-              • {q.degree} {q.field} ({q.clg}) {q.year}
-            </Text>
-          ))}
-
-          {/* Research Interests */}
-          {profileData?.research_profile?.["Research Interests"]?.length > 0 && (
-            <>
-              <Text style={styles.sectionTitle}>
-                Research Interests
-              </Text>
-
-              {profileData.research_profile["Research Interests"].map(
-                (interest, i) => (
-                  <Text key={i} style={styles.text}>
-                    • {interest}
+            <Text style={styles.title}>{profileData?.name}</Text>
+        { profileData.designation &&   <Text style={styles.text}>
+              Designation: {profileData?.designation}
+            </Text>}
+            {profileData.department && <Text style={styles.text}>
+              Department: {profileData?.department.toString().toUpperCase()}
+            </Text>}
+            <Text style={styles.text}>Qualifications: </Text>
+            {profileData.education_qualification && profileData.education_qualification.map((qualification) => {
+              return (
+                qualification["degree"] != null && (
+                  <Text style={styles.text}>
+                    {qualification["degree"] +
+                      " " +
+                      qualification["field"] +
+                      "(" +
+                      qualification["clg"] +
+                      ")" +
+                      "\n"}
                   </Text>
                 )
-              )}
-            </>
+              );
+            })}
+          </View>
+          {profileData.email && <Text style={styles.text}>Email: {profileData?.email}</Text>}
+
+          {/* Research Interests */}
+          {profileData.research_profile && profileData.research_profile["Research Interests"] && profileData.research_profile["Research Interests"].length>0 && (
+            <View>
+              <Text style={styles.title}>Research Interests</Text>
+              {profileData?.research_profile["Research Interests"].map(researchInterest=>{
+                return (
+                  <Text style={styles.text}>
+                  {researchInterest}
+                </Text>
+                )
+              })}
+             
+            </View>
           )}
 
-          {/* Profile Links */}
-          <Text style={styles.sectionTitle}>
-            Profile Links
-          </Text>
+          {/* Other Profile Links */}
+          <Text style={styles.title}>Other Profile Links</Text>
 
-          {profileData?.personal_link?.["Google Scholar Link"] && (
+          {profileData["personal_link"] && profileData["personal_link"]["Google Scholar Link"] && (
             <Text style={styles.text}>
-              Google Scholar:
-              {" "}
-              <L
-                src={profileData.personal_link["Google Scholar Link"]}
-                style={styles.link}
-              >
-                Open Link
+              Google Scholar Link:{" "}
+              <L src={profileData["personal_link"]["Google Scholar Link"]}>
+                Link
               </L>
             </Text>
           )}
 
-          {profileData?.personal_link?.["Personal Link"]?.map(
-            (item, i) => (
-              <Text key={i} style={styles.text}>
-                {item.title} :
-                {" "}
-                <L src={item.link} style={styles.link}>
-                  Visit
-                </L>
-              </Text>
-            )
+          {profileData["personal_link"] && profileData.personal_link["Personal Link"]&& profileData.personal_link["Personal Link"].length>0 && (
+            <Text style={styles.text}>
+              Personal Link:{" "}
+              {
+                profileData.personal_link["Personal Link"].map((personaLink)=>{
+                  return (
+                    <L src={personaLink['link']}>{personaLink['title']}</L>
+                  )
+                })
+              }
+            </Text>
           )}
 
-        </View>
+          {/* Starting of Tables */}
 
-        {/* Dynamic Tables */}
-        {Link.map((tables, index) => {
-          if (
-            "thead" in tables &&
-            profileData[map[tables.Title]]?.length > 0
-          ) {
-            return (
-              <View key={index} wrap={false}>
-
-                <Text style={styles.sectionTitle}>
-                  {tables.Title}
-                </Text>
-
-                <View style={styles.table}>
-
-                  {/* Header */}
-                  <View style={styles.tableRow}>
-                    {tables.thead.map((header, i) => (
-                      <Text key={i} style={styles.tableHeader}>
-                        {header}
-                      </Text>
-                    ))}
-                  </View>
-
-                  {/* Rows */}
-                  {profileData[map[tables.Title]].map((row, rowIndex) => (
-                    <View key={rowIndex} style={styles.tableRow}>
-
-                      {tables.feild.map((field, colIndex) => (
-                        <Text key={colIndex} style={styles.tableCell}>
-
-                          {field === "Link" &&
-                          row[field] ? (
-                            <L src={row[field]} style={styles.link}>
-                              Link
-                            </L>
-                          ) : (
-                            row[field] || "-"
-                          )}
-
-                        </Text>
-                      ))}
-
+          {Link.map((tables) => {
+            if (
+              "thead" in tables &&
+              profileData[map[tables.Title]]?.length > 0
+            ) {
+              return (
+                <View>
+                  <Text style={styles.title}>{tables.Title}</Text>
+                  <View style={styles.table}>
+                    <View style={styles.tableRow}>
+                      {tables.thead.map((header) => {
+                        return (
+                          <Text
+                            style={{
+                              ...styles.tableHeader,
+                              flexBasis: `${100 / tables["thead"].length}%`,
+                            }}
+                          >
+                            {header}
+                          </Text>
+                        );
+                      })}
                     </View>
-                  ))}
 
+                    {profileData[map[tables.Title]].map((data) => {
+                      return (
+                        <View style={styles.tableRow}>
+                          {tables.feild.map((field) => {
+                            return (
+                              <Text
+                                style={{
+                                  ...styles.tableCell,
+                                  flexBasis: `${100 / tables["thead"].length}%`,
+                                }}
+                              >
+                                {field === "Link" &&
+                                data[field] != null &&
+                                data[field] != undefined ? (
+                                  <L src={data[field]}>Link</L>
+                                ) : (
+                                  data[field] ?? "Not Available"
+                                )}
+                              </Text>
+                            );
+                          })}
+                        </View>
+                      );
+                    })}
+                  </View>
                 </View>
+              );
+            }
+          })}
+        </Page>
+      </Document>
+    )};
+    // console.log("Image URL:", profileData.img);
 
-              </View>
-            );
-          }
-        })}
 
-      </Page>
-    </Document>
-  );
-
-  ReactDOM.render(
-    <PDFViewer width="100%" height="100%">
-      <MyDocument />
-    </PDFViewer>,
-    document.getElementById("root")
-  );
-};
+    ReactDOM.render(
+      <PDFViewer height={"100%"} width={"100%"}>
+        <MyDocument />
+      </PDFViewer>,
+      document.getElementById("root")
+    );
+  };
 
   if (document.cookie) {
     const initialArr = document.cookie.split(";");
