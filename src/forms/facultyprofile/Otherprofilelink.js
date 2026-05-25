@@ -5,31 +5,105 @@ import { SERVER_URL } from "../../config/server";
 
 function Otherprofilelink({ edit, data, token }) {
   const dept = useLocation().pathname.split("/")[2];
-  const [link, setLink] = useState(
-    data["personal_link"] ? data["personal_link"]["Personal Link"] : ""
+
+  // PERSONAL LINKS ARRAY
+  const [links, setLinks] = useState(
+    data?.personal_link?.["Personal Link"] || [
+      {
+        title: "",
+        link: "",
+      },
+    ]
   );
-  console.log(link);
+
+  // GOOGLE SCHOLAR
   const [googlelink, setGooglelink] = useState(
-    data["personal_link"] ? data["personal_link"]["Google Scholar Link"] : ""
+    data?.personal_link?.["Google Scholar Link"] || ""
   );
+
+  // HANDLE PERSONAL LINK CHANGE
+  const handleLinkChange = (index, field, value) => {
+    const updatedLinks = [...links];
+
+    updatedLinks[index][field] = value;
+
+    setLinks(updatedLinks);
+  };
+
+  // ADD NEW LINK
+  const addLink = () => {
+    setLinks([
+      ...links,
+      {
+        title: "",
+        link: "",
+      },
+    ]);
+  };
+
+  // REMOVE LINK
+  const removeLink = (index) => {
+    const updatedLinks = links.filter(
+      (_, i) => i !== index
+    );
+
+    setLinks(updatedLinks);
+  };
+
+  // HANDLE SUBMIT
   const handleSubmit = async (e) => {
-    let newRow = {};
-    const formdata = new FormData(e.target);
-    for (let [key, value] of formdata.entries()) {
-      newRow = {
-        ...newRow,
-        [key]: value,
-      };
-    }
+    e.preventDefault();
+
     try {
-      await axios.put(
+      // REMOVE EMPTY LINKS
+      const cleanedLinks = links.filter(
+        (item) =>
+          item.title.trim() !== "" &&
+          item.link.trim() !== ""
+      );
+
+      const newRow = {
+        "Personal Link": cleanedLinks,
+        "Google Scholar Link": googlelink,
+      };
+
+      console.log("Sending:", newRow);
+
+      const response = await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`,
         newRow
       );
+
+      console.log(response.data);
+
+      alert("✅ Links Updated Successfully");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+
     } catch (error) {
-      //console.log(error);
+      console.log(error);
+
+      if (error.response) {
+        alert(
+          `❌ Error (${error.response.status}): ${
+            error.response.data?.message ||
+            "Failed to update"
+          }`
+        );
+      } else if (error.request) {
+        alert(
+          "🌐 Network Error! Please check internet connection."
+        );
+      } else {
+        alert(
+          `❌ ${error.message || "Something went wrong"}`
+        );
+      }
     }
   };
+
   return (
     <div className="overflow-x-auto">
       {edit ? (
@@ -38,95 +112,172 @@ function Otherprofilelink({ edit, data, token }) {
             className="w-full max-w-lg shadow-md border rounded p-3"
             onSubmit={handleSubmit}
           >
-            <div className="flex flex-wrap -mx-3 mb-6">
-              <div className="w-full px-3">
-                <label
-                  className="block uppercase tracking-wide text-sm font-bold mb-2"
-                  htmlhtmlFor="grid-password"
+
+            {/* PERSONAL LINKS */}
+            <div className="mb-6">
+              <label className="block uppercase tracking-wide text-sm font-bold mb-3">
+                Personal Links
+              </label>
+
+              {links.map((item, index) => (
+                <div
+                  key={index}
+                  className="border rounded p-3 mb-3"
                 >
-                  Personal Link
-                </label>
-                <textarea
-                  type="text"
-                  name="Personal Link"
-                  className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"
-                  onChange={(e) => setLink(e.target.value)}
-                  value={link}
-                  placeholder="Title"
-                ></textarea>
-              </div>
-              <div className="w-full px-3">
-                <label
-                  className="block uppercase tracking-wide text-sm font-bold mb-2"
-                  htmlhtmlFor="grid-password"
-                >
-                  Google Scholar Link
-                </label>
-                <textarea
-                  type="text"
-                  name="Google Scholar Link"
-                  className="appearance-none bg-white py-2 px-3 mt-1 block border w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 focus:border-2 sm:text-sm"
-                  onChange={(e) => setGooglelink(e.target.value)}
-                  value={googlelink}
-                ></textarea>
-              </div>
+
+                  {/* TITLE */}
+                  <input
+                    type="text"
+                    placeholder="Title"
+                    value={item.title}
+                    onChange={(e) =>
+                      handleLinkChange(
+                        index,
+                        "title",
+                        e.target.value
+                      )
+                    }
+                    className="appearance-none bg-white py-2 px-3 mb-2 block border w-full rounded-md border-gray-300 shadow-sm"
+                  />
+
+                  {/* LINK */}
+                  <input
+                    type="text"
+                    placeholder="https://..."
+                    value={item.link}
+                    onChange={(e) =>
+                      handleLinkChange(
+                        index,
+                        "link",
+                        e.target.value
+                      )
+                    }
+                    className="appearance-none bg-white py-2 px-3 block border w-full rounded-md border-gray-300 shadow-sm"
+                  />
+
+                  {/* REMOVE BUTTON */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      removeLink(index)
+                    }
+                    className="mt-2 text-red-600 text-sm"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+
+              {/* ADD LINK BUTTON */}
+              <button
+                type="button"
+                onClick={addLink}
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+              >
+                + Add Personal Link
+              </button>
             </div>
-            <div className="flex px-3 w-full justify-end">
-              <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 active:translate-y-[2px] hover:shadow-xl">
+
+            {/* GOOGLE SCHOLAR */}
+            <div className="mb-6">
+              <label className="block uppercase tracking-wide text-sm font-bold mb-2">
+                Google Scholar Link
+              </label>
+
+              <input
+                type="text"
+                value={googlelink}
+                onChange={(e) =>
+                  setGooglelink(e.target.value)
+                }
+                placeholder="https://scholar.google.com/..."
+                className="appearance-none bg-white py-2 px-3 block border w-full rounded-md border-gray-300 shadow-sm"
+              />
+            </div>
+
+            {/* SUBMIT */}
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 active:translate-y-[2px] hover:shadow-xl"
+              >
                 <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md">
                   Submit
                 </span>
               </button>
             </div>
+
           </form>
         </div>
       ) : (
         <div className="overflow-x-auto relative my-2 scrollbar min-w-[570px]">
           <div className="flex max-w-full justify-between items-center p-4 shadow-md">
+
             <table className="text-sm sm:text-base">
-              {link && link.length > 0 && (
-                <tr>
-                  <td className="font-bold pr-4 pl-2 py-2">Personal Link</td>
-                  <td className="text-sm font-bold pr-4 pl-2 py-2">:</td>
-                  <td>
-                    <div className="text-orange-400 hover:underline">
-                      {link.map((linkItem, index) => (
-                        <React.Fragment key={index}>
+              <tbody>
+
+                {/* PERSONAL LINKS */}
+                {links.length > 0 && (
+                  <tr>
+                    <td className="font-bold pr-4 pl-2 py-2">
+                      Personal Links
+                    </td>
+
+                    <td className="font-bold pr-4 pl-2 py-2">
+                      :
+                    </td>
+
+                    <td>
+                      <div className="flex flex-wrap gap-2">
+                        {links.map((item, index) => (
                           <span
-                            onClick={() => {
-                              window.open(linkItem.link, "_blank");
-                            }}
+                            key={index}
+                            onClick={() =>
+                              window.open(
+                                item.link,
+                                "_blank"
+                              )
+                            }
+                            className="text-orange-500 hover:underline cursor-pointer"
                           >
-                            {linkItem.title}
+                            {item.title}
                           </span>
+                        ))}
+                      </div>
+                    </td>
+                  </tr>
+                )}
 
-                          {index !== link.length - 1 && <span>, </span>}
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  </td>
-                </tr>
-              )}
+                {/* GOOGLE SCHOLAR */}
+                {googlelink && (
+                  <tr>
+                    <td className="font-bold pr-4 pl-2 py-2">
+                      Google Scholar
+                    </td>
 
-              {googlelink && (
-                <tr>
-                  <td className="font-bold pr-4 pl-2 py-2">
-                    Google Scholar Link
-                  </td>
-                  <td className="text-sm font-bold pr-4 pl-2 py-2">:</td>
-                  <td>
-                    <div
-                      onClick={() => {
-                        window.open(googlelink, "_blank");
-                      }}
-                      className="text-orange-400 hover:underline"
-                    >
-                      {data["name"]}
-                    </div>
-                  </td>
-                </tr>
-              )}
+                    <td className="font-bold pr-4 pl-2 py-2">
+                      :
+                    </td>
+
+                    <td>
+                      <span
+                        onClick={() =>
+                          window.open(
+                            googlelink,
+                            "_blank"
+                          )
+                        }
+                        className="text-orange-500 hover:underline cursor-pointer break-all"
+                      >
+                        {googlelink}
+                      </span>
+                    </td>
+                  </tr>
+                )}
+
+              </tbody>
             </table>
+
           </div>
         </div>
       )}
