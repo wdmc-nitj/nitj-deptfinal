@@ -29,44 +29,54 @@ function BaseTable({
     return fieldName === "From" || fieldName === "To" || fieldName === "Date of Award/Filling";
   };
 
+  // Check if value is just a year (4 digits)
+  const isJustYear = (value) => {
+    return typeof value === 'string' && value.match(/^\d{4}$/);
+  };
+
   // Intelligent date parsing - handles multiple formats
   const parseDate = (dateValue) => {
     if (!dateValue) return null;
     
+    // If it's just a year, return as year only
+    if (isJustYear(dateValue)) {
+      return { type: 'year', value: dateValue };
+    }
+    
     // If it's already a Date object
-    if (dateValue instanceof Date) return dateValue;
+    if (dateValue instanceof Date) return { type: 'date', value: dateValue };
     
     // Try DD-MM-YYYY format
     if (typeof dateValue === 'string' && dateValue.match(/^\d{2}-\d{2}-\d{4}$/)) {
       const [day, month, year] = dateValue.split('-');
       const date = new Date(year, month - 1, day);
-      if (!isNaN(date.getTime())) return date;
+      if (!isNaN(date.getTime())) return { type: 'date', value: date };
     }
     
     // Try YYYY-MM-DD format (ISO)
     if (typeof dateValue === 'string' && dateValue.match(/^\d{4}-\d{2}-\d{2}$/)) {
       const date = new Date(dateValue);
-      if (!isNaN(date.getTime())) return date;
+      if (!isNaN(date.getTime())) return { type: 'date', value: date };
     }
     
     // Try MM/DD/YYYY format
     if (typeof dateValue === 'string' && dateValue.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
       const [month, day, year] = dateValue.split('/');
       const date = new Date(year, month - 1, day);
-      if (!isNaN(date.getTime())) return date;
+      if (!isNaN(date.getTime())) return { type: 'date', value: date };
     }
     
     // Try DD/MM/YYYY format
     if (typeof dateValue === 'string' && dateValue.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
       const [day, month, year] = dateValue.split('/');
       const date = new Date(year, month - 1, day);
-      if (!isNaN(date.getTime())) return date;
+      if (!isNaN(date.getTime())) return { type: 'date', value: date };
     }
     
     // Try generic Date parsing
     try {
       const date = new Date(dateValue);
-      if (!isNaN(date.getTime())) return date;
+      if (!isNaN(date.getTime())) return { type: 'date', value: date };
     } catch (e) {
       // Do nothing
     }
@@ -74,48 +84,78 @@ function BaseTable({
     return null;
   };
 
-  // Format date for display (DD-MM-YYYY)
+  // Format date for display (DD-MM-YYYY or just year)
   const formatDateForDisplay = (dateValue) => {
     if (!dateValue) return '-';
     
-    const date = parseDate(dateValue);
-    if (date && !isNaN(date.getTime())) {
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}-${month}-${year}`;
+    // If it's just a year, display as is
+    if (isJustYear(dateValue)) {
+      return dateValue;
+    }
+    
+    const parsed = parseDate(dateValue);
+    if (parsed) {
+      if (parsed.type === 'year') {
+        return parsed.value;
+      } else if (parsed.type === 'date') {
+        const date = parsed.value;
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+      }
     }
     
     return dateValue;
+  };
+
+  // Get comparable value for sorting
+  const getSortableValue = (value, fieldName) => {
+    if (!value) return null;
+    
+    // For date fields
+    if (isDateField(fieldName)) {
+      // If it's just a year, return the year as number for sorting
+      if (isJustYear(value)) {
+        return parseInt(value);
+      }
+      
+      const parsed = parseDate(value);
+      if (parsed) {
+        if (parsed.type === 'year') {
+          return parseInt(parsed.value);
+        } else if (parsed.type === 'date') {
+          return parsed.value.getTime();
+        }
+      }
+      return null;
+    }
+    
+    return value;
   };
 
   // Sort data based on sort configuration
   const sortedData = [...data]?.sort((a, b) => {
     if (!sortConfig.key) return 0;
     
-    let aValue = a[sortConfig.key];
-    let bValue = b[sortConfig.key];
+    let aValue = getSortableValue(a[sortConfig.key], sortConfig.key);
+    let bValue = getSortableValue(b[sortConfig.key], sortConfig.key);
     
     // Handle null/undefined values
     if (aValue === null || aValue === undefined) aValue = '';
     if (bValue === null || bValue === undefined) bValue = '';
     
-    // Special handling for date fields
-    if (isDateField(sortConfig.key)) {
-      const dateA = parseDate(aValue);
-      const dateB = parseDate(bValue);
-      if (dateA && dateB) {
-        aValue = dateA.getTime();
-        bValue = dateB.getTime();
+    // For numeric values (years, timestamps)
+    if (typeof aValue === 'number' && typeof bValue === 'number') {
+      if (sortConfig.direction === 'asc') {
+        return aValue - bValue;
+      } else {
+        return bValue - aValue;
       }
     }
-    // Special handling for Year and numeric fields
-    else if (sortConfig.key === "Year" || sortConfig.key === "Amount") {
-      aValue = Number(aValue) || 0;
-      bValue = Number(bValue) || 0;
-    }
+    
     // String comparison for other fields
-    else if (typeof aValue === 'string') {
+    if (typeof aValue === 'string') {
       aValue = aValue.toLowerCase();
       bValue = typeof bValue === 'string' ? bValue.toLowerCase() : String(bValue).toLowerCase();
     }
@@ -301,7 +341,7 @@ function BaseTable({
                           >
                             {item}
                             {isDateField(item) && (
-                              <span className="text-xs text-gray-500 ml-2">(DD-MM-YYYY)</span>
+                              <span className="text-xs text-gray-500 ml-2">(DD-MM-YYYY or just Year)</span>
                             )}
                           </label>
                           <textarea
@@ -450,7 +490,7 @@ function BaseTable({
                             </button>
                            </td>
                         )}
-                      </tr>
+                       </tr>
                     );
                   }
                   return null;
