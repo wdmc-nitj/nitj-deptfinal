@@ -18,135 +18,20 @@ function BaseTable({
   const [changedata, setChangedata] = useState({});
   const dept = useLocation().pathname.split("/")[2];
   const [row, setrow] = useState(8);
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+  const [asec, setAsec] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const totalrow = data.length;
   const totalPage = Math.ceil(totalrow / row);
   const [page, setPage] = useState(1);
 
-  // Check if field should be treated as a date
-  const isDateField = (fieldName) => {
-    return fieldName === "From" || fieldName === "To" || fieldName === "Date of Award/Filling";
-  };
-
-  // Intelligent date parsing - handles multiple formats
-  const parseDate = (dateValue) => {
-    if (!dateValue) return null;
-    
-    // If it's already a Date object
-    if (dateValue instanceof Date) return dateValue;
-    
-    // Try DD-MM-YYYY format
-    if (typeof dateValue === 'string' && dateValue.match(/^\d{2}-\d{2}-\d{4}$/)) {
-      const [day, month, year] = dateValue.split('-');
-      const date = new Date(year, month - 1, day);
-      if (!isNaN(date.getTime())) return date;
+  // Sort data for display
+  const sortedData = [...data]?.sort((b, c) => {
+    if (asec) {
+      return (b.Year || 0) - (c.Year || 0);
+    } else {
+      return (c.Year || 0) - (b.Year || 0);
     }
-    
-    // Try YYYY-MM-DD format (ISO)
-    if (typeof dateValue === 'string' && dateValue.match(/^\d{4}-\d{2}-\d{2}$/)) {
-      const date = new Date(dateValue);
-      if (!isNaN(date.getTime())) return date;
-    }
-    
-    // Try MM/DD/YYYY format
-    if (typeof dateValue === 'string' && dateValue.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
-      const [month, day, year] = dateValue.split('/');
-      const date = new Date(year, month - 1, day);
-      if (!isNaN(date.getTime())) return date;
-    }
-    
-    // Try DD/MM/YYYY format
-    if (typeof dateValue === 'string' && dateValue.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
-      const [day, month, year] = dateValue.split('/');
-      const date = new Date(year, month - 1, day);
-      if (!isNaN(date.getTime())) return date;
-    }
-    
-    // Try generic Date parsing
-    try {
-      const date = new Date(dateValue);
-      if (!isNaN(date.getTime())) return date;
-    } catch (e) {
-      // Do nothing
-    }
-    
-    return null;
-  };
-
-  // Format date for display (DD-MM-YYYY)
-  const formatDateForDisplay = (dateValue) => {
-    if (!dateValue) return '-';
-    
-    const date = parseDate(dateValue);
-    if (date && !isNaN(date.getTime())) {
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}-${month}-${year}`;
-    }
-    
-    return dateValue;
-  };
-
-  // Sort data based on sort configuration
-  const sortedData = [...data]?.sort((a, b) => {
-    if (!sortConfig.key) return 0;
-    
-    let aValue = a[sortConfig.key];
-    let bValue = b[sortConfig.key];
-    
-    // Handle null/undefined values
-    if (aValue === null || aValue === undefined) aValue = '';
-    if (bValue === null || bValue === undefined) bValue = '';
-    
-    // Special handling for date fields
-    if (isDateField(sortConfig.key)) {
-      const dateA = parseDate(aValue);
-      const dateB = parseDate(bValue);
-      if (dateA && dateB) {
-        aValue = dateA.getTime();
-        bValue = dateB.getTime();
-      }
-    }
-    // Special handling for Year and numeric fields
-    else if (sortConfig.key === "Year" || sortConfig.key === "Amount") {
-      aValue = Number(aValue) || 0;
-      bValue = Number(bValue) || 0;
-    }
-    // String comparison for other fields
-    else if (typeof aValue === 'string') {
-      aValue = aValue.toLowerCase();
-      bValue = typeof bValue === 'string' ? bValue.toLowerCase() : String(bValue).toLowerCase();
-    }
-    
-    if (aValue < bValue) {
-      return sortConfig.direction === 'asc' ? -1 : 1;
-    }
-    if (aValue > bValue) {
-      return sortConfig.direction === 'asc' ? 1 : -1;
-    }
-    return 0;
   });
-
-  const handleSort = (key) => {
-    let direction = 'asc';
-    if (sortConfig.key === key && sortConfig.direction === 'asc') {
-      direction = 'desc';
-    }
-    setSortConfig({ key, direction });
-    setPage(1);
-  };
-
-  // Get sort icon for column
-  const getSortIcon = (columnName) => {
-    if (sortConfig.key !== columnName) {
-      return <i className="fa-solid fa-sort text-gray-400 ml-1"></i>;
-    }
-    return sortConfig.direction === 'asc' 
-      ? <i className="fa-solid fa-sort-up text-blue-600 ml-1"></i>
-      : <i className="fa-solid fa-sort-down text-blue-600 ml-1"></i>;
-  };
 
   useEffect(() => {
     // Initialize form data based on edit mode
@@ -300,9 +185,6 @@ function BaseTable({
                             className="block text-sm font-medium px-1"
                           >
                             {item}
-                            {isDateField(item) && (
-                              <span className="text-xs text-gray-500 ml-2">(DD-MM-YYYY)</span>
-                            )}
                           </label>
                           <textarea
                             type="text"
@@ -344,7 +226,7 @@ function BaseTable({
         </div>
       ) : (
         <div className="flex flex-col items-center justify-between bg-white sm:rounded-lg w-full overflow-auto">
-          <div className="flex w-[98%] items-center my-1 justify-between flex-wrap gap-2">
+          <div className="flex w-[98%] items-center my-1 justify-between">
             <div className="flex items-center my-1 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2 rounded">
               <label htmlFor="states" className="mr-2">
                 Rows per Page :
@@ -379,13 +261,15 @@ function BaseTable({
                     <th
                       key={i}
                       scope="col"
-                      className="px-6 py-3 border cursor-pointer border-gray-300 hover:bg-gray-200 transition-colors"
-                      onClick={() => handleSort(feild[i])}
+                      className="px-6 py-3 border cursor-pointer border-gray-300"
+                      onClick={() => item === "Year" && setAsec(!asec)}
                     >
-                      <div className="flex items-center">
-                        {item}
-                        {getSortIcon(feild[i])}
-                      </div>
+                      {item}
+                      {item === "Year" && (
+                        <span className="ml-2">
+                          {asec ? "↑" : "↓"}
+                        </span>
+                      )}
                     </th>
                   ))}
                   <th
@@ -423,11 +307,7 @@ function BaseTable({
                               </a>
                             ) : (
                               <span className="break-words whitespace-pre-wrap">
-                                {isDateField(item) && Item[item] ? (
-                                  formatDateForDisplay(Item[item])
-                                ) : (
-                                  Item[item] || "-"
-                                )}
+                                {Item[item] || "-"}
                               </span>
                             )}
                           </td>
@@ -437,18 +317,18 @@ function BaseTable({
                             <button
                               className="active:scale-[0.98] cursor-pointer text-blue-600 hover:text-blue-800 mr-3"
                               onClick={() => {
-                                HandleEdit(actualIndex);
+                                HandleEdit(actualIndex); // Pass actual index
                               }}
                             >
                               <i className="fa-solid fa-edit"></i> Edit
                             </button>
                             <button
                               className="active:scale-[0.98] cursor-pointer text-red-600 hover:text-red-800"
-                              onClick={() => handleDelete(Item)}
+                              onClick={() => handleDelete(Item)} // Pass the object
                             >
                               <i className="fa-solid fa-trash"></i> Delete
                             </button>
-                           </td>
+                          </td>
                         )}
                       </tr>
                     );
@@ -471,7 +351,7 @@ function BaseTable({
               </div>
             )}
             {data?.length > 0 && (
-              <div className="w-full min-w-[800px] my-4 px-2 flex flex-1 items-center justify-between flex-wrap gap-2">
+              <div className="w-full min-w-[800px] my-4 px-2 flex flex-1 items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-700">
                     Showing
