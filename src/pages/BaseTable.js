@@ -341,7 +341,7 @@ function BaseTable({
                           >
                             {item}
                             {isDateField(item) && (
-                              <span className="text-xs text-gray-500 ml-2">(DD-MM-YYYY or just Year)</span>
+                              <span className="text-xs text-gray-500 ml-2">(DD-MM-YYYY)</span>
                             )}
                           </label>
                           <textarea
