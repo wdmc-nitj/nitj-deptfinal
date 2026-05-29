@@ -50,64 +50,59 @@ function Otherprofilelink({ edit, data, token }) {
     setLinks(updatedLinks);
   };
 
-// HANDLE SUBMIT
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  // HANDLE SUBMIT
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    // REMOVE EMPTY LINKS
-    const cleanedLinks = links.filter(
-      (item) =>
-        item.title.trim() !== "" &&
-        item.link.trim() !== ""
-    );
-
-    // FIX: Wrap in personal_link object
-    const personalLinkData = {
-      "Personal Link": cleanedLinks,
-      "Google Scholar Link": googlelink,
-    };
-
-    const payload = {
-      personal_link: personalLinkData
-    };
-
-    console.log("Sending:", payload);
-
-    const response = await axios.put(
-      `${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`,
-      payload
-    );
-
-    console.log(response.data);
-
-    alert("✅ Links Updated Successfully");
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
-
-  } catch (error) {
-    console.log(error);
-
-    if (error.response) {
-      alert(
-        `❌ Error (${error.response.status}): ${
-          error.response.data?.message ||
-          "Failed to update"
-        }`
+    try {
+      // REMOVE EMPTY LINKS
+      const cleanedLinks = links.filter(
+        (item) =>
+          item.title.trim() !== "" &&
+          item.link.trim() !== ""
       );
-    } else if (error.request) {
-      alert(
-        "🌐 Network Error! Please check internet connection."
+
+      const newRow = {
+        "Personal Link": cleanedLinks,
+        "Google Scholar Link": googlelink,
+      };
+
+      console.log("Sending:", newRow);
+
+      const response = await axios.put(
+        `${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`,
+        newRow
       );
-    } else {
-      alert(
-        `❌ ${error.message || "Something went wrong"}`
-      );
+
+      console.log(response.data);
+
+      alert("✅ Links Updated Successfully");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+
+    } catch (error) {
+      console.log(error);
+
+      if (error.response) {
+        alert(
+          `❌ Error (${error.response.status}): ${
+            error.response.data?.message ||
+            "Failed to update"
+          }`
+        );
+      } else if (error.request) {
+        alert(
+          "🌐 Network Error! Please check internet connection."
+        );
+      } else {
+        alert(
+          `❌ ${error.message || "Something went wrong"}`
+        );
+      }
     }
-  }
-};
+  };
 
   return (
     <div className="overflow-x-auto">
