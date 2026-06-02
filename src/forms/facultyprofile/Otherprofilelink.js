@@ -62,17 +62,20 @@ function Otherprofilelink({ edit, data, token }) {
           item.link.trim() !== ""
       );
 
-      const newRow = {
-        "Personal Link": cleanedLinks,
-        "Google Scholar Link": googlelink,
-      };
+const newRow = {
+  "Personal Link": cleanedLinks,
+  "Google Scholar Link": googlelink,
+};
 
-      console.log("Sending:", newRow);
+console.log(
+  "Sending:",
+  JSON.stringify(newRow, null, 2)
+);
 
-      const response = await axios.put(
-        `${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`,
-        newRow
-      );
+const response = await axios.put(
+  `${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`,
+  newRow
+);
 
       console.log(response.data);
 
