@@ -6,76 +6,32 @@ import { SERVER_URL } from "../../config/server";
 function Otherprofilelink({ edit, data, token }) {
   const dept = useLocation().pathname.split("/")[2];
 
-  // PERSONAL LINKS ARRAY
-  const [links, setLinks] = useState(
-    data?.personal_link?.["Personal Link"] || [
-      {
-        title: "",
-        link: "",
-      },
-    ]
+  const [link, setLink] = useState(
+    data?.personal_link?.["Personal Link"] || ""
   );
 
-  // GOOGLE SCHOLAR
   const [googlelink, setGooglelink] = useState(
     data?.personal_link?.["Google Scholar Link"] || ""
   );
 
-  // HANDLE PERSONAL LINK CHANGE
-  const handleLinkChange = (index, field, value) => {
-    const updatedLinks = [...links];
-
-    updatedLinks[index][field] = value;
-
-    setLinks(updatedLinks);
-  };
-
-  // ADD NEW LINK
-  const addLink = () => {
-    setLinks([
-      ...links,
-      {
-        title: "",
-        link: "",
-      },
-    ]);
-  };
-
-  // REMOVE LINK
-  const removeLink = (index) => {
-    const updatedLinks = links.filter(
-      (_, i) => i !== index
-    );
-
-    setLinks(updatedLinks);
-  };
-
-  // HANDLE SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // REMOVE EMPTY LINKS
-      const cleanedLinks = links.filter(
-        (item) =>
-          item.title.trim() !== "" &&
-          item.link.trim() !== ""
+      const newRow = {
+        "Personal Link": link.trim(),
+        "Google Scholar Link": googlelink.trim(),
+      };
+
+      console.log(
+        "Sending:",
+        JSON.stringify(newRow, null, 2)
       );
 
-const newRow = {
-  "Personal Link": cleanedLinks,
-  "Google Scholar Link": googlelink,
-};
-
-console.log(
-  "Sending:",
-  JSON.stringify(newRow, null, 2)
-);
-
-const response = await axios.put(
-  `${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`,
-  newRow
-);
+      const response = await axios.put(
+        `${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`,
+        newRow
+      );
 
       console.log(response.data);
 
@@ -84,7 +40,6 @@ const response = await axios.put(
       setTimeout(() => {
         window.location.reload();
       }, 500);
-
     } catch (error) {
       console.log(error);
 
@@ -115,73 +70,22 @@ const response = await axios.put(
             className="w-full max-w-lg shadow-md border rounded p-3"
             onSubmit={handleSubmit}
           >
-
-            {/* PERSONAL LINKS */}
+            {/* PERSONAL LINK */}
             <div className="mb-6">
-              <label className="block uppercase tracking-wide text-sm font-bold mb-3">
-                Personal Links
+              <label className="block uppercase tracking-wide text-sm font-bold mb-2">
+                Personal Link
               </label>
 
-              {links.map((item, index) => (
-                <div
-                  key={index}
-                  className="border rounded p-3 mb-3"
-                >
-
-                  {/* TITLE */}
-                  <input
-                    type="text"
-                    placeholder="Title"
-                    value={item.title}
-                    onChange={(e) =>
-                      handleLinkChange(
-                        index,
-                        "title",
-                        e.target.value
-                      )
-                    }
-                    className="appearance-none bg-white py-2 px-3 mb-2 block border w-full rounded-md border-gray-300 shadow-sm"
-                  />
-
-                  {/* LINK */}
-                  <input
-                    type="text"
-                    placeholder="https://..."
-                    value={item.link}
-                    onChange={(e) =>
-                      handleLinkChange(
-                        index,
-                        "link",
-                        e.target.value
-                      )
-                    }
-                    className="appearance-none bg-white py-2 px-3 block border w-full rounded-md border-gray-300 shadow-sm"
-                  />
-
-                  {/* REMOVE BUTTON */}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      removeLink(index)
-                    }
-                    className="mt-2 text-red-600 text-sm"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-
-              {/* ADD LINK BUTTON */}
-              <button
-                type="button"
-                onClick={addLink}
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                + Add Personal Link
-              </button>
+              <input
+                type="text"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+                placeholder="https://..."
+                className="appearance-none bg-white py-2 px-3 block border w-full rounded-md border-gray-300 shadow-sm"
+              />
             </div>
 
-            {/* GOOGLE SCHOLAR */}
+            {/* GOOGLE SCHOLAR LINK */}
             <div className="mb-6">
               <label className="block uppercase tracking-wide text-sm font-bold mb-2">
                 Google Scholar Link
@@ -190,15 +94,13 @@ const response = await axios.put(
               <input
                 type="text"
                 value={googlelink}
-                onChange={(e) =>
-                  setGooglelink(e.target.value)
-                }
+                onChange={(e) => setGooglelink(e.target.value)}
                 placeholder="https://scholar.google.com/..."
                 className="appearance-none bg-white py-2 px-3 block border w-full rounded-md border-gray-300 shadow-sm"
               />
             </div>
 
-            {/* SUBMIT */}
+            {/* SUBMIT BUTTON */}
             <div className="flex justify-end">
               <button
                 type="submit"
@@ -209,21 +111,18 @@ const response = await axios.put(
                 </span>
               </button>
             </div>
-
           </form>
         </div>
       ) : (
         <div className="overflow-x-auto relative my-2 scrollbar min-w-[570px]">
           <div className="flex max-w-full justify-between items-center p-4 shadow-md">
-
             <table className="text-sm sm:text-base">
               <tbody>
-
-                {/* PERSONAL LINKS */}
-                {links.length > 0 && (
+                {/* PERSONAL LINK */}
+                {link && (
                   <tr>
                     <td className="font-bold pr-4 pl-2 py-2">
-                      Personal Links
+                      Personal Link
                     </td>
 
                     <td className="font-bold pr-4 pl-2 py-2">
@@ -231,22 +130,14 @@ const response = await axios.put(
                     </td>
 
                     <td>
-                      <div className="flex flex-wrap gap-2">
-                        {links.map((item, index) => (
-                          <span
-                            key={index}
-                            onClick={() =>
-                              window.open(
-                                item.link,
-                                "_blank"
-                              )
-                            }
-                            className="text-orange-500 hover:underline cursor-pointer"
-                          >
-                            {item.title}
-                          </span>
-                        ))}
-                      </div>
+                      <span
+                        onClick={() =>
+                          window.open(link, "_blank")
+                        }
+                        className="text-orange-500 hover:underline cursor-pointer break-all"
+                      >
+                        {link}
+                      </span>
                     </td>
                   </tr>
                 )}
@@ -255,7 +146,7 @@ const response = await axios.put(
                 {googlelink && (
                   <tr>
                     <td className="font-bold pr-4 pl-2 py-2">
-                      Google Scholar
+                      Google Scholar Link
                     </td>
 
                     <td className="font-bold pr-4 pl-2 py-2">
@@ -277,10 +168,8 @@ const response = await axios.put(
                     </td>
                   </tr>
                 )}
-
               </tbody>
             </table>
-
           </div>
         </div>
       )}
