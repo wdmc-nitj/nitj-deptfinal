@@ -218,13 +218,14 @@ function BaseTable({
 
     setIsSubmitting(true);
 
-    let updatedData = [...data];
+let updatedData;
 
-    if (Editfeild < 0) {
-      updatedData.push(changedata);
-    } else {
-      updatedData[Editfeild] = changedata;
-    }
+if (Editfeild < 0) {
+  updatedData = [changedata, ...data]; // New entry at top
+} else {
+  updatedData = [...data];
+  updatedData[Editfeild] = changedata;
+}
 
     try {
       await axios.put(
