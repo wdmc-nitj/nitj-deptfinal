@@ -64,13 +64,15 @@ function Menu({ menu, setMenu }) {
                 {
                     l: 'Faculty',
                     link: `/dept/${dept}/Faculty`
-                }, {
-                    l: 'Superannuated Faculty',
-                    link: `/dept/${dept}/SuperannuatedFaculty`
-                }, {
-                    l: 'Adjunct Faculty',
-                    link: `/dept/${dept}/AdjunctFaculty`
-                }, {
+                }, 
+                // {
+                //     l: 'Superannuated Faculty',
+                //     link: `/dept/${dept}/SuperannuatedFaculty`
+                // }, {
+                //     l: 'Adjunct Faculty',
+                //     link: `/dept/${dept}/AdjunctFaculty`
+                // }, 
+                {
                     l: 'PhD Scholars',
                     link: `/dept/${dept}/PhdScholar`
                 }, {
