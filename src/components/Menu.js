@@ -9,7 +9,7 @@ function Menu({ menu, setMenu }) {
         'Home': -1,
         'MissionandVision': 0, 'messageofHOD': 0, 'Achievement': 0, 'Infrastructure': 0, 'contactus': 0,
         'Programme': 1, 'Acadcord': 1, 'Syllabus': 1, 'Timetable': 1, 'AcademicCalender': 1,
-        'Faculty': 2, 'PhdScholar': 2, 'AdjunctFaculty': 2, 'Student': 2, 'Alumni': 2, 'Staff': 2,
+        'Faculty': 2, 'PhdScholar': 2, 'SuperannuatedFaculty': 2, 'AdjunctFaculty': 2, 'Student': 2, 'Alumni': 2, 'Staff': 2,
         'ResearchArea': 3, 'DepartmentLab': 3, 'Publications': 3, 'Projects': 3, 'Consultancy': 3, 'ResearchLab': 3,
         'SocietyClubs': 4
     }
@@ -64,6 +64,9 @@ function Menu({ menu, setMenu }) {
                 {
                     l: 'Faculty',
                     link: `/dept/${dept}/Faculty`
+                }, {
+                    l: 'Superannuated Faculty',
+                    link: `/dept/${dept}/SuperannuatedFaculty`
                 }, {
                     l: 'Adjunct Faculty',
                     link: `/dept/${dept}/AdjunctFaculty`
