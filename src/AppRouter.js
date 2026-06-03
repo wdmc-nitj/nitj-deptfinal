@@ -16,6 +16,7 @@ import Faculty from './pages/Faculty';
 import Staff from './pages/Staff';
 import Students from './pages/Students';
 import PhdScholar from './pages/PhdScholar';
+import AdjunctFaculty from './pages/AdjunctFaculty';
 import Profile from './components/Profile';
 import FacultyLogin from './pages/FacultyLogin';
 import ResearchArea from './pages/ResearchArea';
@@ -94,7 +95,9 @@ const AppRouter = () => {
                       <Route path=':dept/Student' element={<Students />} />
                       {/* <Route path=':dept/Alumni' element={<Alumni />} /> */}
                       <Route path=':dept/PhdScholar' element={<PhdScholar />} />
+                      <Route path=':dept/AdjunctFaculty' element={<AdjunctFaculty />} />
                       <Route path=':dept/PhdScholar/:id' element={<Profile peopleType="PhdScholar" />} />
+                      <Route path=':dept/AdjunctFaculty/:id' element={<Profile peopleType="AdjunctFaculty" />} />
                       <Route path=':dept/login/:status' element={<FacultyLogin />} />
                       <Route path=':dept/login/*' element={<FacultyLogin />} />
                       <Route path=':dept/onClickForgotPass/*' element={<AfterForgotPass />} />
@@ -126,7 +129,9 @@ const AppRouter = () => {
                       <Route path=':dept/Staff' element={<Staff />} />
                       {/* <Route path=':dept/Alumni' element={<Alumni />} /> */}
                       <Route path=':dept/PhdScholar' element={<PhdScholar />} />
+                      <Route path=':dept/AdjunctFaculty' element={<AdjunctFaculty />} />
                       <Route path=':dept/PhdScholar/:id' element={<Profile peopleType="PhdScholar" />} />
+                      <Route path=':dept/AdjunctFaculty/:id' element={<Profile peopleType="AdjunctFaculty" />} />
                       <Route path=':dept/login/:status' element={<FacultyLogin />} />
                       <Route path=':dept/login/*' element={<FacultyLogin />} />
                       {/* <Route path=':dept/onClickForgotPass/*' element={<AfterForgotPass />} /> */}
