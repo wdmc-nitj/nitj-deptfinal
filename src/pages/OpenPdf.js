@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 
-function OpenPdf({link}) {
-
+function OpenPdf({ link }) {
   return (
-    <div className='w-[98%] flex items-center justify-center mx-auto mt-2'>
-      {/* <a href={link+'?preview=1'} data-previewable="1">Link</a> */}
-      <iframe src={link} style={{height:"70vh", width:"100%"}} frameborder="0"></iframe>
-    </div>
-  )
+    <iframe
+      src={link}
+      style={{
+        width: "100vw",
+        height: "90vh",
+        border: "none",
+      }}
+      title="PDF Viewer"
+    />
+  );
 }
 
-export default OpenPdf
+export default OpenPdf;
