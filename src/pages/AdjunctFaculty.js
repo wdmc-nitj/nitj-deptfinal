@@ -15,7 +15,7 @@ function AdjunctFaculty() {
     return (
         <>
             {!loading
-                ? <People Title="Adjunct Faculty" Data={sortedData} />
+                ? <People Title="Adjunct Faculty / Professor of Practice" Data={sortedData} />
                 : <Loading />
             }
         </>
