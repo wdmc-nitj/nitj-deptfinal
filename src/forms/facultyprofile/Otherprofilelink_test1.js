@@ -1,98 +1,32 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { SERVER_URL } from "../../config/server";
 
 function Otherprofilelink({ edit, data, token }) {
   const dept = useLocation().pathname.split("/")[2];
 
-  // Helper function to extract link from any data type
-  const extractLink = (personalLinkData) => {
-    // If null/undefined/empty
-    if (!personalLinkData) return "";
-    
-    // If it's a string
-    if (typeof personalLinkData === "string") return personalLinkData;
-    
-    // If it's an array
-    if (Array.isArray(personalLinkData)) {
-      if (personalLinkData.length === 0) return "";
-      
-      const firstItem = personalLinkData[0];
-      
-      // If array contains objects with link property
-      if (firstItem && typeof firstItem === "object" && firstItem.link) {
-        return firstItem.link;
-      }
-      
-      // If array contains strings
-      if (typeof firstItem === "string") return firstItem;
-      
-      // If array contains objects without link property
-      if (firstItem && typeof firstItem === "object") {
-        // Try to find any string property that looks like a URL
-        for (let key in firstItem) {
-          if (typeof firstItem[key] === "string" && (firstItem[key].startsWith("http") || firstItem[key].includes("."))) {
-            return firstItem[key];
-          }
-        }
-      }
-      
-      return "";
-    }
-    
-    // If it's an object (not array)
-    if (typeof personalLinkData === "object") {
-      // If object has link property
-      if (personalLinkData.link) return personalLinkData.link;
-      
-      // If object has title and maybe URL in some other field
-      for (let key in personalLinkData) {
-        if (typeof personalLinkData[key] === "string" && (personalLinkData[key].startsWith("http") || personalLinkData[key].includes("."))) {
-          return personalLinkData[key];
-        }
-      }
-      
-      return "";
-    }
-    
-    return "";
-  };
+  const [link, setLink] = useState(
+    data?.personal_link?.["Personal Link"] || ""
+  );
 
-  const [link, setLink] = useState("");
-  const [googlelink, setGooglelink] = useState("");
-
-  useEffect(() => {
-    // Extract and set personal link
-    const extractedLink = extractLink(data?.personal_link?.["Personal Link"]);
-    setLink(extractedLink);
-    
-    // Handle Google Scholar (assuming it's always a string)
-    const googleData = data?.personal_link?.["Google Scholar Link"];
-    if (typeof googleData === "string") {
-      setGooglelink(googleData);
-    } else if (Array.isArray(googleData) && googleData.length > 0) {
-      // If Google Scholar is also an array sometimes
-      setGooglelink(extractLink(googleData));
-    } else {
-      setGooglelink("");
-    }
-  }, [data]);
+  const [googlelink, setGooglelink] = useState(
+    data?.personal_link?.["Google Scholar Link"] || ""
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Ensure we're sending a clean string
-      let personalLinkValue = link.trim();
-      let googleLinkValue = googlelink.trim();
-
       const newRow = {
-        "Personal Link": personalLinkValue,
-        "Google Scholar Link": googleLinkValue,
+        "Personal Link": link.trim(),
+        "Google Scholar Link": googlelink.trim(),
       };
 
-      console.log("Sending:", JSON.stringify(newRow, null, 2));
+      console.log(
+        "Sending:",
+        JSON.stringify(newRow, null, 2)
+      );
 
       const response = await axios.put(
         `${SERVER_URL}/dept/${dept}/Faculty/${data._id}/${token}?q=personal_link`,
@@ -197,7 +131,9 @@ function Otherprofilelink({ edit, data, token }) {
 
                     <td>
                       <span
-                        onClick={() => window.open(link, "_blank")}
+                        onClick={() =>
+                          window.open(link, "_blank")
+                        }
                         className="text-orange-500 hover:underline cursor-pointer break-all"
                       >
                         {link}
@@ -219,7 +155,12 @@ function Otherprofilelink({ edit, data, token }) {
 
                     <td>
                       <span
-                        onClick={() => window.open(googlelink, "_blank")}
+                        onClick={() =>
+                          window.open(
+                            googlelink,
+                            "_blank"
+                          )
+                        }
                         className="text-orange-500 hover:underline cursor-pointer break-all"
                       >
                         {googlelink}
