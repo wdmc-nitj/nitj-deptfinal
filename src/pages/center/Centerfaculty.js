@@ -12,7 +12,7 @@ function CenterFaculty() {
   const facultyData = [
     {
       ID: {
-        name: "Dr. Sharvan Kumar Pahuja",
+        name: "Dr. Sarwan Kumar Pahuja",
         designation: "Professor",
         email: "pahujas@nitj.ac.in",
         img: "https://v1.nitj.ac.in/images/faculty/18022167136.png",
