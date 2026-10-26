@@ -32,12 +32,12 @@ function Footer({ scroll, handlescroll }) {
                     <div className="p-[20px]">
                         <div className="pb-[6px] lg:w-[85%]">
                             <i className="fas fa-location-dot pr-[8px]"></i><span className="opacity-90">G.T Road, Amritsar Bypass, Jalandhar,
-                                Punjab, India-144011</span>
+                                Punjab, India-144008</span>
                         </div>
-                        <div className="flex flex-row pb-[6px]">
+                        {/* <div className="flex flex-row pb-[6px]">
                             <i className="fas fa-envelope mt-1 pr-[8px]"></i>
                             <h3 className="opacity-90">webmaster@nitj.ac.in</h3>
-                        </div>
+                        </div> */}
                         <div className="align-center flex flex-row pb-[14px]">
                             <i className="fas fa-phone mt-1 pr-[8px]"></i>
                             <h3 className="opacity-90">
@@ -50,11 +50,24 @@ function Footer({ scroll, handlescroll }) {
                                     <a href="https://www.facebook.com/NITJofficial/" target="_blank">
                                         <i className="fa-brands fa-facebook text-[21px] hover:text-yellow-300"></i></a>
                                 </div>
-                                <div className="text-l text-white">
+                                {/* <div className="text-l text-white">
                                     <a href="https://twitter.com/NITJofficial?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
                                         target="_blank">
                                         <i className="fab fa-twitter text-[21px] hover:text-yellow-300"></i></a>
-                                </div>
+                                </div> */}
+                                 <div class="text-l text-white">
+                                <a href="https://twitter.com/NITJofficial" target="_blank" aria-label="X">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        width="18"
+                                        height="18"
+                                        fill="currentColor"
+                                        class="hover:text-yellow-300 transition-colors duration-200"
+                                        aria-hidden="true">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.963 6.817H1.684l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+                                </svg>
+                                </a>
+                        </div>
                                 <div className="text-l text-white">
                                     <a href="https://in.linkedin.com/school/dr-b-r-ambedkar-national-institute-of-technology-jalandhar-official/"
                                         target="_blank">
